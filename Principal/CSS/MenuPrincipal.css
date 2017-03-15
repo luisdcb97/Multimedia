@@ -1,0 +1,65 @@
+header{
+    height: 800px;
+    width: 800px;
+    background: url("menu_melhor.jpg"), radial-gradient(farthest-side at 150px 200px, #990011, #188833);
+    border-radius: 105px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button
+{
+    border: none;
+    cursor: pointer;
+    /*padding: 0px;
+    */
+    position: absolute;
+    right: auto;
+    left: auto;
+    margin-left: 310px;
+    margin-right: 480px;
+    background-color: #c8a061;
+    border-radius: 15px;
+    transition: background-color 1s, color 1s;
+}
+.botoes{
+}
+
+#jogar{
+    top: 460px;
+}
+#jogar:hover{
+    background-color: #ad8547;
+}
+#jogar:active{
+    background-color: white;
+}
+#ajuda{
+    top: 535px;
+
+}
+#ajuda:hover{
+    background-color: #ad8547;
+}
+#ajuda:active{
+    background-color: white;
+}
+#opcoes{
+    top: 610px;
+    margin-left: 296px;
+}
+#opcoes:hover{
+    background-color: #ad8547;
+}
+#opcoes:active{
+    background-color: white;
+}
+#sair{
+    top: 696px;
+}
+#sair:hover{
+    background-color: #ad8547;
+}
+#sair:active{
+    background-color: white;
+}
