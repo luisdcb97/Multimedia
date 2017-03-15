@@ -63,3 +63,13 @@ button
 #sair:active{
     background-color: white;
 }
+
+#frame{
+    display: none;
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: 50%;
+    margin: -100px 0 0 0;
+    background: red;
+}

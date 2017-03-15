@@ -1,0 +1,21 @@
+1: Os menus de opçoes e ajuda deviam estar em html,css,js separados e fazer load deles com iframe ou
+2: Por tudo nos ficheiros do menu principal e alterar a visibilidade
+
+1:  Maior separação de funcionalidades e menos confusão
+    Mais ficheiros para serem carregados
+    Mais gestão com iframes, especialmente comunicar a mudança de opcoes ao menu principal o que requer algum sincronismo
+
+
+2:  Apenas carrega uma pagina mas maior
+    Mudar "constantemente" a visibilidade dos submenus e gerir os seus listeners [ ao contrário de carregar uma página,
+    quando se esconde um botão ele ainda pode ser clicado ]
+
+
+/******************************************************************************************/
+
+MenuBar [ Jogo em si ]
+
+1:  Abrir o jogo na propria tab do browser
+2:  Abrir o jogo numa iframe que sobrepõe o body
+
+1:  Mais facil mas perde-se informacao duma tab para outra
