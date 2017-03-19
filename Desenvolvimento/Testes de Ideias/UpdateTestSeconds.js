@@ -33,7 +33,8 @@ function start() {
     ctx = canvas.getContext("2d");
     time = new Date().getTime();
     startsec = performance.now();
-    window.webkitRequestAnimationFrame(update);
+    // window.webkitRequestAnimationFrame(update);
+    setTimeout(update2,deltatime);
     setInterval(averageFrames,1000);
 }
 
@@ -55,6 +56,27 @@ function update() {
     else{
         frameCount++;
         window.webkitRequestAnimationFrame(update);
+    }
+}
+
+function update2() {
+    currenttime = performance.now();
+    p.innerHTML = new Date() + "<br>" + frameCount;
+    ctx.clearRect(0,0,cw,ch);
+    drawRect(x,y);
+    x+=10*deltatime;
+    y+=10*deltatime;
+
+    curFrames++;
+    if(x>cw && y>ch){
+        p.innerHTML = performance.now() - startsec;
+        p.innerHTML = (new Date().getTime() - time)/1000;
+        deltatime = performance.now() - currenttime;
+        // setTimeout(update,0);
+    }
+    else{
+        frameCount++;
+        setTimeout(update2,(1000/60));
     }
 }
 
