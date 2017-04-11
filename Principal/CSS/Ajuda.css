@@ -1,0 +1,29 @@
+header{
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    border-radius: 105px;
+    background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+}
+
+img#background{
+    position: absolute;
+    border-radius: 105px;
+}
+
+button
+{
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    margin: auto;
+    display: block;
+    background-color: #c8a061;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+
+#voltar{
+    top: 696px;
+    margin-left: 285px;
+}

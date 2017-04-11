@@ -1,0 +1,19 @@
+Vais começar o jogo de Fisica.
+
+Objetivo: 
+Fazer com que as particulas cheguem ao seu destino (área no campo de jogo)
+O nº de particulas começa com um valor pré-definido e elas desaparecem quando entram na área definida como final
+O jogador ganha quando o nº de particulas for 0
+O tempo demorado influencia o dinheiro e score ganho.
+
+Gameplay:
+As particulas movem-se livremente pela área de jogo colidindo com os limites da mesma e entre si.
+O jogador deve criar e colocar ímanes para influenciar o movimento das particulas, quanto mais longe da particula menos influência o íman tem.
+Os ímanes são colocados através de mouse clicks no local da área de jogo onde clicou apenas se não tiver lá uma partícula, se tiver nada acontece (talvez colocar um efeito sonoro).
+O jogador pode colocar 2 tipos de ímanes:
+Azul -> Botão direito do rato -> Atrai particulas para si até um certo raio interior a partir do qual as repele ( para não colidirem)
+Vermelho -> Botão direito do rato -> Repele particulas
+
+Ao contrário das partículas os ímans são estáticos e não se movem.
+Possíveis alterações:
+Limitar o nº de ímans

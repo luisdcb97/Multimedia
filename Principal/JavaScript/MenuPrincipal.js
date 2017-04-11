@@ -1,21 +1,58 @@
 "use strict";
-/**
- * Created by Luis David on 15/03/2017.
- */
+
+let debug = true;
+let debug_prefix = "[DEBUG - PRINCIPAL]\t";
+
+let definicoes = {
+    volume: 0.25,
+    muted: false
+};
 
 (function () {
     window.addEventListener("load", main);
 }());
 
 function main() {
-    let botoes = document.getElementsByTagName("Button");
-    console.log(botoes);
+    let opcoes = document.getElementById("opcoes");
+    opcoes.addEventListener("click", showOpcoes);
+    let jogar = document.getElementById("jogar");
+    jogar.addEventListener("click", showJogar);
+    let ajuda = document.getElementById("ajuda");
+    ajuda.addEventListener("click", showAjuda);
+    let sair = document.getElementById("sair");
+    sair.addEventListener("click", function(){window.close();} );
 
-    botoes.ajuda.addEventListener("click", showAjuda);
+    window.addEventListener("message", hideFrame);
 }
 
-function showAjuda(event) {
+function showOpcoes() {
+    let menu = document.getElementById("MenuPrincipal");
     let frame = document.getElementById("frame");
-    frame.style.display = "block";
+
     frame.src = "../HTML/MenuOpcoes.html";
+    frame.addEventListener("load", function (ev) {
+        frame.contentWindow.postMessage(definicoes, "*");
+    });
+
+    menu.style.display = "none";
+    frame.style.display = "block";
+}
+
+function hideFrame(ev) {
+    let menu = document.getElementById("MenuPrincipal");
+    let frame = document.getElementById("frame");
+    frame.src = "";
+    if (debug) {
+        console.debug(debug_prefix + "frame hidden");
+    }
+    menu.style.display = "block";
+    frame.style.display = "none";
+}
+
+function showJogar(event) {
+    window.open("../HTML/MenuJogar.html","_self");
+}
+
+function showAjuda() {
+    window.open("../HTML/MenuOpcoes.html","_self");
 }
