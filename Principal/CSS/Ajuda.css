@@ -1,13 +1,13 @@
 header{
+    background: url("../Recursos/menu_Ajuda.jpg"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
     width: 800px;
     height: 800px;
     margin: auto;
     border-radius: 105px;
-    background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
 }
 
 img#background{
-    position: absolute;
+    //position: absolute;
     border-radius: 105px;
 }
 
@@ -26,4 +26,11 @@ button
 #voltar{
     top: 696px;
     margin-left: 285px;
+}
+
+#voltar:hover{
+    background-color: #ad8547;
+}
+#voltar:active{
+    background-color: white;
 }

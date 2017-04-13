@@ -3,8 +3,7 @@ header{
     width: 800px;
     background: url("../Recursos/menu_Opcoes.jpg"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
     border-radius: 105px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
 button
@@ -20,14 +19,12 @@ button
     border-radius: 15px;
     transition: background-color 0.05s, color 1s;
 }
-.botoes{
-}
-
 #menos{
     top: 460px;
     margin-left: 580px;
 }
 #menos:hover{
+    //background-color: #990011;
     background-color: #ad8547;
 }
 #menos:active{
@@ -82,5 +79,7 @@ button
     height: 800px;
 //top: 50%;
 //margin: -100px 0 0 0;
+    position: absolute;
+    margin: auto;
     background: transparent;
 }
