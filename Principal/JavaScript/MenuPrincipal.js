@@ -36,6 +36,7 @@ function showOpcoes() {
 
     menu.style.display = "none";
     frame.style.display = "block";
+
 }
 
 function hideFrame(ev) {
@@ -54,5 +55,14 @@ function showJogar(event) {
 }
 
 function showAjuda() {
-    window.open("../HTML/MenuOpcoes.html","_self");
+    let menu = document.getElementById("MenuPrincipal");
+    let frame = document.getElementById("frame");
+
+    frame.src = "../HTML/Ajuda.html";
+    frame.addEventListener("load", function (ev) {
+        frame.contentWindow.postMessage(definicoes, "*");
+    });
+
+    menu.style.display = "none";
+    frame.style.display = "block";
 }

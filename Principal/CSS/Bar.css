@@ -1,0 +1,66 @@
+header{
+    height: 800px;
+    width: 800px;
+    background: url("../Recursos/barComASenhoraNormal.png"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    border-radius: 105px;
+    margin: auto;
+}
+
+button
+{
+    border: none;
+    cursor: pointer;
+    /*padding: 0px;
+    */
+    position: absolute;
+    right: auto;
+    left: auto;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+#som{
+    top: 20px;
+    background-color: transparent;
+    margin-left: 680px;
+}
+#som:hover{
+    background-color: #ad8547;
+}
+#som:active{
+    background-color: white;
+}
+#interrog{
+    top: 20px;
+    background-color: transparent;
+    margin-left: 640px;
+}
+#interrog:hover{
+    background-color: #ad8547;
+}
+#interrog:active{
+    background-color: white;
+}
+#porta{
+     top: 20px;
+     background-color: transparent;
+     margin-left: 600px;
+ }
+#porta:hover{
+    background-color: #ad8547;
+}
+#porta:active{
+    background-color: white;
+}
+#fazercadeiras{
+    background-color: #c8a061;
+    top: 696px;
+    margin-left: 240px;
+}
+#fazercadeiras:hover{
+    background-color: #ad8547;
+}
+#fazercadeiras:active{
+    background-color: white;
+}
+
+
