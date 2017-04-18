@@ -31,5 +31,5 @@ function showAjuda(event) {
     window.open("../HTML/Ajuda.html","_self");
 }
 function showCadeiras(event) {
-    window.open("www.facebook.com");
+    window.open("../HTML/FazerCadeiras.html","_self");
 }
