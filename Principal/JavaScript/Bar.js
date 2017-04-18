@@ -23,7 +23,7 @@ function main() {
 }
 
 function showBaguetes() {
-    var frame = document.getElementById("frame");
+    let frame = document.getElementById("frame");
     frame.style.display = "block";
     frame.src = "../Recursos/popup_baguetes.png";
 }
