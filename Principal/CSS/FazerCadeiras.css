@@ -35,10 +35,10 @@ button
     margin-left: 110px;
 }
 #ami:hover{
-    background-color: black;
+    background-color: #635252;
 }
 #ami:active{
-    background-color: white;
+    background-color: black;
 }
 #tc{
     top: 81px;
@@ -46,32 +46,24 @@ button
     margin-left: 30px;
 }
 #tc:hover{
-    background-color: black;
+    background-color: #635252;
 }
 #tc:active{
-    background-color: white;
-}
-#fazercadeiras{
-    background-color: #c8a061;
-    top: 696px;
-    margin-left: 240px;
-}
-#fazercadeiras:hover{
-    background-color: #ad8547;
-}
-#fazercadeiras:active{
-    background-color: white;
-
+    background-color: black;
 }
 #xis{
-    background-color: #c8a061;
-    top: 696px;
-    margin-left: 240px;
+    width: 47px;
+    height: 47px;
+    border-radius: 15px;
+    padding: 0px 0 0 0;
+    background-color: #df1600;
+    top: 17px;
+    margin-left: 514px;
 }
 #xis:hover{
-    background-color: #ad8547;
+    background-color: #b21200;
 }
 #xis:active{
-    background-color: white;
+    background-color: #880d00;
 
 }
