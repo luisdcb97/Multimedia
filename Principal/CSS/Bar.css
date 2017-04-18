@@ -18,6 +18,17 @@ button
     border-radius: 15px;
     transition: background-color 0.05s, color 1s;
 }
+
+#frame{
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    margin: auto;
+    display: none;
+    border: none;
+    overflow: hidden;
+}
+
 #som{
     top: 20px;
     background-color: transparent;

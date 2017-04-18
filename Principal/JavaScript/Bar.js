@@ -19,7 +19,15 @@ function main() {
     botoes.interrog.addEventListener("click", showAjuda);
     botoes.porta.addEventListener("click", showMenuPrincipal);
     botoes.fazercadeiras.addEventListener("click",showCadeiras);
+    botoes.senhora.addEventListener("click",showBaguetes);
 }
+
+function showBaguetes() {
+    var frame = document.getElementById("frame");
+    frame.style.display = "block";
+    frame.src = "../Recursos/popup_baguetes.png";
+}
+
 function showMenuPrincipal(event) {
     /*let frame = document.getElementById("frame");
      frame.style.display = "block";
