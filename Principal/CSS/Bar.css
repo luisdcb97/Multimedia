@@ -1,7 +1,7 @@
 header{
     height: 800px;
     width: 800px;
-    background: url("../Recursos/barComASenhoraNormal.png"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    background: url("../Recursos/barSemNinguem.jpg"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
     border-radius: 105px;
     margin: auto;
 }
@@ -61,6 +61,39 @@ button
 }
 #fazercadeiras:active{
     background-color: white;
+
 }
 
+#senhora{
+    background-color: transparent;
+    margin-left: 300px;
+    margin-top: 274px;
+}
+#senhora:hover{
+    background-color: transparent;
+    margin-left: 299px;
+    margin-top: 278px;
+}
+
+.senhora_normal, #senhora:hover .senhora_sorri{
+    display:block;
+
+}
+
+.senhora_sorri, #senhora:hover .senhora_normal{
+    display:none;
+
+}
+/*
+#senhora{
+    background-color: transparent;
+    margin-left: 300px;
+    margin-top: 275px;
+}
+
+#senhora:hover{
+    background-image: url("../Recursos/SenhoraSorrindo.png");
+    background-color: transparent;
+}
+/*
 
