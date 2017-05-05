@@ -1,0 +1,23 @@
+header{
+    background: url("../Recursos/popup_baguetes.png");
+    height: 455px;
+    width: 600px;
+}
+
+#xis{
+    width: 47px;
+    height: 47px;
+    border-radius: 15px;
+    padding: 0px 0 0 0;
+    background-color: #df1600;
+    top: 40px;
+    margin-left: 514px;
+
+}
+#xis:hover{
+    background-color: #b21200;
+}
+#xis:active{
+    background-color: #880d00;
+
+}

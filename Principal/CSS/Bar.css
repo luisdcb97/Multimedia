@@ -19,14 +19,17 @@ button
     transition: background-color 0.05s, color 1s;
 }
 
-#frame{
-    height: 600px;
+#popupbaguetes{
+    height: 445px;
     width: 600px;
     position: absolute;
     margin: auto;
     display: none;
     border: none;
+    margin-top: 150px;
+    margin-left: 100px;
     overflow: hidden;
+    z-index: 1;
 }
 
 #som{
@@ -94,6 +97,17 @@ button
 .senhora_sorri, #senhora:hover .senhora_normal{
     display:none;
 
+}
+#energia{
+    margin-top: 25px;
+    margin-left: 90px;
+    position:absolute;
+}
+
+#dinheiro{
+    margin-top: 20px;
+    margin-left: 240px;
+    position: absolute;
 }
 /*
 #senhora{

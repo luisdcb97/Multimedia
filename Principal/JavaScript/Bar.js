@@ -23,9 +23,9 @@ function main() {
 }
 
 function showBaguetes() {
-    let frame = document.getElementById("frame");
+    let frame = document.getElementById("popupbaguetes");
     frame.style.display = "block";
-    frame.src = "../Recursos/popup_baguetes.png";
+    frame.src = "../HTML/PopupBaguetes.html";
 }
 
 function showMenuPrincipal(event) {
