@@ -20,7 +20,5 @@ function main() {
 }
 
 function hidePopup(ev) {
-    let frame = document.getElementById("popupbaguetes");
-    frame.src = "../HTML/PopupBaguetes.html";
-    frame.style.display = "none";
+    parent.postMessage("message","*");
 }

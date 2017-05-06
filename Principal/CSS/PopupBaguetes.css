@@ -1,18 +1,25 @@
 header{
-    background: url("../Recursos/popup_baguetes.png");
-    height: 455px;
-    width: 600px;
+    background: url("../Recursos/popup_baguetes_retangular.png");
+    height: 430px;
+    width: 585px;
+    border-radius: 20px;
 }
 
 #xis{
     width: 47px;
     height: 47px;
     border-radius: 15px;
-    padding: 0px 0 0 0;
+    padding: 0px;
     background-color: #df1600;
-    top: 40px;
+    margin-top: 15px;
     margin-left: 514px;
 
+}
+#bagueteQueijo{
+    margin-top: 0px;
+    margin-left: 25px;
+    background-color: transparent;
+    border: none;
 }
 #xis:hover{
     background-color: #b21200;
