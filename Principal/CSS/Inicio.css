@@ -1,0 +1,95 @@
+#frame{
+    height: 800px;
+    width: 800px;
+    position: absolute;
+    margin: auto;
+    display: none;
+    border: none;
+    overflow: hidden;
+}
+
+/*region Menu Principal*/
+
+header#MenuPrincipal{
+    height: 800px;
+    width: 800px;
+    background: radial-gradient(farthest-side at 150px 200px, #990011, #188833);
+    border-radius: 105px;
+    margin: auto;
+}
+
+img#backgroundPrincipal{
+    border-radius: 105px;
+    position: absolute;
+}
+
+
+nav.BotoesPrincipal {
+    position: absolute;
+    top: 450px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+nav.BotoesPrincipal button{
+    border: none;
+    cursor: pointer;
+    display: block;
+    background-color: #c8a061;
+    border-radius: 15px;
+    margin: 5px auto auto;
+    transition: background-color 0.05s, color 1s;
+}
+
+nav.BotoesPrincipal button:hover{
+    background-color: #ad8547;
+}
+
+nav.BotoesPrincipal button:active{
+    background-color: white;
+}
+
+
+/*endregion*/
+
+/*region Ajuda*/
+
+header#Ajuda{
+    background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    border-radius: 105px;
+}
+
+header#Ajuda img#backgroundAjuda{
+    position: absolute;
+    border-radius: 105px;
+}
+
+header#Ajuda button
+{
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    margin: auto;
+    display: block;
+    background-color: #c8a061;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+
+/*Selecciona o botao com id voltar que esta dentro do header com classe Ajuda*/
+header#Ajuda button#BotaoVoltar{
+    top: 696px;
+    margin-left: 285px;
+}
+
+header#Ajuda button#BotaoVoltar:hover{
+    background-color: #ad8547;
+}
+
+header#Ajuda button#BotaoVoltar:active{
+    background-color: white;
+}
+
+/*endregion*/
