@@ -18,19 +18,19 @@ header#MenuPrincipal{
     margin: auto;
 }
 
-img#backgroundPrincipal{
+header#MenuPrincipal img#backgroundPrincipal{
     border-radius: 105px;
     position: absolute;
 }
 
 
-nav.BotoesPrincipal {
+header#MenuPrincipal nav.BotoesPrincipal {
     position: absolute;
     top: 450px;
     left: 50%;
     transform: translateX(-50%);
 }
-nav.BotoesPrincipal button{
+header#MenuPrincipal nav.BotoesPrincipal button{
     border: none;
     cursor: pointer;
     display: block;
@@ -40,11 +40,11 @@ nav.BotoesPrincipal button{
     transition: background-color 0.05s, color 1s;
 }
 
-nav.BotoesPrincipal button:hover{
+header#MenuPrincipal nav.BotoesPrincipal button:hover{
     background-color: #ad8547;
 }
 
-nav.BotoesPrincipal button:active{
+header#MenuPrincipal nav.BotoesPrincipal button:active{
     background-color: white;
 }
 
@@ -79,16 +79,112 @@ header#Ajuda button
 }
 
 /*Selecciona o botao com id voltar que esta dentro do header com classe Ajuda*/
-header#Ajuda button#BotaoVoltar{
+header#Ajuda button#BotaoVoltarAjuda{
     top: 696px;
     margin-left: 285px;
 }
 
-header#Ajuda button#BotaoVoltar:hover{
+header#Ajuda button#BotaoVoltarAjuda:hover{
     background-color: #ad8547;
 }
 
-header#Ajuda button#BotaoVoltar:active{
+header#Ajuda button#BotaoVoltarAjuda:active{
+    background-color: white;
+}
+
+/*endregion*/
+
+/*region Opcoes*/
+
+header#Opcoes{
+    height: 800px;
+    width: 800px;
+    background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    border-radius: 105px;
+    margin: auto;
+}
+
+header#Opcoes img#backgroundOpcoes{
+    position: absolute;
+    border-radius: 105px;
+}
+
+header#Opcoes button
+{
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: auto;
+    left: auto;
+    background-color: #c8a061;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+
+header#Opcoes #BotaoMenos{
+    top: 460px;
+    margin-left: 580px;
+}
+
+header#Opcoes #BotaoMenos:hover{
+//background-color: #990011;
+    background-color: #ad8547;
+}
+
+header#Opcoes #BotaoMenos:active{
+    background-color: white;
+}
+
+header#Opcoes #BotaoMais{
+    top: 460px;
+    margin-left: 640px;
+
+}
+
+header#Opcoes #BotaoMais:hover{
+    background-color: #ad8547;
+}
+
+header#Opcoes #BotaoMais:active{
+    background-color: white;
+}
+
+header#Opcoes #BotaoOn{
+    top: 445px;
+    margin-left: 40px;
+}
+
+header#Opcoes #BotaoOn:hover{
+    background-color: #ad8547;
+}
+
+header#Opcoes #BotaoOn:active{
+    background-color: white;
+}
+
+header#Opcoes #BotaoOff{
+    top: 445px;
+    margin-left: 160px;
+}
+
+header#Opcoes #BotaoOff:hover{
+    background-color: #ad8547;
+}
+
+header#Opcoes #BotaoOff:active{
+    background-color: white;
+}
+
+header#Opcoes #BotaoVoltarOpcoes{
+    top: 696px;
+    margin-left: 280px;
+}
+
+header#Opcoes #BotaoVoltarOpcoes:hover{
+    background-color: #ad8547;
+}
+
+header#Opcoes #BotaoVoltarOpcoes:active{
     background-color: white;
 }
 

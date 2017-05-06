@@ -23,14 +23,14 @@ button
     transition: background-color 0.05s, color 1s;
 }
 
-#voltar{
+#BotaoVoltarOpcoes{
     top: 696px;
     margin-left: 285px;
 }
 
-#voltar:hover{
+#BotaoVoltarOpcoes:hover{
     background-color: #ad8547;
 }
-#voltar:active{
+#BotaoVoltarOpcoes:active{
     background-color: white;
 }

@@ -19,26 +19,26 @@ button
     border-radius: 15px;
     transition: background-color 0.05s, color 1s;
 }
-#menos{
+#BotaoMenos{
     top: 460px;
     margin-left: 580px;
 }
-#menos:hover{
+#BotaoMenos:hover{
     //background-color: #990011;
     background-color: #ad8547;
 }
-#menos:active{
+#BotaoMenos:active{
     background-color: white;
 }
-#mais{
+#BotaoMais{
     top: 460px;
     margin-left: 640px;
 
 }
-#mais:hover{
+#BotaoMais:hover{
     background-color: #ad8547;
 }
-#mais:active{
+#BotaoMais:active{
     background-color: white;
 }
 #on{
@@ -51,24 +51,24 @@ button
 #on:active{
     background-color: white;
 }
-#off{
+#BotaoOff{
     top: 445px;
     margin-left: 160px;
 }
-#off:hover{
+#BotaoOff:hover{
     background-color: #ad8547;
 }
-#off:active{
+#BotaoOff:active{
     background-color: white;
 }
-#voltar{
+#BotaoVoltarOpcoes{
     top: 696px;
     margin-left: 280px;
 }
-#voltar:hover{
+#BotaoVoltarOpcoes:hover{
     background-color: #ad8547;
 }
-#voltar:active{
+#BotaoVoltarOpcoes:active{
     background-color: white;
 }
 

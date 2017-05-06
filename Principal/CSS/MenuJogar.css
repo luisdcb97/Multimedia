@@ -58,14 +58,14 @@ button
     /*background-color: white;*/
 }
 
-#voltar{
+#BotaoVoltarOpcoes{
     top: 696px;
     margin-left: 280px;
 }
-#voltar:hover{
+#BotaoVoltarOpcoes:hover{
     background-color: #ad8547;
 }
-#voltar:active{
+#BotaoVoltarOpcoes:active{
     background-color: white;
 }
 

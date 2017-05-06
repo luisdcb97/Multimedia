@@ -13,10 +13,10 @@ let definicoes = {
 }());
 
 function main() {
-    let voltar = document.getElementById("voltar");
+    let voltar = document.getElementById("BotaoVoltarOpcoes");
     voltar.addEventListener("click", goBack);
 
-    let mute = document.getElementById("off");
+    let mute = document.getElementById("BotaoOff");
     let play = document.getElementById("on");
 
     window.addEventListener("message", receiveMessage);
@@ -37,8 +37,8 @@ function main() {
         }
     });
 
-    let minus = document.getElementById("menos");
-    let plus = document.getElementById("mais");
+    let minus = document.getElementById("BotaoMenos");
+    let plus = document.getElementById("BotaoMais");
 
     plus.addEventListener("click", function (ev) {
         definicoes.volume += 0.05;

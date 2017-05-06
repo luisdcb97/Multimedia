@@ -10,7 +10,7 @@ let definicoes = {
 }());
 
 function main() {
-    let voltar = document.getElementById("voltar");
+    let voltar = document.getElementById("BotaoVoltarOpcoes");
     voltar.addEventListener("click", goBack);
 
 }
