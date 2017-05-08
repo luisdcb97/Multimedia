@@ -1,6 +1,4 @@
-/**
- * Created by Luis David on 20/03/2017.
- */
+
 "use strict";
 
 class Iman extends Particula{
