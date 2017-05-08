@@ -1,7 +1,7 @@
 "use strict";
 
 class PontoArduino{
-    constructor(x,y,cor="#666677"){
+    constructor(x,y,cor="#BFBFBF"){
         this.x = x;
         this.y = y;
         this.raio = 5;
