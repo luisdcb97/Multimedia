@@ -16,10 +16,13 @@ header{
 
 }
 #bagueteQueijo{
-    margin-top: 0px;
     margin-left: 25px;
     background-color: transparent;
     border: none;
+}
+#bagueteQueijo:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
 }
 #xis:hover{
     background-color: #b21200;

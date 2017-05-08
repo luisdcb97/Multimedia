@@ -109,6 +109,15 @@ button
     margin-left: 240px;
     position: absolute;
 }
+
+#saldo{
+    margin-left:225px;
+    margin-top: 21px;
+    position: absolute;
+    color: white;
+    font-family: "Kristen ITC";
+    font-size: large;
+}
 /*
 #senhora{
     background-color: transparent;
