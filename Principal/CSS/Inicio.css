@@ -10,7 +10,7 @@
 
 /*region Menu Principal*/
 
-header#MenuPrincipal{
+section#MenuPrincipal{
     height: 800px;
     width: 800px;
     background: radial-gradient(farthest-side at 150px 200px, #990011, #188833);
@@ -18,19 +18,19 @@ header#MenuPrincipal{
     margin: auto;
 }
 
-header#MenuPrincipal img#backgroundPrincipal{
+section#MenuPrincipal img#backgroundPrincipal{
     border-radius: 105px;
     position: absolute;
 }
 
 
-header#MenuPrincipal nav.BotoesPrincipal {
+section#MenuPrincipal nav.BotoesPrincipal {
     position: absolute;
     top: 450px;
     left: 50%;
     transform: translateX(-50%);
 }
-header#MenuPrincipal nav.BotoesPrincipal button{
+section#MenuPrincipal nav.BotoesPrincipal button{
     border: none;
     cursor: pointer;
     display: block;
@@ -40,11 +40,11 @@ header#MenuPrincipal nav.BotoesPrincipal button{
     transition: background-color 0.05s, color 1s;
 }
 
-header#MenuPrincipal nav.BotoesPrincipal button:hover{
+section#MenuPrincipal nav.BotoesPrincipal button:hover{
     background-color: #ad8547;
 }
 
-header#MenuPrincipal nav.BotoesPrincipal button:active{
+section#MenuPrincipal nav.BotoesPrincipal button:active{
     background-color: white;
 }
 
@@ -53,7 +53,7 @@ header#MenuPrincipal nav.BotoesPrincipal button:active{
 
 /*region Ajuda*/
 
-header#Ajuda{
+section#Ajuda{
     background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
     width: 800px;
     height: 800px;
@@ -61,12 +61,12 @@ header#Ajuda{
     border-radius: 105px;
 }
 
-header#Ajuda img#backgroundAjuda{
+section#Ajuda img#backgroundAjuda{
     position: absolute;
     border-radius: 105px;
 }
 
-header#Ajuda button
+section#Ajuda button
 {
     border: none;
     cursor: pointer;
@@ -78,17 +78,17 @@ header#Ajuda button
     transition: background-color 0.05s, color 1s;
 }
 
-/*Selecciona o botao com id voltar que esta dentro do header com classe Ajuda*/
-header#Ajuda button#BotaoVoltarAjuda{
+/*Selecciona o botao com id voltar que esta dentro do section com classe Ajuda*/
+section#Ajuda button#BotaoVoltarAjuda{
     top: 696px;
     margin-left: 285px;
 }
 
-header#Ajuda button#BotaoVoltarAjuda:hover{
+section#Ajuda button#BotaoVoltarAjuda:hover{
     background-color: #ad8547;
 }
 
-header#Ajuda button#BotaoVoltarAjuda:active{
+section#Ajuda button#BotaoVoltarAjuda:active{
     background-color: white;
 }
 
@@ -96,7 +96,7 @@ header#Ajuda button#BotaoVoltarAjuda:active{
 
 /*region Opcoes*/
 
-header#Opcoes{
+section#Opcoes{
     height: 800px;
     width: 800px;
     background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
@@ -104,12 +104,12 @@ header#Opcoes{
     margin: auto;
 }
 
-header#Opcoes img#backgroundOpcoes{
+section#Opcoes img#backgroundOpcoes{
     position: absolute;
     border-radius: 105px;
 }
 
-header#Opcoes button
+section#Opcoes button
 {
     border: none;
     cursor: pointer;
@@ -121,71 +121,259 @@ header#Opcoes button
     transition: background-color 0.05s, color 1s;
 }
 
-header#Opcoes #BotaoMenos{
+section#Opcoes #BotaoMenos{
     top: 460px;
     margin-left: 580px;
 }
 
-header#Opcoes #BotaoMenos:hover{
+section#Opcoes #BotaoMenos:hover{
 //background-color: #990011;
     background-color: #ad8547;
 }
 
-header#Opcoes #BotaoMenos:active{
+section#Opcoes #BotaoMenos:active{
     background-color: white;
 }
 
-header#Opcoes #BotaoMais{
+section#Opcoes #BotaoMais{
     top: 460px;
     margin-left: 640px;
 
 }
 
-header#Opcoes #BotaoMais:hover{
+section#Opcoes #BotaoMais:hover{
     background-color: #ad8547;
 }
 
-header#Opcoes #BotaoMais:active{
+section#Opcoes #BotaoMais:active{
     background-color: white;
 }
 
-header#Opcoes #BotaoOn{
+section#Opcoes #BotaoOn{
     top: 445px;
     margin-left: 40px;
 }
 
-header#Opcoes #BotaoOn:hover{
+section#Opcoes #BotaoOn:hover{
     background-color: #ad8547;
 }
 
-header#Opcoes #BotaoOn:active{
+section#Opcoes #BotaoOn:active{
     background-color: white;
 }
 
-header#Opcoes #BotaoOff{
+section#Opcoes #BotaoOff{
     top: 445px;
     margin-left: 160px;
 }
 
-header#Opcoes #BotaoOff:hover{
+section#Opcoes #BotaoOff:hover{
     background-color: #ad8547;
 }
 
-header#Opcoes #BotaoOff:active{
+section#Opcoes #BotaoOff:active{
     background-color: white;
 }
 
-header#Opcoes #BotaoVoltarOpcoes{
+section#Opcoes #BotaoVoltarOpcoes{
     top: 696px;
     margin-left: 280px;
 }
 
-header#Opcoes #BotaoVoltarOpcoes:hover{
+section#Opcoes #BotaoVoltarOpcoes:hover{
     background-color: #ad8547;
 }
 
-header#Opcoes #BotaoVoltarOpcoes:active{
+section#Opcoes #BotaoVoltarOpcoes:active{
     background-color: white;
 }
 
+/*endregion*/
+
+/*region Bar*/
+
+section#Bar{
+    height: 800px;
+    width: 800px;
+    background: url("../Recursos/barSemNinguem.jpg"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    border-radius: 105px;
+    margin: auto;
+}
+
+section#Bar div.BotoesBar button {
+    border: none;
+    cursor: pointer;
+    /*padding: 0px;
+    */
+    position: absolute;
+    right: auto;
+    left: auto;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+
+section#Bar button#BotaoSomBar{
+    top: 20px;
+    background-color: transparent;
+    margin-left: 680px;
+}
+
+section#Bar button#BotaoSomBar:hover{
+    background-color: #ad8547;
+}
+
+section#Bar button#BotaoSomBar:active{
+    background-color: white;
+}
+
+section#Bar button#BotaoInterrogacaoBar{
+    top: 20px;
+    background-color: transparent;
+    margin-left: 640px;
+}
+
+section#Bar button#BotaoInterrogacaoBar:hover{
+    background-color: #ad8547;
+}
+
+section#Bar button#BotaoInterrogacaoBar:active{
+    background-color: white;
+}
+
+section#Bar button#BotaoSairBar{
+    top: 20px;
+    background-color: transparent;
+    margin-left: 600px;
+}
+
+section#Bar button#BotaoSairBar:hover{
+    background-color: #ad8547;
+}
+
+section#Bar button#BotaoSairBar:active{
+    background-color: white;
+}
+
+section#Bar button#BotaoCadeirasBar{
+    background-color: #c8a061;
+    top: 696px;
+    margin-left: 240px;
+}
+
+section#Bar button#BotaoCadeirasBar:hover{
+    background-color: #ad8547;
+}
+
+section#Bar button#BotaoCadeirasBar:active{
+    background-color: white;
+
+}
+
+section#Bar button#BotaoSenhoraBar{
+    width:111px;
+    height:144px;
+    margin-left: 260px;
+    margin-top: 279px;
+    background: transparent url("../Recursos/SenhoraNormal.png") no-repeat 50% 50%;
+}
+
+section#Bar button#BotaoSenhoraBar:hover{
+    margin-left: 270px;
+    margin-top: 280px;
+    background: url("../Recursos/SenhoraSorrindo.png") no-repeat 50% 50%;
+}
+
+section#Bar div#DadosJogador{
+    position: absolute;
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 90px;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+
+}
+
+section#Bar div#DadosJogador *{
+    display: inline-block;
+    /* Makes image not draggable*/
+    pointer-events: none;
+    /* Makes image not selectable*/
+    user-select: none;
+}
+
+section#Bar div#DadosJogador img#DinheiroIcone{
+    transform: translateY(25%);
+}
+
+section#Bar div#DadosJogador p#DinheiroValor{
+    margin: 0;
+    letter-spacing: 0.15em;
+    color: white;
+    font-family: "Kristen ITC", sans-serif;
+    font-size: large;
+}
+
+/*endregion*/
+
+/*region CompraBaguetes*/
+
+section#CompraBaguetes{
+    background: url("../Recursos/popup_baguetes_retangular.png");
+    position: relative;
+    height: 430px;
+    width: 585px;
+    margin:auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+section#CompraBaguetes button#FecharBaguetes{
+    width: 48px;
+    height: 47px;
+    position: absolute;
+    border-radius: 15px;
+    border: none;
+    padding: 0;
+    background-color: #df1600;
+    top: 5%;
+    left: 85%;
+
+}
+
+section#CompraBaguetes button#FecharBaguetes:hover{
+    background-color: #b21200;
+}
+
+section#CompraBaguetes button#FecharBaguetes:active {
+    background-color: #880d00;
+}
+
+section#CompraBaguetes button#Queijo{
+    margin-left: 25px;
+    background-color: transparent;
+    border: none;
+}
+
+section#CompraBaguetes button#Queijo:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
+
+section#CompraBaguetes p#Visor{
+    display: inline-block;
+    position: relative;
+    margin-top: 3%;
+    margin-left: 3%;
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 70%;
+    height: 3em;
+    font-size: larger;
+    background: blue;
+    color: white;
+}
 /*endregion*/
