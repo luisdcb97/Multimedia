@@ -24,6 +24,24 @@ header{
     background-color: #ad8547;
     border-radius: 5px;
 }
+#bagueteAtum{
+     margin-left: 50px;
+     background-color: transparent;
+     border: none;
+ }
+#bagueteAtum:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
+#bagueteBacon{
+     margin-left: 65px;
+     background-color: transparent;
+     border: none;
+ }
+#bagueteBacon:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
 #xis:hover{
     background-color: #b21200;
 }

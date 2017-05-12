@@ -104,6 +104,20 @@ function addListenersBar() {
             alteraDadosJogador();
         }
     });
+    let bagueteAtum = document.getElementById("Atum");
+    bagueteAtum.addEventListener("click", function (event) {
+        let alterado = compraBaguete(4, 30);
+        if(alterado){
+            alteraDadosJogador();
+        }
+    });
+    let bagueteBacon = document.getElementById("Bacon");
+    bagueteBacon.addEventListener("click", function (event) {
+        let alterado = compraBaguete(4, 30);
+        if(alterado){
+            alteraDadosJogador();
+        }
+    });
     alteraDadosJogador();
 }
 
@@ -241,7 +255,7 @@ function compraBaguete(preco, energia){
     let compra;
     let visor = document.getElementById("Visor");
     if (!jogador.alteraDinheiro(-preco)) {
-        alteraTexto(visor, "Não tem saldo suficiente!", 10);
+        alteraTexto(visor, "Não tens dinheiro suficiente!", 10);
         compra = false;
     }
     else{
@@ -251,7 +265,7 @@ function compraBaguete(preco, energia){
     }
 
     let id = setTimeout(function () {
-        alteraTexto(visor, "Efetue a sua compra.");
+        alteraTexto(visor, "Efetua a tua compra!");
     }, 1500);
     timeoutTextIds.push(id);
     return compra;
@@ -310,7 +324,7 @@ function showBaguetes(event){
     let baguetes = document.getElementById("CompraBaguetes");
     baguetes.style.display = "block";
     let visor = document.getElementById("Visor");
-    visor.innerHTML = "Efetua a sua compra."
+    visor.innerHTML = "Efetua a tua compra!"
 }
 
 function hideBaguetes(event){

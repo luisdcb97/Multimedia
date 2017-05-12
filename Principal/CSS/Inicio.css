@@ -308,7 +308,7 @@ section#Bar div#DadosJogador img#DinheiroIcone{
 
 section#Bar div#DadosJogador p#DinheiroValor{
     margin: 0;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.05em;
     color: white;
     font-family: "Kristen ITC", sans-serif;
     font-size: large;
@@ -362,6 +362,26 @@ section#CompraBaguetes button#Queijo:hover{
     background-color: #ad8547;
     border-radius: 5px;
 }
+section#CompraBaguetes button#Atum{
+    margin-left: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+section#CompraBaguetes button#Atum:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
+section#CompraBaguetes button#Bacon{
+    margin-left: 35px;
+    background-color: transparent;
+    border: none;
+}
+
+section#CompraBaguetes button#Bacon:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
 
 section#CompraBaguetes p#Visor{
     display: inline-block;
@@ -370,10 +390,12 @@ section#CompraBaguetes p#Visor{
     margin-left: 3%;
     padding-top: 2%;
     padding-left: 2%;
-    width: 70%;
+    width: 74%;
     height: 3em;
+    border-radius: 10px;
+    font-family: "Kristen ITC", sans-serif;
     font-size: larger;
-    background: blue;
-    color: white;
+    background: #c8a061;
+    color: black;
 }
 /*endregion*/
