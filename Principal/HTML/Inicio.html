@@ -9,6 +9,19 @@
 <body>
     <iframe id="frame"></iframe>
 
+    <!--region Audio-->
+
+    <audio autoplay loop class="music">
+        <source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio class="sfx">
+        <source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!--endregion-->
+
     <!--region Menu Principal-->
 
     <section id="MenuPrincipal">
@@ -38,6 +51,7 @@
         <img id="backgroundOpcoes" src="../Recursos/menu_opcoes.jpg">
         <div class="BotoesOpcoes">
             <button id = "BotaoOn"><img src="../Recursos/on.png"></button>
+            <p id="TextoVolume">0</p>
             <button id = "BotaoOff"><img src="../Recursos/off.png"></button>
             <button id = "BotaoMais"><img src="../Recursos/mais.png"></button>
             <button id = "BotaoMenos"><img src="../Recursos/menos.png"></button>
@@ -47,15 +61,31 @@
 
     <!--endregion-->
 
+    <!--region Menu Anos-->
+
+    <section id="MenuAnos" style="display:none;">
+        <img id="backgroundAnos" src="../Recursos/menu_jogar.jpg">
+        <nav>
+            <button id = "Ano1"><img src="../Recursos/1ano.png"></button>
+            <button id = "Ano2"><img src="../Recursos/2ano.png"></button>
+            <button id = "Ano3"><img src="../Recursos/3ano.png"></button>
+        </nav>
+        <button id = "VoltarAnos"><img src="../Recursos/voltar.png"></button>
+    </section>
+
+    <!--endregion-->
+
     <!--region Bar-->
 
     <section id="Bar" style="display: none;">
         <div class="BotoesBar">
-            <button id = "BotaoSomBar"><img src="../Recursos/volume.png"></button>
-            <button id = "BotaoInterrogacaoBar"><img src="../Recursos/interrog.png"></button>
-            <button id = "BotaoSairBar"><img src="../Recursos/porta.png"></button>
+            <button id = "BotaoSomBar" class="NavegacaoBar"><img src="../Recursos/volume.png"></button>
+            <button id = "BotaoInterrogacaoBar" class="NavegacaoBar"><img src="../Recursos/interrog.png"></button>
+            <button id = "BotaoOpcoesBar" class="NavegacaoBar"><img src="../Recursos/opcoesSIMBOLO.png"></button>
+            <button id = "BotaoSairBar" class="NavegacaoBar"><img src="../Recursos/porta.png"></button>
             <button id = "BotaoCadeirasBar"><img src="../Recursos/botaoFazerCadeiras.png"></button>
             <button id = "BotaoSenhoraBar"></button>
+
         </div>
         <div id="DadosJogador">
             <img id="Energia" src="../Recursos/menosdemeio.png">
@@ -81,12 +111,9 @@
 
     <!--endregion-->
 
-    <!--<audio autoplay loop class="music"><source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">-->
-        <!--Your browser does not support the audio element.-->
-    <!--</audio>-->
-    <!--<audio loop class="sfx"><source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">-->
-        <!--Your browser does not support the audio element.-->
-    <!--</audio>-->
+
+
+
 
 
 

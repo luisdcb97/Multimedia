@@ -121,9 +121,27 @@ section#Opcoes button
     transition: background-color 0.05s, color 1s;
 }
 
+section#Opcoes p#TextoVolume
+{
+    display: inline-block;
+    border: none;
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    background-color: #c8a061;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    margin: 5px 0 0 620px;
+    top: 460px;
+}
+
+section#Opcoes button:disabled{
+    filter: brightness(110%);
+}
+
 section#Opcoes #BotaoMenos{
     top: 460px;
-    margin-left: 580px;
+    margin-left: 560px;
 }
 
 section#Opcoes #BotaoMenos:hover{
@@ -137,7 +155,7 @@ section#Opcoes #BotaoMenos:active{
 
 section#Opcoes #BotaoMais{
     top: 460px;
-    margin-left: 640px;
+    margin-left: 660px;
 
 }
 
@@ -190,6 +208,99 @@ section#Opcoes #BotaoVoltarOpcoes:active{
 
 /*endregion*/
 
+/*region Menu Anos*/
+
+section#MenuAnos{
+    height: 800px;
+    width: 800px;
+    background: radial-gradient(farthest-side at 150px 200px, #000000, #222222);
+    border-radius: 105px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section#MenuAnos img#backgroundAnos{
+    border-radius: 105px;
+    position: absolute;
+}
+
+section#MenuAnos nav{
+    position: absolute;
+
+}
+
+section#MenuAnos button
+{
+    border: none;
+    cursor: pointer;
+    /*padding: 0px;
+    */
+    position: absolute;
+    right: auto;
+    left: auto;
+    background-color: #c8a061;
+    border-radius: 15px;
+    transition: background-color 0.05s, color 1s;
+}
+
+section#MenuAnos button:disabled{
+    filter: brightness(65%);
+}
+
+section#MenuAnos button#Ano1 {
+    top: 460px;
+    margin-left: 50px;
+}
+
+section#MenuAnos button#Ano1:hover{
+    background-color: #ad8547;
+}
+
+section#MenuAnos button#Ano1:active{
+    background-color: white;
+}
+
+section#MenuAnos button#Ano2{
+    top: 460px;
+    margin-left: 295px;
+
+}
+
+section#MenuAnos button#Ano2:hover{
+    background-color: #302b2b;
+}
+
+section#MenuAnos button#Ano2:active{
+    background-color: white;
+}
+
+section#MenuAnos button#Ano3{
+    top: 460px;
+    margin-left: 540px;
+}
+
+section#MenuAnos button#Ano3:hover{
+    background-color: #302b2b;
+}
+
+section#MenuAnos button#Ano3:active{
+    /*background-color: white;*/
+}
+
+section#MenuAnos button#VoltarAnos{
+    top: 696px;
+    margin-left: 280px;
+}
+section#MenuAnos button#VoltarAnos:hover{
+    background-color: #ad8547;
+}
+
+section#MenuAnos button#VoltarAnos:active{
+    background-color: white;
+}
+
+/*endregion*/
+
 /*region Bar*/
 
 section#Bar{
@@ -198,6 +309,10 @@ section#Bar{
     background: url("../Recursos/barSemNinguem.jpg"), radial-gradient(farthest-side at 150px 200px, #000000, #222222);
     border-radius: 105px;
     margin: auto;
+}
+
+section#Bar div.BotoesBar{
+    position: relative;
 }
 
 section#Bar div.BotoesBar button {
@@ -212,46 +327,31 @@ section#Bar div.BotoesBar button {
     transition: background-color 0.05s, color 1s;
 }
 
-section#Bar button#BotaoSomBar{
+section#Bar div.BotoesBar button.NavegacaoBar{
+    left: 580px;
     top: 20px;
     background-color: transparent;
-    margin-left: 680px;
+    user-select: none;
 }
 
-section#Bar button#BotaoSomBar:hover{
+section#Bar div.BotoesBar button.NavegacaoBar:hover{
     background-color: #ad8547;
 }
 
-section#Bar button#BotaoSomBar:active{
+section#Bar div.BotoesBar button.NavegacaoBar:active{
     background-color: white;
 }
 
 section#Bar button#BotaoInterrogacaoBar{
-    top: 20px;
-    background-color: transparent;
-    margin-left: 640px;
+    margin-left: 45px;
 }
 
-section#Bar button#BotaoInterrogacaoBar:hover{
-    background-color: #ad8547;
-}
-
-section#Bar button#BotaoInterrogacaoBar:active{
-    background-color: white;
+section#Bar button#BotaoOpcoesBar{
+    margin-left: 80px;
 }
 
 section#Bar button#BotaoSairBar{
-    top: 20px;
-    background-color: transparent;
-    margin-left: 600px;
-}
-
-section#Bar button#BotaoSairBar:hover{
-    background-color: #ad8547;
-}
-
-section#Bar button#BotaoSairBar:active{
-    background-color: white;
+    margin-left: 120px;
 }
 
 section#Bar button#BotaoCadeirasBar{

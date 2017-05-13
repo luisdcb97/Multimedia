@@ -49,7 +49,48 @@ function main() {
     let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
 
     botaoJogar.addEventListener("click", function (event) {
+        changeSection(event, document.getElementById("MenuAnos"));
+    });
+
+    botaoAjuda.addEventListener("click", function (event) {
+        changeSection(event, document.getElementById("Ajuda"));
+    });
+    botaoOpcoes.addEventListener("click", function (event) {
+        changeSection(event, document.getElementById("Opcoes"));
+    });
+    botaoVoltarAjuda.addEventListener("click", goBackMain);
+    botaoVoltarOpcoes.addEventListener("click", goBackMain);
+    botaoSair.addEventListener("click", function (eve) {
+        window.close();
+    });
+
+    addListenersOpcoes();
+    addListenersMenuAnos();
+    addListenersBar();
+
+    for (let audio of document.getElementsByTagName("audio")) {
+        audio.volume = definicoes.volume;
+        audio.muted = definicoes.muted;
+    }
+}
+
+function addListenersMenuAnos() {
+    let botaoAno1 = document.getElementById("Ano1");
+    let botaoAno2 = document.getElementById("Ano2");
+    let botaoAno3 = document.getElementById("Ano3");
+    let botaoVoltar = document.getElementById("VoltarAnos");
+
+    botaoAno2.disabled=true;
+    botaoAno3.disabled=true;
+
+    botaoVoltar.addEventListener("click", function (event) {
+        changeSection(event, document.getElementById("MenuPrincipal"));
+    });
+
+    botaoAno1.addEventListener("click", function (event) {
         changeSection(event, document.getElementById("Bar"));
+        let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
+        let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
         botaoVoltarAjuda.removeEventListener("click", goBackMain);
         botaoVoltarOpcoes.removeEventListener("click", goBackMain);
 
@@ -57,27 +98,31 @@ function main() {
         botaoVoltarOpcoes.addEventListener("click", goBackBar);
     });
 
-    botaoAjuda.addEventListener("click", function (event) {
-        changeSection(event, document.getElementById("Ajuda"))
-    });
-    botaoOpcoes.addEventListener("click", function (event) {
-        changeSection(event, document.getElementById("Opcoes"))
-    });
-    botaoVoltarAjuda.addEventListener("click", goBackMain);
-    botaoVoltarOpcoes.addEventListener("click", goBackMain);
-    botaoSair.addEventListener("click", function (eve) {
-        window.close();
-    });
-    addListenersOpcoes();
-    addListenersBar();
 }
 
 function addListenersBar() {
+    let botaoSom = document.getElementById("BotaoSomBar");
     let botaoAjuda= document.getElementById("BotaoInterrogacaoBar");
-    let botaoOpcoes = document.getElementById("BotaoSomBar");
+    let botaoOpcoes = document.getElementById("BotaoOpcoesBar");
     let botaoSair = document.getElementById("BotaoSairBar");
     let senhora = document.getElementById("BotaoSenhoraBar");
 
+    if(definicoes.muted){
+        botaoSom.style.filter = "grayscale(65%)";
+    }
+    else{
+        botaoSom.style.filter = "grayscale(0%)";
+    }
+
+    botaoSom.addEventListener("click", function (event) {
+        switchAudioOutput();
+        if(definicoes.muted){
+            botaoSom.style.filter = "grayscale(65%)";
+        }
+        else{
+            botaoSom.style.filter = "grayscale(0%)";
+        }
+    });
 
     botaoAjuda.addEventListener("click", function(event){
         changeSection(event, document.getElementById("Ajuda"));
@@ -127,37 +172,31 @@ function addListenersOpcoes(){
     let botaoMais = document.getElementById("BotaoMais");
     let botaoMenos = document.getElementById("BotaoMenos");
 
+    document.getElementById("TextoVolume").innerHTML = Math.round(definicoes.volume * 100).toString();
+
     botaoOn.addEventListener("click", function (event) {
-        definicoes.muted = true;
+        switchAudioOutput(false);
 
-        for (let audio of document.getElementsByTagName("audio")) {
-            audio.muted = definicoes.muted;
-        }
-
-        if(botaoOn.disabled === false && definicoes.muted === true){
+        if(botaoOn.disabled === false && definicoes.muted === false){
             botaoOn.disabled = true;
             botaoOff.disabled = false;
         }
 
         if (debug){
-            console.log(debug_prefix + "Sound Muted");
+            console.log(debug_prefix + "Sound UnMuted");
         }
     });
 
     botaoOff.addEventListener("click", function (event) {
-        definicoes.muted = false;
+        switchAudioOutput(true);
 
-        for (let audio of document.getElementsByTagName("audio")) {
-            audio.muted = definicoes.muted;
-        }
-
-        if(botaoOff.disabled === false && definicoes.muted === false){
+        if(botaoOff.disabled === false && definicoes.muted === true){
             botaoOff.disabled = true;
             botaoOn.disabled = false;
         }
 
         if (debug){
-            console.log(debug_prefix + "Sound Unmuted");
+            console.log(debug_prefix + "Sound muted");
         }
     });
 
@@ -203,6 +242,40 @@ function getVisibleSection(){
 
 function changeSection(event, section) {
     let current = getVisibleSection();
+
+    if( section === document.getElementById("Opcoes")){
+        if(definicoes.muted){
+            document.getElementById("BotaoOn").disabled = false;
+            document.getElementById("BotaoOff").disabled = true;
+        }
+        else{
+            document.getElementById("BotaoOn").disabled = true;
+            document.getElementById("BotaoOff").disabled = false;
+        }
+
+        if(definicoes.volume === 1){
+            document.getElementById("BotaoMais").disabled = true;
+            document.getElementById("BotaoMenos").disabled = false;
+        }
+        else if(definicoes.volume === 0){
+            document.getElementById("BotaoMais").disabled = false;
+            document.getElementById("BotaoMenos").disabled = true;
+        }
+        else{
+            document.getElementById("BotaoMais").disabled = false;
+            document.getElementById("BotaoMenos").disabled = false;
+        }
+
+    }
+    else if( section === document.getElementById("Bar")){
+        if(definicoes.muted){
+            document.getElementById("BotaoSomBar").style.filter = "grayscale(65%)";
+        }
+        else{
+            document.getElementById("BotaoSomBar").style.filter = "grayscale(0%)";
+        }
+    }
+
     current.style.display = "none";
     section.style.display = "block";
     return current;
@@ -219,6 +292,15 @@ function goBackMain(event) {
 function goBackBar(event) {
     let current = getVisibleSection();
     let section = document.getElementById("Bar");
+
+    let botaoSom = document.getElementById("BotaoSomBar");
+
+    if(definicoes.muted){
+        botaoSom.style.filter = "grayscale(65%)";
+    }
+    else{
+        botaoSom.style.filter = "grayscale(0%)";
+    }
 
     section.style.display = "block";
     current.style.display = "none";
@@ -241,8 +323,35 @@ function changeVolume(change){
         definicoes.volume = volume + change;
     }
 
+    document.getElementById("TextoVolume").innerHTML = Math.round(definicoes.volume * 100).toString();
+
     for (let audio of document.getElementsByTagName("audio")) {
         audio.volume = definicoes.volume;
+    }
+}
+
+function switchAudioOutput(change=null) {
+    if(change !== null){
+        definicoes.muted = change;
+    }
+    else{
+        definicoes.muted = !definicoes.muted;
+    }
+
+    for (let audio of document.getElementsByTagName("audio")) {
+        audio.muted = definicoes.muted;
+    }
+}
+
+function toggleAudio() {
+    let audios = document.getElementsByTagName("audio");
+    for (let curAudio of audios) {
+        if (curAudio.paused && curAudio.currentTime > 0 && !curAudio.ended){
+            curAudio.play();
+        }
+        else{
+            curAudio.pause();
+        }
     }
 }
 
