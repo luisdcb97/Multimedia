@@ -5,6 +5,7 @@ var fundo;
 var mesa;
 var head;
 var sprite1;
+var timer, timerEvent, text;
 
 let mainState = {
    preload: function () {
@@ -14,6 +15,9 @@ let mainState = {
    },
 
    create: function () {
+       timer = game.time.create();
+       timerEvent = timer.add(Phaser.Timer.MINUTE * 2 + Phaser.Timer.SECOND*0, this.endTimer, this);
+
        game.physics.startSystem(Phaser.Physics.ARCADE);
 
        fundo = game.add.tileSprite(0,0,800,600,'fundo');
@@ -27,7 +31,9 @@ let mainState = {
        //sprite1.body.immovable = true;
 
        game.physics.enable(mesa, Phaser.Physics.ARCADE);
-       mesa.animations.play('run', 15, true);
+
+       timer.start();
+
 
    },
     update: function () {
@@ -43,6 +49,23 @@ let mainState = {
         {
             sprite1.y -= 15;
         }
+    },
+
+    render: function () {
+        if(timer.running){
+            game.debug.text(this.formatTime(Math.round((timerEvent.delay - timer.ms)/1000)),2,14,"#fdfbff");
+        }
+        else{
+            game.debug.text("Tempo terminado!",2,14,"#EF180D");
+        }
+    },
+    endTimer: function () {
+        timer.stop();
+    },
+    formatTime: function (s) {
+        let minutos = "0" + Math.floor(s/60);
+        let segundos = "0" + (s-minutos*60);
+        return minutos.substr(-2)+":"+segundos.substr(-2);
     }
    
 };
