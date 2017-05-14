@@ -271,7 +271,7 @@ section#MenuAnos button#Ano2:hover{
 }
 
 section#MenuAnos button#Ano2:active{
-    background-color: white;
+    /*background-color: white;*/
 }
 
 section#MenuAnos button#Ano3{
