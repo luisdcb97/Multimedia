@@ -16,6 +16,14 @@ class Cabo{
             this.saida = 3;
         }
         else if (this.entrada == 2 && this.saida == 3){
+            this.entrada = 1;
+            this.saida = 0;
+        }
+        else if (this.entrada == 1 && this.saida == 0){
+            this.entrada = 3;
+            this.saida = 2;
+        }
+        else if (this.entrada == 3 && this.saida == 2){
             this.entrada = 0;
             this.saida = 1;
         }
@@ -30,6 +38,10 @@ class Cabo{
         else if (this.entrada == 1 && this.saida == 3){
             this.entrada = 3;
             this.saida = 0;
+        }
+        else if (this.entrada == 3 && this.saida == 0){
+            this.entrada = 0;
+            this.saida = 2;
         }
     }
 }

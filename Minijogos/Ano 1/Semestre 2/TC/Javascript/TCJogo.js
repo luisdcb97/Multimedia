@@ -181,8 +181,22 @@ var gameState = {
         this.angle += 90;
     },
     update: function(){
-        //if pressed
-        
+        //       2
+        //    0     1
+        //       3
+        if(this.cabos[0].entrada == 3 && this.cabos[4].entrada == 1 && this.cabos[5].entrada == 3 &&
+            (this.cabos[8].entrada == 2 || this.cabos[8].entrada == 3) && (this.cabos[16].entrada == 2 || this.cabos[16].entrada == 3) &&
+            this.cabos[24].entrada == 2 && (this.cabos[25].entrada == 0 || this.cabos[25].entrada == 1) && this.cabos[26].entrada == 0 &&
+            this.cabos[18].entrada == 3 && this.cabos[17].entrada == 2 && this.cabos[9].entrada == 1 && (this.cabos[10].entrada == 0 || this.cabos[10].entrada == 1) &&
+            this.cabos[11].entrada == 3 && (this.cabos[19].entrada == 2 || this.cabos[19].entrada == 3) && this.cabos[27].entrada == 2
+            && this.cabos[28].entrada == 0 && (this.cabos[20].entrada == 2 || this.cabos[20].entrada == 3) && (this.cabos[12].entrada == 2 || this.cabos[12].entrada == 3)
+            && this.cabos[13].entrada == 2 && this.cabos[14].entrada == 3 && (this.cabos[22].entrada == 2 || this.cabos[22].entrada == 3) && this.cabos[30].entrada ==2
+            && (this.cabos[31].entrada == 0 || this.cabos[31].entrada == 1)){
+            //this.led = this.remove.sprite(329+19,356,'ledApagado');
+
+            this.led = this.add.sprite(329+19,356,'ledLigado');
+        }
+        else this.led = this.add.sprite(329+19,356,'ledApagado');
     }
 };
 
