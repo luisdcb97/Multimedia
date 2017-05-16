@@ -453,10 +453,14 @@ function alteraDadosJogador() {
 }
 
 function bloqueiaFazerCadeiras() {
-    document.getElementById("BotaoCadeirasBar").disabled=true;
+    document.getElementById("BotaoCadeirasBar").setAttribute("disabled","true")   //to disable the button
+
 }
 function desbloqueiaFazerCadeiras() {
-    document.getElementById("BotaoCadeirasBar").disabled=false;
+    document.getElementById("BotaoCadeirasBar").removeAttribute("disabled")
+    //document.getElementById("BotaoCadeirasBar").disabled=false;
+    //document.getElementById("BotaoCadeirasBar").disableHover = true;
+
 }
 
 function showBaguetes(event){

@@ -389,11 +389,11 @@ section#Bar button#BotaoCadeirasBar{
     margin-left: 240px;
 }
 
-section#Bar button#BotaoCadeirasBar:hover{
+section#Bar button#BotaoCadeirasBar:hover:enabled{
     background-color: #ad8547;
 }
 
-section#Bar button#BotaoCadeirasBar:active{
+section#Bar button#BotaoCadeirasBar:active:enabled{
     background-color: white;
 
 }
