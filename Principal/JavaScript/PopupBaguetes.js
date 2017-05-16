@@ -10,6 +10,7 @@ let definicoes = {
     volume: 0.25,
     muted: false
 };
+var eatingsound = new Audio("../Recursos/eatingsound.mp3");
 
 (function () {
     window.addEventListener("load", main);
@@ -34,6 +35,7 @@ function compraBagueteQueijo(){
     }
     else{
         saldo = saldo - precoBagueteQueijo;
+
     }
 }
 function compraBagueteAtum(){

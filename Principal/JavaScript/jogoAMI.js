@@ -6,7 +6,7 @@ var head;
 var sprite1;
 var timer, timerEvent, text, mensagem;
 var pontos,pontuacao=0;
-var  mesas =[];
+var mesas =[];
 var funcoes=[];
 
 
@@ -17,7 +17,7 @@ let mainState = {
        game.load.image('head','../Recursos/topviewhead1.png');
        game.load.image('integral', '../Recursos/integral.png');
        game.debug.text("Pontos: ",500,20,16,"#ffffff");
-       game.load.image('mensagem', '../Recursos/ops..perdeu.png');
+       game.load.image('mensagem', '../Recursos/popupderrota.png');
        game.load.image('funcao','../Recursos/funcao1.png');
 
    },
@@ -37,8 +37,11 @@ let mainState = {
        sprite1.body.collideWorldBounds=true; //para o boneco não sair do ecrã
 
        timer.loop(3500, gerarMesas, this);
+       timer.loop(1500, gerarFuncoes, this);
+
        game.physics.enable(integral, Phaser.Physics.ARCADE);
        integral.body.velocity.x = -90;
+
        timer.start();
        var style = { font: "20px Kristen ITC ", fill: "#ffffff" };
        pontos = game.add.text(550, 5, "Pontos: " + pontuacao,style);
@@ -53,12 +56,30 @@ let mainState = {
         else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
             sprite1.y += 200* game.time.physicsElapsed;
         }
-        
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+            sprite1.x-= 200* game.time.physicsElapsed;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+            sprite1.x+= 200* game.time.physicsElapsed;
+        }
+
+
         game.physics.arcade.collide(sprite1, mesas, jogadorPerde);
-        game.physics.arcade.overlap(sprite1,integral, function () {
+        game.physics.arcade.overlap(sprite1, integral, function () {
             ganhaPontos(sprite1, integral, pontos);
         });
 
+        for (let i = 0;i<funcoes.length; i++){
+            if(funcoes[i] !== undefined && funcoes[i].x < 0 && !funcoes[i].inWorld){
+                funcoes[i].destroy();
+                funcoes.splice(i,1);
+                i--;
+            }
+            game.physics.arcade.overlap(sprite1, funcoes[i], function () {
+                ganhaPontos(sprite1, funcoes[i], pontos);
+            });
+
+        }
 
         for (let i = 0;i<mesas.length; i++){
             if(mesas[i] !== undefined && mesas[i].x < 0 && !mesas[i].inWorld){
@@ -91,10 +112,11 @@ let mainState = {
 
 
 };
+
 function gerarMesas() {
     let pos = [];
     for (let i = 0; i < 3; i++) {
-        pos.push(185*i+20);
+        pos.push(185*i+10);
     }
     for(let mesa of mesas){
         if(mesa.x > 600){
@@ -112,29 +134,30 @@ function gerarMesas() {
     mesas.push(mesa_temp);
 }
 
-/*function gerarFuncoes(){
+function gerarFuncoes(){
     let pos=[];
     for (let i = 0; i < 3; i++){
-        pos.push(190*i+20);
+        pos.push(185*i+10);
     }
-    for(let mesa of mesas){
-        if(mesa.x > 600){
-            pos.splice(pos.indexOf(mesa.y),1);
+    for(let f of funcoes){
+        if(f.x > 600){
+            pos.splice(pos.indexOf(f.y),1);
         }
     }
     if(pos.length === 0){
         return;
     }
-    let mesa_pos = pos[Math.floor(Math.random() *pos.length)];
-    let mesa_temp = game.add.sprite(900, mesa_pos, "mesa");
-    game.physics.enable(mesa_temp, Phaser.Physics.ARCADE);
-    mesa_temp.body.velocity.x = - 90;
-    mesas.push(mesa_temp);
+    let f_pos = pos[Math.floor(Math.random() *pos.length)];
+    let f_temp = game.add.sprite(900, f_pos, "integral");
+    game.physics.enable(f_temp, Phaser.Physics.ARCADE);
+    f_temp.body.velocity.x = - 90;
+    funcoes.push(f_temp);
 
-}*/
+}
 
 function jogadorPerde(mesa,aluno) {
-    mensagem = game.add.sprite(300,150,'mensagem');
+    mensagem = game.add.sprite(100,150,'mensagem');
+    game.gamePaused();
 }
 function ganhaPontos(mesa,funcao, texto) {
     pontuacao++;
