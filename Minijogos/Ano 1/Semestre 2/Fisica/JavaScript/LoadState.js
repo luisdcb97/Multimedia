@@ -1,14 +1,14 @@
 "use strict";
 
 let LoadState = {
-    preloader: function () {
-        
+    preload: function () {
+        this.load.image('tituloFisica',"../Recursos/Fisica luis.png");
     },
     loadUpdate: function () {
 
     },
     create: function () {
-
+        game.add.sprite(0,0, "tituloFisica");
     },
     update: function () {
 

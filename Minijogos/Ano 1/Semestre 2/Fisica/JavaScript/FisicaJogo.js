@@ -14,4 +14,5 @@ game.state.add("BootState", BootState);
 game.state.add("LoadState", LoadState);
 game.state.add("IntroState", IntroState);
 game.state.add("PlayState", PlayState);
-game.state.start("PlayState");
+game.state.add("EndState", EndState);
+game.state.start("LoadState");

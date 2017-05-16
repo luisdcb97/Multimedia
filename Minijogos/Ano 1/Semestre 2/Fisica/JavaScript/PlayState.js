@@ -74,7 +74,7 @@ let PlayState = {
         }, this);
 
         this.timer = game.time.create(false);
-        this.timer.add(Phaser.Timer.MINUTE * 3, this.defeat, this);
+        this.timer.add(Phaser.Timer.MINUTE * 2, this.defeat, this);
         this.timer.start();
     },
     update: function () {
@@ -308,7 +308,13 @@ let PlayState = {
         }, this);
     },
     defeat: function () {
-
+        if(this.particulas.length === 0){
+            game.victory = true;
+        }
+        else{
+            game.victory = false;
+        }
+        game.state.start("EndState");
     }
 
 };
