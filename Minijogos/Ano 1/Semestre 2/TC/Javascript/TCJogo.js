@@ -343,10 +343,19 @@ var gameState = {
 };
 
 function repeteJogo() {
-
+    japassou = 0;
+    game.state.restart();
 }
-function vaiParaOBar() {
-    
+function vaiParaOBar(dinheiro) {
+    let obj = {
+        dinheiro: dinheiro,
+        baguete: "Atum",
+        energia: 30,
+        cadeira: "TC"
+
+    };
+
+    window.parent.postMessage(obj, "*");
 }
 
 
