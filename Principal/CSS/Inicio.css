@@ -527,4 +527,74 @@ section#CompraBaguetes p#Visor{
     background: #c8a061;
     color: black;
 }
+
+section#FazerCadeiras {
+    background: url("../Recursos/popup_cadeiras.png");
+    position: relative;
+    height: 342px;
+    width: 570px;
+    margin:auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+section#FazerCadeiras button#FecharFazerCadeiras{
+    width: 48px;
+    height: 47px;
+    position: absolute;
+    border-radius: 15px;
+    border: none;
+    padding: 0;
+    background-color: #df1600;
+    top: 3%;
+    left: 90%;
+
+}
+
+section#FazerCadeiras button#TC{
+    top: 20%;
+    left: 5%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#TC:hover{
+    background-color: #000000;
+    border-radius: 5px;
+}
+section#FazerCadeiras button#AMI{
+    top: 21%;
+    left: 6%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#AMI:hover{
+    background-color: #000000;
+    border-radius: 5px;
+}
+section#FazerCadeiras button#FISICA{
+    top: 69%;
+    left: 22%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#FISICA:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
+
+section#FazerCadeiras button#FecharBaguetes:hover{
+    background-color: #b21200;
+}
+
+section#FazerCadeiras button#FecharBaguetes:active {
+    background-color: #880d00;
+}
 /*endregion*/

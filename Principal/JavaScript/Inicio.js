@@ -123,6 +123,7 @@ function addListenersBar() {
     let botaoOpcoes = document.getElementById("BotaoOpcoesBar");
     let botaoSair = document.getElementById("BotaoSairBar");
     let senhora = document.getElementById("BotaoSenhoraBar");
+    let botaoFC = document.getElementById("BotaoCadeirasBar");
 
     if(definicoes.muted){
         botaoSom.style.filter = "grayscale(65%)";
@@ -152,6 +153,11 @@ function addListenersBar() {
     botaoSair.addEventListener("click", function (event) {
         window.close();
     });
+
+    botaoFC.addEventListener("click", showCadeiras);
+    let botaoFecharFC = document.getElementById("FecharFazerCadeiras");
+    botaoFecharFC.addEventListener("click",hideCadeiras);
+
 
     senhora.addEventListener("click", showBaguetes);
 
@@ -446,7 +452,15 @@ function alteraDadosJogador() {
     }
 }
 
+function bloqueiaFazerCadeiras() {
+    document.getElementById("BotaoCadeirasBar").disabled=true;
+}
+function desbloqueiaFazerCadeiras() {
+    document.getElementById("BotaoCadeirasBar").disabled=false;
+}
+
 function showBaguetes(event){
+    bloqueiaFazerCadeiras();
     let baguetes = document.getElementById("CompraBaguetes");
     baguetes.style.display = "block";
     let visor = document.getElementById("Visor");
@@ -454,6 +468,7 @@ function showBaguetes(event){
 }
 
 function hideBaguetes(event){
+    desbloqueiaFazerCadeiras();
     for (let id1 of timeoutTextIds){
         clearTimeout(id1);
     }
@@ -462,3 +477,19 @@ function hideBaguetes(event){
     let baguetes = document.getElementById("CompraBaguetes");
     baguetes.style.display = "none";
 }
+
+
+function showCadeiras(event) {
+    let cadeiras = document.getElementById("FazerCadeiras");
+    cadeiras.style.display = "block";
+}
+function hideCadeiras(event){
+    for (let id1 of timeoutTextIds){
+        clearTimeout(id1);
+    }
+    timeoutTextIds = [];
+
+    let cadeiras = document.getElementById("FazerCadeiras");
+    cadeiras.style.display = "none";
+}
+
