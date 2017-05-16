@@ -8,7 +8,36 @@
     overflow: hidden;
 }
 
+/*region Animacao*/
+
+section#slideshow
+{
+    height: 800px;
+    width: 800px;
+    border-radius: 105px;
+    margin: auto;
+}
+
+section#slideshow img#foto{
+    border-radius: 105px;
+    animation-name: fadeInOut;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
+
+}
+
+@keyframes fadeInOut
+{
+    0% {opacity: 1;}
+    45% {opacity: 1;}
+    55% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+/*endregion*/
+
 /*region Menu Principal*/
+
 
 section#MenuPrincipal{
     height: 800px;

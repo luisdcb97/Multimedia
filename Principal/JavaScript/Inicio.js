@@ -3,6 +3,8 @@
 let debug = true;
 let debug_prefix = "[DEBUG]\t";
 
+var imgFolder= "../Recursos/introducao";
+
 let timeoutTextIds=[];
 
 let definicoes = {
@@ -41,12 +43,17 @@ let jogador = {
 }());
 
 function main() {
+    var foto = document.getElementById("foto");
+    foto.src = imgFolder + "1.png";
+    foto.addEventListener("click",introducao);
     let botaoJogar = document.getElementById("BotaoJogar");
     let botaoAjuda = document.getElementById("BotaoAjuda");
     let botaoOpcoes = document.getElementById("BotaoOpcoes");
     let botaoSair = document.getElementById("BotaoSair");
     let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
     let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
+
+
 
     botaoJogar.addEventListener("click", function (event) {
         changeSection(event, document.getElementById("MenuAnos"));
@@ -73,6 +80,16 @@ function main() {
         audio.muted = definicoes.muted;
     }
 }
+
+function introducao(){
+    var foto = document.getElementById("foto");
+    foto.src = imgFolder + "2.png";
+
+    foto.addEventListener("click", function () {
+        changeSection(event, document.getElementById("MenuPrincipal"));
+    })
+}
+
 
 function addListenersMenuAnos() {
     let botaoAno1 = document.getElementById("Ano1");

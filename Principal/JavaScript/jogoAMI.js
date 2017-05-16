@@ -18,6 +18,7 @@ let mainState = {
        game.load.image('integral', '../Recursos/integral.png');
        game.debug.text("Pontos: ",500,20,16,"#ffffff");
        game.load.image('mensagem', '../Recursos/ops..perdeu.png');
+       game.load.image('funcao','../Recursos/funcao1.png');
 
    },
 
@@ -44,7 +45,6 @@ let mainState = {
 
    },
     update: function () {
-        console.log(mesas);
         fundo.tilePosition.x -= 90 * game.time.physicsElapsed;
 
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
@@ -58,6 +58,7 @@ let mainState = {
         game.physics.arcade.overlap(sprite1,integral, function () {
             ganhaPontos(sprite1, integral, pontos);
         });
+
 
         for (let i = 0;i<mesas.length; i++){
             if(mesas[i] !== undefined && mesas[i].x < 0 && !mesas[i].inWorld){
@@ -93,7 +94,7 @@ let mainState = {
 function gerarMesas() {
     let pos = [];
     for (let i = 0; i < 3; i++) {
-        pos.push(190*i+20);
+        pos.push(185*i+20);
     }
     for(let mesa of mesas){
         if(mesa.x > 600){
@@ -110,6 +111,28 @@ function gerarMesas() {
     mesa_temp.body.velocity.x = - 90;
     mesas.push(mesa_temp);
 }
+
+/*function gerarFuncoes(){
+    let pos=[];
+    for (let i = 0; i < 3; i++){
+        pos.push(190*i+20);
+    }
+    for(let mesa of mesas){
+        if(mesa.x > 600){
+            pos.splice(pos.indexOf(mesa.y),1);
+        }
+    }
+    if(pos.length === 0){
+        return;
+    }
+    let mesa_pos = pos[Math.floor(Math.random() *pos.length)];
+    let mesa_temp = game.add.sprite(900, mesa_pos, "mesa");
+    game.physics.enable(mesa_temp, Phaser.Physics.ARCADE);
+    mesa_temp.body.velocity.x = - 90;
+    mesas.push(mesa_temp);
+
+}*/
+
 function jogadorPerde(mesa,aluno) {
     mensagem = game.add.sprite(300,150,'mensagem');
 }
