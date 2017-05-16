@@ -15,6 +15,16 @@ let definicoes = {
 let jogador = {
     dinheiro: 50,
     energia: 100,
+    cadeiras:{
+        TC:false,
+        Fisica:false,
+        AMI:false,
+    },
+    baguetes:{
+        Bacon:false,
+        Atum:false,
+        Queijo:false,
+    },
     alteraDinheiro: function (valor) {
         if (this.dinheiro + valor < 0){
             return false;
@@ -27,7 +37,7 @@ let jogador = {
             return false;
         }
 
-        this.dinheiro += valor;
+        this.energia += valor;
         if (this.energia < 0 ){
             this.energia = 0;
         }
@@ -53,7 +63,14 @@ function main() {
     let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
     let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
 
-
+    window.addEventListener("message", function (event) {
+       let obj = event.data;
+       jogador.alteraDinheiro(obj.dinheiro);
+       jogador.alteraEnergia(-obj.energia);
+       completaCadeira(obj.cadeira);
+       desbloqueiaBaguete(obj.baguete);
+       hideFrame();
+    });
 
     botaoJogar.addEventListener("click", function (event) {
         changeSection(event, document.getElementById("MenuAnos"));
@@ -154,11 +171,6 @@ function addListenersBar() {
         window.close();
     });
 
-    botaoFC.addEventListener("click", showCadeiras);
-    let botaoFecharFC = document.getElementById("FecharFazerCadeiras");
-    botaoFecharFC.addEventListener("click",hideCadeiras);
-
-
     senhora.addEventListener("click", showBaguetes);
 
     let botaoFecharBaguetes = document.getElementById("FecharBaguetes");
@@ -187,6 +199,16 @@ function addListenersBar() {
         }
     });
     alteraDadosJogador();
+
+
+    botaoFC.addEventListener("click", showCadeiras);
+    let botaoFecharFC = document.getElementById("FecharFazerCadeiras");
+    botaoFecharFC.addEventListener("click",hideCadeiras);
+
+    let tc = document.getElementById("TC");
+    tc.addEventListener("click", function (event) {
+        showFrame(800, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html")
+    })
 }
 
 function addListenersOpcoes(){
@@ -497,3 +519,30 @@ function hideCadeiras(event){
     cadeiras.style.display = "none";
 }
 
+function desbloqueiaBaguete(nome){
+
+}
+
+function completaCadeira(nome) {
+
+}
+
+function hideFrame() {
+    
+}
+
+function showFrame(x, y, page) {
+    let seccoes = document.getElementsByTagName("section");
+    for(let sec of seccoes){
+       sec.style.display = "none";
+    }
+    let frame = document.getElementById("frame");
+    let gameSection = document.getElementById("Jogo");
+        frame.width  = frame.contentWindow.document.body.scrollWidth;
+        frame.height = frame.contentWindow.document.body.scrollHeight;
+    frame.style.display = "block";
+    gameSection.width = x;
+    gameSection.height = y;
+    gameSection.style.display = "block";
+    frame.src = page;
+}
