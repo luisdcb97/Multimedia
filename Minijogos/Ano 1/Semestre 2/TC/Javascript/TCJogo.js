@@ -8,12 +8,14 @@ var timer, timerEvent;
 var popupGanhou;
 var japassou = 0;
 var estrela1aux,estrela2aux,estrela3aux;
-var botaoBAR, botaoRepetir;
 
 
 
 var gameState = {
     preload: function () {
+        game.scale.pageAlignHorizontally = true;
+        game.scale.pageAlignVeritcally = true;
+
         this.load.image('fundo', "../../../../../Principal/Recursos/arduinoFundo.jpg");
         this.load.image('cabo1', "../../../../../Principal/Recursos/caboArduinoAmarelo.png");
         this.load.image('cabo2', "../../../../../Principal/Recursos/caboArduinoAzul.png");
@@ -26,6 +28,7 @@ var gameState = {
         this.load.image('ledApagado', "../../../../../Principal/Recursos/ledArduino.png");
         this.load.image('ledLigado', "../../../../../Principal/Recursos/ledArduinoLigado.png");
         this.load.image('popupGanhou',"../../../../../Principal/Recursos/popupVitoriaJogoTC.png");
+        this.load.image('popupPerdeu',"../../../../../Principal/Recursos/popupDerrota.png");
         this.load.image('estrela',"../../../../../Principal/Recursos/estrelaPontuacao.png");
         this.load.image('moeda',"../../../../../Principal/Recursos/moeda.png");
         this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
@@ -34,7 +37,7 @@ var gameState = {
     },
     create: function () {
         timer = game.time.create();
-        timerEvent = timer.add(Phaser.Timer.MINUTE * 2 + Phaser.Timer.SECOND*0, this.endTimer, this);
+        timerEvent = timer.add(Phaser.Timer.MINUTE * 2 + Phaser.Timer.SECOND*0, this.endTimerLoser, this);
 
 
         this.spriteCabos = [];
@@ -223,7 +226,7 @@ var gameState = {
             //this.led = this.remove.sprite(329+19,356,'ledApagado');
 
             this.led = this.add.sprite(329+19,356,'ledLigado');
-            this.endTimer();
+            this.endTimerApenas();
             timerEvent = timer.add(Phaser.Timer.SECOND*1, this.jogadorGanha, this);
 
             timer.start();
@@ -237,11 +240,14 @@ var gameState = {
         }
         else{
             //METER POPUP
-            this.jogadorPerde();
             game.debug.text("Tempo terminado!",2,14,"#EF180D");
         }
     },
-    endTimer: function () {
+    endTimerLoser: function () {
+        this.jogadorPerde();
+        timer.stop();
+    },
+    endTimerApenas: function () {
         timer.stop();
     },
     perdeEstrela3: function() {
@@ -259,22 +265,22 @@ var gameState = {
         let popupG = this.add.sprite(100, 90, 'popupGanhou');
         popupG.alpha = 0;
         let valor = 0;
-
         game.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+
         if (this.estrela1.exists == true){
-            valor = 1;
+            valor = 2;
             estrela1aux = this.add.sprite(345,170,'estrela');
             estrela1aux.alpha = 0;
             game.add.tween(estrela1aux).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         }
         if (this.estrela2.exists == true){
-            valor = 2;
+            valor = 3;
             estrela2aux = this.add.sprite(385,170,'estrela');
             estrela2aux.alpha = 0;
             game.add.tween(estrela2aux).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         }
         if (this.estrela3.exists == true){
-            valor = 3;
+            valor = 4;
             estrela3aux = this.add.sprite(425,170,'estrela');
             estrela3aux.alpha = 0;
             game.add.tween(estrela3aux).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
@@ -284,25 +290,72 @@ var gameState = {
         popupMoeda.alpha = 0;
         game.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
-        botaoRepetir = game.add.button(400,578,'moeda',repeteJogo);
-        botaoRepetir.bringToTop();
-        botaoRepetir.alpha = 0;
-        game.add.tween(botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
-        botaoBAR = game.add.button(480,578,'botaoBAR',vaiParaOBar);
-        botaoBAR.bringToTop();
-        botaoBAR.alpha = 0;
-        game.add.tween(botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoRepetir = this.add.sprite(265,315,'botaoRepetir');
+        this.botaoRepetir.alpha = 0;
+        game.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoBAR = this.add.sprite(430,315,'botaoBAR');
+        this.botaoBAR.alpha = 0;
+        game.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoRepetir.inputEnabled = true;
+        this.botaoBAR.inputEnabled = true;
+        this.botaoRepetir.events.onInputOver.add(function () {
+            this.botaoRepetir.tint = 0xd17f35;
+        },this);
+        this.botaoRepetir.events.onInputOut.add(function () {
+            this.botaoRepetir.tint = 0xffffff;
+        },this);
+        this.botaoBAR.events.onInputOver.add(function () {
+            this.botaoBAR.tint = 0xd17f35;
+        },this);
+        this.botaoBAR.events.onInputOut.add(function () {
+            this.botaoBAR.tint = 0xffffff;
+        },this);
+        this.botaoRepetir.events.onInputDown.add(repeteJogo);
+        this.botaoBAR.events.onInputDown.add(vaiParaOBar);
     },
     jogadorPerde: function () {
-
+        let popupD = this.add.sprite(100, 90, 'popupPerdeu');
+        popupD.alpha = 0;
+        game.add.tween(popupD).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoRepetir = this.add.sprite(265,315,'botaoRepetir');
+        this.botaoRepetir.alpha = 0;
+        game.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoBAR = this.add.sprite(430,315,'botaoBAR');
+        this.botaoBAR.alpha = 0;
+        game.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        this.botaoRepetir.inputEnabled = true;
+        this.botaoBAR.inputEnabled = true;
+        this.botaoRepetir.events.onInputOver.add(function () {
+            this.botaoRepetir.tint = 0xd17f35;
+        },this);
+        this.botaoRepetir.events.onInputOut.add(function () {
+            this.botaoRepetir.tint = 0xffffff;
+        },this);
+        this.botaoBAR.events.onInputOver.add(function () {
+            this.botaoBAR.tint = 0xd17f35;
+        },this);
+        this.botaoBAR.events.onInputOut.add(function () {
+            this.botaoBAR.tint = 0xffffff;
+        },this);
+        this.botaoRepetir.events.onInputDown.add(repeteJogo);
+        this.botaoBAR.events.onInputDown.add(vaiParaOBar);
     }
 };
 
 function repeteJogo() {
-    
+    japassou = 0;
+    game.state.restart();
 }
-function vaiParaOBar() {
-    
+function vaiParaOBar(dinheiro) {
+    let obj = {
+        dinheiro: dinheiro,
+        baguete: "Atum",
+        energia: 30,
+        cadeira: "TC"
+
+    };
+
+    window.parent.postMessage(obj, "*");
 }
 
 

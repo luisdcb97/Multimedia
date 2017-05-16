@@ -7,24 +7,30 @@
     <title>Inicio</title>
 </head>
 <body>
-    <iframe id="frame"></iframe>
+    <section id = "Jogo" style="display:none;">
+
+        <iframe id="frame"></iframe>
+    </section>
 
     <!--region Audio-->
 
     <audio autoplay loop class="music">
-        <source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">
+        <source src="../Recursos/Jazz club1 130.wav" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio class="sfx">
-        <source src="../Recursos/Alt-J - Fitzpleasure.mp3" type="audio/mpeg">
+        <source src="../Recursos/Jazz club1 130.wav" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!--endregion-->
+    <section id="slideshow">
+        <img id="foto">
+    </section>
 
     <!--region Menu Principal-->
 
-    <section id="MenuPrincipal">
+    <section id="MenuPrincipal" style="display: none;">
         <img id="backgroundPrincipal" src="../Recursos/menu_melhor_ja_com_baguete.jpg">
         <nav class="BotoesPrincipal">
             <button id = "BotaoJogar"><img src="../Recursos/jogar.png"></button>
@@ -88,7 +94,7 @@
 
         </div>
         <div id="DadosJogador">
-            <img id="Energia" src="../Recursos/menosdemeio.png">
+            <img id="Energia" src="../Recursos/energiacheia.png">
             <p id="DinheiroValor">0</p>
             <img id="DinheiroIcone" src="../Recursos/dinheiro.png">
         </div>
@@ -106,6 +112,21 @@
             <button id="Bacon" class="Baguete">
                 <img src="../Recursos/bagueteBacon_compreco.png">
             </button>
+        </section>
+        <section id="FazerCadeiras" style="display: none">
+            <button id ="FecharFazerCadeiras">
+                <img src="../Recursos/cruzPopups.png">
+            </button>
+            <button id="TC" class="Cadeira">
+                <img src="../Recursos/botaoTC.png">
+            </button>
+            <button id="AMI" class="Cadeira">
+                <img src="../Recursos/botaoAMI.png">
+            </button>
+            <button id="FISICA" class="Cadeira">
+                <img src="../Recursos/botaoFISICA.png">
+            </button>
+
         </section>
     </section>
 

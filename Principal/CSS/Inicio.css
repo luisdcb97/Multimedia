@@ -2,13 +2,47 @@
     height: 800px;
     width: 800px;
     position: absolute;
-    margin: auto;
     display: none;
-    border: none;
     overflow: hidden;
 }
 
+section#Jogo{
+    height: 800px;
+    width: 800px;
+    border-radius: 105px;
+    margin: auto;
+}
+
+/*region Animacao*/
+
+section#slideshow
+{
+    height: 800px;
+    width: 800px;
+    border-radius: 105px;
+    margin: auto;
+}
+
+section#slideshow img#foto{
+    border-radius: 105px;
+    /*animation-name: fadeInOut;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;*/
+
+}
+/*
+@keyframes fadeInOut
+{
+    0% {opacity: 1;}
+    45% {opacity: 1;}
+    55% {opacity: 0;}
+    100% {opacity: 0;}
+}*/
+
+/*endregion*/
+
 /*region Menu Principal*/
+
 
 section#MenuPrincipal{
     height: 800px;
@@ -360,11 +394,11 @@ section#Bar button#BotaoCadeirasBar{
     margin-left: 240px;
 }
 
-section#Bar button#BotaoCadeirasBar:hover{
+section#Bar button#BotaoCadeirasBar:hover:enabled{
     background-color: #ad8547;
 }
 
-section#Bar button#BotaoCadeirasBar:active{
+section#Bar button#BotaoCadeirasBar:active:enabled{
     background-color: white;
 
 }
@@ -497,5 +531,75 @@ section#CompraBaguetes p#Visor{
     font-size: larger;
     background: #c8a061;
     color: black;
+}
+
+section#FazerCadeiras {
+    background: url("../Recursos/popup_cadeiras.png");
+    position: relative;
+    height: 342px;
+    width: 570px;
+    margin:auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+section#FazerCadeiras button#FecharFazerCadeiras{
+    width: 48px;
+    height: 47px;
+    position: absolute;
+    border-radius: 15px;
+    border: none;
+    padding: 0;
+    background-color: #df1600;
+    top: 3%;
+    left: 90%;
+
+}
+
+section#FazerCadeiras button#TC{
+    top: 20%;
+    left: 5%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#TC:hover{
+    background-color: #000000;
+    border-radius: 5px;
+}
+section#FazerCadeiras button#AMI{
+    top: 21%;
+    left: 6%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#AMI:hover{
+    background-color: #000000;
+    border-radius: 5px;
+}
+section#FazerCadeiras button#FISICA{
+    top: 69%;
+    left: 22%;
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+
+section#FazerCadeiras button#FISICA:hover{
+    background-color: #ad8547;
+    border-radius: 5px;
+}
+
+section#FazerCadeiras button#FecharBaguetes:hover{
+    background-color: #b21200;
+}
+
+section#FazerCadeiras button#FecharBaguetes:active {
+    background-color: #880d00;
 }
 /*endregion*/

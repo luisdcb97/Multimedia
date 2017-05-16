@@ -3,6 +3,8 @@
 let debug = true;
 let debug_prefix = "[DEBUG]\t";
 
+var imgFolder= "../Recursos/introducao";
+
 let timeoutTextIds=[];
 
 let definicoes = {
@@ -13,6 +15,16 @@ let definicoes = {
 let jogador = {
     dinheiro: 50,
     energia: 100,
+    cadeiras:{
+        TC:false,
+        Fisica:false,
+        AMI:false,
+    },
+    baguetes:{
+        Bacon:false,
+        Atum:false,
+        Queijo:false,
+    },
     alteraDinheiro: function (valor) {
         if (this.dinheiro + valor < 0){
             return false;
@@ -25,7 +37,7 @@ let jogador = {
             return false;
         }
 
-        this.dinheiro += valor;
+        this.energia += valor;
         if (this.energia < 0 ){
             this.energia = 0;
         }
@@ -41,12 +53,24 @@ let jogador = {
 }());
 
 function main() {
+    var foto = document.getElementById("foto");
+    foto.src = imgFolder + "1.png";
+    foto.addEventListener("click",introducao);
     let botaoJogar = document.getElementById("BotaoJogar");
     let botaoAjuda = document.getElementById("BotaoAjuda");
     let botaoOpcoes = document.getElementById("BotaoOpcoes");
     let botaoSair = document.getElementById("BotaoSair");
     let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
     let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
+
+    window.addEventListener("message", function (event) {
+       let obj = event.data;
+       jogador.alteraDinheiro(obj.dinheiro);
+       jogador.alteraEnergia(-obj.energia);
+       completaCadeira(obj.cadeira);
+       desbloqueiaBaguete(obj.baguete);
+       hideFrame();
+    });
 
     botaoJogar.addEventListener("click", function (event) {
         changeSection(event, document.getElementById("MenuAnos"));
@@ -73,6 +97,16 @@ function main() {
         audio.muted = definicoes.muted;
     }
 }
+
+function introducao(){
+    var foto = document.getElementById("foto");
+    foto.src = imgFolder + "2.png";
+
+    foto.addEventListener("click", function () {
+        changeSection(event, document.getElementById("MenuPrincipal"));
+    })
+}
+
 
 function addListenersMenuAnos() {
     let botaoAno1 = document.getElementById("Ano1");
@@ -106,6 +140,7 @@ function addListenersBar() {
     let botaoOpcoes = document.getElementById("BotaoOpcoesBar");
     let botaoSair = document.getElementById("BotaoSairBar");
     let senhora = document.getElementById("BotaoSenhoraBar");
+    let botaoFC = document.getElementById("BotaoCadeirasBar");
 
     if(definicoes.muted){
         botaoSom.style.filter = "grayscale(65%)";
@@ -164,6 +199,16 @@ function addListenersBar() {
         }
     });
     alteraDadosJogador();
+
+
+    botaoFC.addEventListener("click", showCadeiras);
+    let botaoFecharFC = document.getElementById("FecharFazerCadeiras");
+    botaoFecharFC.addEventListener("click",hideCadeiras);
+
+    let tc = document.getElementById("TC");
+    tc.addEventListener("click", function (event) {
+        showFrame(800, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html")
+    })
 }
 
 function addListenersOpcoes(){
@@ -429,7 +474,19 @@ function alteraDadosJogador() {
     }
 }
 
+function bloqueiaFazerCadeiras() {
+    document.getElementById("BotaoCadeirasBar").setAttribute("disabled","true")   //to disable the button
+
+}
+function desbloqueiaFazerCadeiras() {
+    document.getElementById("BotaoCadeirasBar").removeAttribute("disabled")
+    //document.getElementById("BotaoCadeirasBar").disabled=false;
+    //document.getElementById("BotaoCadeirasBar").disableHover = true;
+
+}
+
 function showBaguetes(event){
+    bloqueiaFazerCadeiras();
     let baguetes = document.getElementById("CompraBaguetes");
     baguetes.style.display = "block";
     let visor = document.getElementById("Visor");
@@ -437,6 +494,7 @@ function showBaguetes(event){
 }
 
 function hideBaguetes(event){
+    desbloqueiaFazerCadeiras();
     for (let id1 of timeoutTextIds){
         clearTimeout(id1);
     }
@@ -444,4 +502,47 @@ function hideBaguetes(event){
 
     let baguetes = document.getElementById("CompraBaguetes");
     baguetes.style.display = "none";
+}
+
+
+function showCadeiras(event) {
+    let cadeiras = document.getElementById("FazerCadeiras");
+    cadeiras.style.display = "block";
+}
+function hideCadeiras(event){
+    for (let id1 of timeoutTextIds){
+        clearTimeout(id1);
+    }
+    timeoutTextIds = [];
+
+    let cadeiras = document.getElementById("FazerCadeiras");
+    cadeiras.style.display = "none";
+}
+
+function desbloqueiaBaguete(nome){
+
+}
+
+function completaCadeira(nome) {
+
+}
+
+function hideFrame() {
+    
+}
+
+function showFrame(x, y, page) {
+    let seccoes = document.getElementsByTagName("section");
+    for(let sec of seccoes){
+       sec.style.display = "none";
+    }
+    let frame = document.getElementById("frame");
+    let gameSection = document.getElementById("Jogo");
+        frame.width  = frame.contentWindow.document.body.scrollWidth;
+        frame.height = frame.contentWindow.document.body.scrollHeight;
+    frame.style.display = "block";
+    gameSection.width = x;
+    gameSection.height = y;
+    gameSection.style.display = "block";
+    frame.src = page;
 }
