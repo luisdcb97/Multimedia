@@ -3,7 +3,7 @@
 let BootState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.Arcade);
-        game.state.start(LoadState);
+        game.state.start("IntroState");
     },
 
 };

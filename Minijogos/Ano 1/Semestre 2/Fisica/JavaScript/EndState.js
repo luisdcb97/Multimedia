@@ -84,7 +84,7 @@ let EndState = {
 };
 
 function repeteJogo() {
-    game.state.start("PlayState");
+    game.state.start("LoadState");
 }
 function vaiParaOBar(dinheiro) {
     let obj = {
