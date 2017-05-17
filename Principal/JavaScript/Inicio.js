@@ -14,8 +14,8 @@ let definicoes = {
 };
 
 let jogador = {
-    dinheiro: 50,
-    energia: 10,
+    dinheiro: 1,
+    energia: 100,
     cadeiras:{
         TC:false,
         Fisica:false,
@@ -416,7 +416,6 @@ function compraBaguete(preco, energia){
     }
     else{
         jogador.alteraEnergia(energia);
-        console.log(jogador.energia);
         alteraTexto(visor, "Compra efetuada!", 10);
         document.getElementById('somDinheiro').play();
         compra = true;
@@ -526,19 +525,18 @@ function hideCadeiras(event){
 
 function desbloqueiaBaguete(nome){
     jogador.baguetes[nome] = true;
-    let bag = document.getElementById(nome);
+    let but = document.getElementById(nome);
+    let img = but.firstElementChild;
+    but.disabled = false;
     if(nome === 'Queijo'){
-        bag.src = "../Recursos/baguete_queijo.png";
+        img.src = "../Recursos/baguete_queijo.png";
     }
     else if(nome === 'Atum'){
-        bag.src = "../Recursos/bagueteAtum_compreco.png";
+        img.src = "../Recursos/bagueteAtum_compreco.png";
     }
     else{
-        bag.src = "../Recursos/bagueteBacon_compreco.png";
+        img.src = "../Recursos/bagueteBacon_compreco.png";
     }
-    console.log(nome);
-    console.log(bag);
-    console.log(bag.src);
 }
 
 function completaCadeira(nome) {

@@ -73,7 +73,7 @@ let EndState = {
             this.botaoBAR.tint = 0xffffff;
         },this);
         this.botaoRepetir.events.onInputDown.add(this.repeteJogoFisica);
-        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, gameFisica.score);
     },
     jogadorPerde: function () {
         let popupD = this.add.sprite(100, 90, 'popupPerdeu');
@@ -100,17 +100,21 @@ let EndState = {
             this.botaoBAR.tint = 0xffffff;
         },this);
         this.botaoRepetir.events.onInputDown.add(this.repeteJogoFisica);
-        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, 0);
     },
     repeteJogoFisica: function () {
         gameFisica.state.start("PlayState");
     },
-    vaiParaOBar: function () {
+    vaiParaOBar: function (sprite, pointer, valor) {
         if(typeof hideGame === 'undefined'){
             console.warn("Ir para bar");
         }
         else{
-            hideGame();
+            let cadeira = "Fisica";
+            if(valor === 0){
+                cadeira = "";
+            }
+            hideGame(cadeira, "Bacon", valor, -25);
         }
     }
 };

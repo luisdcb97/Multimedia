@@ -480,7 +480,7 @@ section#CompraBaguetes button#Queijo{
     border: none;
 }
 
-section#CompraBaguetes button#Queijo:hover{
+section#CompraBaguetes button#Queijo:hover:enabled{
     background-color: #ad8547;
     border-radius: 5px;
 }
@@ -490,7 +490,7 @@ section#CompraBaguetes button#Atum{
     border: none;
 }
 
-section#CompraBaguetes button#Atum:hover{
+section#CompraBaguetes button#Atum:hover:enabled{
     background-color: #ad8547;
     border-radius: 5px;
 }
@@ -500,7 +500,7 @@ section#CompraBaguetes button#Bacon{
     border: none;
 }
 
-section#CompraBaguetes button#Bacon:hover{
+section#CompraBaguetes button#Bacon:hover:enabled{
     background-color: #ad8547;
     border-radius: 5px;
 }

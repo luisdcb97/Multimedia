@@ -361,7 +361,7 @@ var gameStateTC = {
             this.botaoBAR.tint = 0xffffff;
         },this);
         this.botaoRepetir.events.onInputDown.add(this.repeteJogoTC);
-        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, 0);
     },
     repeteJogoTC: function () {
         japassouTC = 0;
@@ -373,7 +373,11 @@ var gameStateTC = {
             console.warn("Ir para bar");
         }
         else{
-            hideGame("TC", "Atum", valor, -25);
+            let cadeira = "TC";
+            if(valor === 0){
+                cadeira = "";
+            }
+            hideGame(cadeira, "Atum", valor, -25);
         }
     }
 
