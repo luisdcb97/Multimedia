@@ -34,10 +34,6 @@ let jogador = {
         return true;
     },
     alteraEnergia: function (valor) {
-        if (this.energia == 100){
-            return false;
-        }
-
         this.energia += valor;
         if (this.energia < 0 ){
             this.energia = 0;
@@ -45,7 +41,6 @@ let jogador = {
         else if(this.energia > 100){
             this.energia = 100;
         }
-        return true;
     }
 };
 
@@ -522,16 +517,19 @@ function hideCadeiras(event){
 
 function desbloqueiaBaguete(nome){
     jogador.baguetes[nome] = true;
-    let bag = document.getElementsById(nome);
+    let bag = document.getElementById(nome);
     if(nome === 'Queijo'){
-        bag.src = "../Recursos/baguete_queijo.png"
+        bag.src = "../Recursos/baguete_queijo.png";
     }
     else if(nome === 'Atum'){
-        bag.src = "../Recursos/bagueteAtum_compreco.png"
+        bag.src = "../Recursos/bagueteAtum_compreco.png";
     }
     else{
-        bag.src = "../Recursos/bagueteBacon_compreco.png"
+        bag.src = "../Recursos/bagueteBacon_compreco.png";
     }
+    console.log(nome);
+    console.log(nome);
+    console.log(nome);
 }
 
 function completaCadeira(nome) {
@@ -543,6 +541,19 @@ function hideGame() {
     goBackBar();
     window.jogo.paused = true;
     
+    if(cadeira && jogador.cadeiras.hasOwnProperty(cadeira) && !jogador.cadeiras[cadeira]){
+        // Apenas corre na primeira vez que completa o jogo
+        jogador.cadeiras[cadeira] = true;
+        if(jogador.baguetes.hasOwnProperty(baguete) && !jogador.baguetes[baguete]){
+            desbloqueiaBaguete(baguete);
+        }
+    }
+
+    jogador.alteraDinheiro(dinheiro);
+    jogador.alteraEnergia(energia);
+    alteraDadosJogador();
+    console.log(jogador);
+
 }
 
 function showGame(x, y, jogo) {
