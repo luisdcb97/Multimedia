@@ -8,8 +8,8 @@ var timer, timerEvent, text, mensagem;
 var pontos,pontuacao=0;
 var mesas =[];
 var funcoes=[];
-var jaPerdeu = 0;
-
+var jaJogou = 0;
+var vsMesa,musica,vsIntegral,vit;
 
 let mainState = {
    preload: function () {
@@ -28,11 +28,24 @@ let mainState = {
 
        game.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
        game.load.image('botaoBAR',"../Recursos/botaoBAR.png");
+
+       game.load.audio('integ', '../Recursos/cabosrodam.mp3');
+       game.load.audio('mesa', '../Recursos/contrasecretaria.mp3');
+       game.load.audio('musica', '../Recursos/musicaAMI.mp3');
+       game.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
    },
 
    create: function () {
        timer = game.time.create();
-       timerEvent = timer.add(Phaser.Timer.MINUTE * 0.1 + Phaser.Timer.SECOND*0, this.jogadorGanha, this);
+       timerEvent = timer.add(Phaser.Timer.MINUTE * 1 + Phaser.Timer.SECOND*0, this.jogadorGanha, this);
+
+       vsIntegral = this.add.audio('integ');
+       vsMesa = this.add.audio('mesa');
+       vit = this.add.audio('vitoria');
+
+       musica = this.add.audio('musica');
+       musica.loop = true;
+       musica.play();
 
        game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -53,7 +66,7 @@ let mainState = {
 
    },
     update: function () {
-        if(jaPerdeu == 0){
+        if(jaJogou == 0){
             fundo.tilePosition.x -= 120 * game.time.physicsElapsed;
             if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
                 sprite1.y -= 200* game.time.physicsElapsed;
@@ -101,6 +114,10 @@ let mainState = {
 
     },
     jogadorGanha: function () {
+        vit.play();
+        jaJogou = 1;
+        musica.pause();
+        musica.currentTime = 0;
         timer.stop();
         for(let i = 0; i < mesas.length; i++){
             mesas[i].destroy();
@@ -160,7 +177,7 @@ let mainState = {
 };
 
 function gerarMesas() {
-    if (jaPerdeu == 0){
+    if (jaJogou == 0){
         let pos = [];
         for (let i = 0; i < 3; i++) {
             pos.push(185*i+10);
@@ -189,7 +206,7 @@ function gerarMesas() {
 }
 
 function gerarFuncoes(){
-    if (jaPerdeu == 0){
+    if (jaJogou == 0){
 
         let pos=[];
         for (let i = 0; i < 3; i++){
@@ -198,7 +215,7 @@ function gerarFuncoes(){
 
         for(let mesa of mesas){
             if(mesa.x > 600){
-                if (jaPerdeu == 0){
+                if (jaJogou == 0){
                     pos.splice(pos.indexOf(mesa.y),1);
                 }
 
@@ -206,7 +223,7 @@ function gerarFuncoes(){
         }
         for(let f of funcoes){
             if(f.x > 600){
-                if(jaPerdeu == 0) {
+                if(jaJogou == 0) {
                     pos.splice(pos.indexOf(f.y), 1);
                 }
             }
@@ -237,10 +254,14 @@ function jogadorPerde(){
         for(let i = 0; i < funcoes.length; i++){
             funcoes[i].destroy();
         }
+
+        musica.pause();
+        musica.currentTime = 0;
+        vsMesa.play();
         pontuacao = 0;
         sprite1.destroy();
         timer.stop();
-        jaPerdeu = 1;
+        jaJogou = 1;
         let popupD = game.add.sprite(100, 90, 'popupPerdeu');
         popupD.alpha = 0;
         game.add.tween(popupD).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
@@ -270,13 +291,14 @@ function jogadorPerde(){
     }
 }
 function ganhaPontos(mesa,funcao, texto) {
+    vsIntegral.play();
     pontuacao++;
     texto.setText("Pontos: " + pontuacao);
     funcao.kill();
 }
 function repeteJogo() {
     game.state.restart();
-    jaPerdeu = 0;
+    jaJogou = 0;
     a = 0;
     mesas = [];
     funcoes = [];

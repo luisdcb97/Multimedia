@@ -254,6 +254,8 @@ var gameState = {
         }
     },
     endTimerLoser: function () {
+        musica.pause();
+        musica.currentTime = 0;
         this.jogadorPerde();
         timer.stop();
     },
@@ -272,6 +274,10 @@ var gameState = {
         return minutos.substr(-2)+":"+segundos.substr(-2);
     },
     jogadorGanha: function () {
+        for (let i = 0; i< this.cabos.length; i++){
+            this.cabos[i].destroy();
+            this.spriteCabos[i].destroy();
+        }
         let popupG = this.add.sprite(100, 90, 'popupGanhou');
         popupG.alpha = 0;
         let valor = 0;
