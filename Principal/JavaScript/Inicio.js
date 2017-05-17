@@ -394,15 +394,6 @@ function toggleAudio() {
         }
     }
 
-    let sfxs = document.getElementsByTagName("sfx");
-    for (let curSfx of sfxs) {
-        if (curSfx.paused && curSfx.currentTime > 0 && !curSfx.ended){
-            curSfx.play();
-        }
-        else{
-            curSfx.pause();
-        }
-    }
 }
 
 function compraBaguete(preco, energia){
@@ -534,6 +525,7 @@ function completaCadeira(nome) {
 }
 
 function hideGame() {
+    toggleAudio();
     goBackBar();
     
 }
@@ -548,6 +540,8 @@ function showGame(x, y, jogo) {
            sec.style.height = y;
        }
     }
+
+    toggleAudio();
 
     if (jogo === "TC"){
 
