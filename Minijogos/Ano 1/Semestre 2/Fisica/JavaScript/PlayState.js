@@ -108,12 +108,12 @@ let PlayState = {
         let texto = gameFisica.debug.text("Pontos " + this.score  , 25, 25, "#ffffff", "20px Arial");
         let texto2 = gameFisica.debug.text("Tempo Restante: " + minutos +"m"+segundos+"s" , 25, 50, "#ffffff", "20px Arial");
         let texto3 = gameFisica.debug.text("Resets Restantes: " + this.limiteResets, 25, 75, "#ffffff", "20px Arial");
-        this.particulas.forEach(function (member) {
-            gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
-        });
-        this.imanes.forEach(function (member) {
-            gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
-        });
+        // this.particulas.forEach(function (member) {
+        //     gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
+        // });
+        // this.imanes.forEach(function (member) {
+        //     gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
+        // });
         // gameFisica.debug.bodyInfo(this.reactor, 40, 40);
     },
     createTextureReactor: function (circle, lineWidth = 1, lineColor = 0x000000, lineAlpha = 1, fillColor = 0xffffff, fillAlpha = 1, textureResolution = 1, textureScaling = 0, texturePadding = 1) {
