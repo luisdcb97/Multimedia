@@ -11,6 +11,16 @@ var funcoesAMI=[];
 var jaJogouAMI = 0;
 var vsMesaAMI,musicaAMI,vsIntegralAMI,vitAMI;
 
+window.addEventListener("keydown", function(event) {
+    switch(event.keyCode){
+        case 37: case 39: case 38:  case 40: // Arrow keys
+        case 32: // Space
+            event.preventDefault();
+            break;
+        default: break; // do not block other keys
+    }
+}, false);
+
 var introStateAMI ={
     preload:function () {
         if(typeof resourcePrefix === 'undefined'){
