@@ -57,7 +57,7 @@ let mainStateAMI = {
        gameAMI.physics.enable(sprite1AMI, Phaser.Physics.ARCADE);
        sprite1AMI.body.collideWorldBounds=true; //para o boneco não sair do ecrã
 
-       timerAMI.loop(3000, function () {
+       timerAMI.loop(2800, function () {
            gerarMesas();
            gerarMesas();
            let str = "Mesas: [" + mesasAMI.length +"]\n";
@@ -67,7 +67,7 @@ let mainStateAMI = {
            console.log(str+"\n");
        }, this);
        timerAMI.add(0, function () {
-           timerAMI.loop(3000, function () {
+           timerAMI.loop(2800, function () {
                gerarFuncoes();
 
                let str = "Funcoes: [" + funcoesAMI.length +"]\n";
