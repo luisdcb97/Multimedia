@@ -174,6 +174,7 @@ function addListenersBar() {
     botaoFecharBaguetes.addEventListener("click", hideBaguetes);
 
     let bagueteQueijo = document.getElementById("Queijo");
+
     bagueteQueijo.addEventListener("click", function (event) {
         let alterado = compraBaguete(3, 30);
         if(alterado){
@@ -520,11 +521,21 @@ function hideCadeiras(event){
 }
 
 function desbloqueiaBaguete(nome){
-
+    jogador.baguetes[nome] = true;
+    let bag = document.getElementsById(nome);
+    if(nome === 'Queijo'){
+        bag.src = "../Recursos/baguete_queijo.png"
+    }
+    else if(nome === 'Atum'){
+        bag.src = "../Recursos/bagueteAtum_compreco.png"
+    }
+    else{
+        bag.src = "../Recursos/bagueteBacon_compreco.png"
+    }
 }
 
 function completaCadeira(nome) {
-
+    jogador.cadeiras[nome] = true;
 }
 
 function hideGame() {
