@@ -592,8 +592,9 @@ function showGame(x, y, jogo) {
         window.jogo = gameTC;
         window.jogo.paused = false;
         window.jogo.canvas.style.display="block";
+        gameTC.state.add("introStateTC", introStateTC);
         gameTC.state.add("MainGameTC", gameStateTC);
-        gameTC.state.start("MainGameTC");
+        gameTC.state.start("introStateTC");
     }
     else if (jogo === "Fisica"){
         gameFisica = new Phaser.Game(800, 600, Phaser.AUTO, 'Jogo');

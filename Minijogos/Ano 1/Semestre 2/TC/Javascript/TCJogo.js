@@ -12,6 +12,26 @@ var japassouTC = 0;
 var estrela1auxTC,estrela2auxTC,estrela3auxTC;
 var fxTC,lzTC,musicaTC;
 
+
+var introStateTC ={
+    preload:function () {
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../../../../../Principal/";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+        this.load.image('introTC', this.resourcePrefix + "Recursos/introTC.png");
+    },
+    create: function () {
+        gameTC.add.button(0,0, "introTC", this.comecaJogo, this);
+    },
+    comecaJogo: function (button, pointer) {
+        gameTC.state.start("MainGameTC");
+    }
+};
+
 var gameStateTC = {
     preload: function () {
         gameTC.scale.pageAlignHorizontally = true;

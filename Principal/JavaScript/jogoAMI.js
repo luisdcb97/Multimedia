@@ -11,6 +11,25 @@ var funcoesAMI=[];
 var jaJogouAMI = 0;
 var vsMesaAMI,musicaAMI,vsIntegralAMI,vitAMI;
 
+var introStateAMI ={
+    preload:function () {
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+        this.load.image('introAMI', this.resourcePrefix + "Recursos/introAMI.png");
+    },
+    create: function () {
+        gameAMI.add.button(0,0, "introAMI", this.comecaJogo, this);
+    },
+    comecaJogo: function (button, pointer) {
+        gameAMI.state.start("mainStateAMI");
+    }
+};
+
 
 let mainStateAMI = {
    preload: function () {
@@ -333,4 +352,3 @@ function vaiParaOBar() {
     }
 
 }
-gameAMI.state.add('mainStateAMI',mainStateAMI);
