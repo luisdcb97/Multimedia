@@ -15,7 +15,7 @@ let definicoes = {
 
 let jogador = {
     dinheiro: 1,
-    energia: 50,
+    energia: 100,
     cadeiras:{
         TC:false,
         Fisica:false,
