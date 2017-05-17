@@ -1,3 +1,15 @@
+section#Fim{
+    height: 800px;
+    width: 800px;
+    border-radius: 105px;
+    margin: auto;
+}
+
+section#Fim img{
+    border-radius: 105px;
+    position: absolute;
+}
+
 section#Jogo{
     height: 800px;
     width: 800px;

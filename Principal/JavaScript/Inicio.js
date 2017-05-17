@@ -15,7 +15,7 @@ let definicoes = {
 
 let jogador = {
     dinheiro: 50,
-    energia: 0,
+    energia: 10,
     cadeiras:{
         TC:false,
         Fisica:false,
@@ -612,6 +612,11 @@ function showGame(x, y, jogo) {
 }
 
 function fimDoJogo() {
-    let fim = document.getElementById("Fim");
-    fim.style.display = "block";
+    let seccoes = document.getElementsByTagName("section");
+    for(let sec of seccoes){
+        sec.style.display = "none";
+        if (sec.id === "Fim"){
+            sec.style.display = "block";
+        }
+    }
 }
