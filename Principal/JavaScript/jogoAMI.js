@@ -1,6 +1,6 @@
 "use strict";
 
-var gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Nome");
+var gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Jogo");
 var fundoAMI,mesaAMI,integralAMI;
 var headAMI;
 var sprite1AMI;
@@ -10,6 +10,7 @@ var mesasAMI =[];
 var funcoesAMI=[];
 var jaJogouAMI = 0;
 var vsMesaAMI,musicaAMI,vsIntegralAMI,vitAMI;
+
 
 let mainStateAMI = {
    preload: function () {

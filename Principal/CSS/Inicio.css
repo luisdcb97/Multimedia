@@ -1,24 +1,8 @@
-#frame{
-    height: 800px;
-    width: 800px;
-    position: absolute;
-    display: none;
-    overflow: hidden;
-}
-#iframe{
-    height: 800px;
-    width: 800px;
-    position: absolute;
-    display: none;
-    overflow: hidden;
-}
-
 section#Jogo{
     height: 800px;
     width: 800px;
-    border-radius: 105px;
+    /*border-radius: 105px;*/
     margin: auto;
-    overflow-y: hidden;
 }
 
 /*region Animacao*/

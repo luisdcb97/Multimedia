@@ -1,6 +1,6 @@
 "use strict";
 
-var gameTC = new Phaser.Game(800,540,Phaser.AUTO, 'TC');
+var gameTC = new Phaser.Game(800,540,Phaser.AUTO, 'Jogo');
 
 let i;
 let xTC, yTC;

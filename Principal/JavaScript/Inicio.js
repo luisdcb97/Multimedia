@@ -469,11 +469,11 @@ function alteraDadosJogador() {
 }
 
 function bloqueiaFazerCadeiras() {
-    document.getElementById("BotaoCadeirasBar").setAttribute("disabled","true")   //to disable the button
+    document.getElementById("BotaoCadeirasBar").setAttribute("disabled","true");   //to disable the button
 
 }
 function desbloqueiaFazerCadeiras() {
-    document.getElementById("BotaoCadeirasBar").removeAttribute("disabled")
+    document.getElementById("BotaoCadeirasBar").removeAttribute("disabled");
     //document.getElementById("BotaoCadeirasBar").disabled=false;
     //document.getElementById("BotaoCadeirasBar").disableHover = true;
 
@@ -525,12 +525,16 @@ function hideFrame() {
     
 }
 
-function showGame(x, y, page) {
+function showGame(x, y, jogo) {
     let seccoes = document.getElementsByTagName("section");
     for(let sec of seccoes){
        sec.style.display = "none";
        if (sec.id === "Jogo"){
            sec.style.display = "block";
        }
+    }
+
+    if (jogo === "TC"){
+        gameTC.state.start("MainGameTC");
     }
 }
