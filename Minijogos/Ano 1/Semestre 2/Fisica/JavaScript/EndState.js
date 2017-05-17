@@ -39,12 +39,15 @@ let EndState = {
         gameFisica.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
         if (gameFisica.score>12){
+            valor = 5;
             let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+5, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         else if(gameFisica.score>9){
+            valor = 4;
             let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+4, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         else{
+            valor = 3;
             let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+3, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
 
@@ -73,7 +76,7 @@ let EndState = {
             this.botaoBAR.tint = 0xffffff;
         },this);
         this.botaoRepetir.events.onInputDown.add(this.repeteJogoFisica);
-        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, gameFisica.score);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, valor);
     },
     jogadorPerde: function () {
         let popupD = this.add.sprite(100, 90, 'popupPerdeu');

@@ -26,6 +26,17 @@ class Iman extends Particula{
         forceX = forca * Math.sin(angle);
         forceY = forca * Math.cos(angle);
 
+        let obj = {
+            iman: this,
+            x: x,
+            y: y,
+            fx: forceX,
+            fy: forceY,
+            f: forca,
+            o: angle,
+            d: distancia
+        };
+        console.log(obj);
         return {fX:forceX, fY:forceY};
     }
 }

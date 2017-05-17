@@ -225,6 +225,11 @@ function addListenersBar() {
     fisica.addEventListener("click", function (event) {
         showGame(800, 600, "Fisica");
     });
+
+    let ami = document.getElementById("AMI");
+    ami.addEventListener("click", function (event) {
+        showGame(800, 600, "AMI");
+    });
 }
 
 function addListenersOpcoes(){
@@ -633,6 +638,18 @@ function showGame(x, y, jogo) {
         gameFisica.state.add("PlayState", PlayState);
         gameFisica.state.add("EndState", EndState);
         gameFisica.state.start("BootState");
+    }
+    else if( jogo === "AMI"){
+        gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Jogo");
+        window.jogo = gameAMI;
+        window.jogo.paused = false;
+        window.jogo.canvas.style.display="block";
+        gameAMI.state.add('introStateAMI',introStateAMI);
+        gameAMI.state.add('mainStateAMI',mainStateAMI);
+        gameAMI.state.start('introStateAMI');
+    }
+    else{
+        console.warn("That game does not exist");
     }
 }
 

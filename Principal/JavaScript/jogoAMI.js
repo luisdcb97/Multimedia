@@ -33,26 +33,33 @@ var introStateAMI ={
 
 let mainStateAMI = {
    preload: function () {
+       if(typeof resourcePrefix === 'undefined'){
+           this.resourcePrefix = "../";
+       }
+       else{
+           this.resourcePrefix = resourcePrefix;
+       }
+
        gameAMI.scale.pageAlignHorizontally = true;
        gameAMI.scale.pageAlignVeritcally = true;
-       gameAMI.load.image('fundoAMI','../Recursos/fundo_jogoAMI.png');
-       gameAMI.load.image('mesaAMI','../Recursos/mesa1.png');
-       gameAMI.load.image('headAMI','../Recursos/topviewhead1.png');
-       gameAMI.load.image('integralAMI', '../Recursos/integral.png');
+       gameAMI.load.image('fundoAMI',this.resourcePrefix + "Recursos/fundo_jogoAMI.png");
+       gameAMI.load.image('mesaAMI',this.resourcePrefix + "Recursos/mesa1.png");
+       gameAMI.load.image('headAMI',this.resourcePrefix + "Recursos/topviewhead1.png");
+       gameAMI.load.image('integralAMI', this.resourcePrefix + "Recursos/integral.png");
        gameAMI.debug.text("Pontos: ",500,20,16,"#ffffff");
-       gameAMI.load.image('mensagemAMI', '../Recursos/popupderrota.png');
-       gameAMI.load.image('funcao','../Recursos/funcao1.png');
-       gameAMI.load.image('popupGanhou',"../Recursos/popupVitoriaJogoAMI.png");
-       gameAMI.load.image('popupPerdeu',"../Recursos/popupDerrota.png");
-       gameAMI.load.image('moeda',"../Recursos/moeda.png");
+       gameAMI.load.image('mensagemAMI', this.resourcePrefix + "Recursos/popupderrota.png");
+       gameAMI.load.image('funcao',this.resourcePrefix + "Recursos/funcao1.png");
+       gameAMI.load.image('popupGanhou',this.resourcePrefix + "Recursos/popupVitoriaJogoAMI.png");
+       gameAMI.load.image('popupPerdeu',this.resourcePrefix + "Recursos/popupDerrota.png");
+       gameAMI.load.image('moeda',this.resourcePrefix + "Recursos/moeda.png");
 
-       gameAMI.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
-       gameAMI.load.image('botaoBAR',"../Recursos/botaoBAR.png");
+       gameAMI.load.image('botaoRepetir',this.resourcePrefix + "Recursos/botaoREPETIR.png");
+       gameAMI.load.image('botaoBAR',this.resourcePrefix + "Recursos/botaoBAR.png");
 
-       gameAMI.load.audio('integ', '../Recursos/apanhafuncao.mp3');
-       gameAMI.load.audio('mesaAMI', '../Recursos/contrasecretaria.mp3');
-       gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.wav');
-       gameAMI.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
+       gameAMI.load.audio('integ', this.resourcePrefix + "Recursos/apanhafuncao.mp3");
+       gameAMI.load.audio('mesaAMI', this.resourcePrefix + "Recursos/contrasecretaria.mp3");
+       gameAMI.load.audio('musicaAMI', this.resourcePrefix + "Recursos/musicaAMI.wav");
+       gameAMI.load.audio('vitoria', this.resourcePrefix + "Recursos/vitoriaAMI.mp3");
    },
 
    create: function () {
@@ -170,12 +177,15 @@ let mainStateAMI = {
         gameAMI.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
         if (pontuacaoAMI>9){
+            valor = 4;
             let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+4, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         else if(pontuacaoAMI>5){
+            valor = 3;
             let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+3, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         else{
+            valor = 2;
             let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+2, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         let popupMoeda = this.add.sprite(550,178,'moeda');
@@ -204,7 +214,7 @@ let mainStateAMI = {
         },this);
         pontuacaoAMI =  0;
         this.botaoRepetir.events.onInputDown.add(repeteJogo);
-        this.botaoBAR.events.onInputDown.add(vaiParaOBar);
+        this.botaoBAR.events.onInputDown.add(vaiParaOBar, this, 0, valor);
     },
     formatTime: function (s) {
         let minutos = "0" + Math.floor(s/60);
@@ -320,7 +330,7 @@ function jogadorPerde(){
             gameAMI.botaoBAR.tint = 0xffffff;
         }, gameAMI);
         gameAMI.botaoRepetir.events.onInputDown.add(repeteJogo);
-        gameAMI.botaoBAR.events.onInputDown.add(vaiParaOBar);
+        gameAMI.botaoBAR.events.onInputDown.add(vaiParaOBar, this, 0, 0);
         a = 1;
     }
 }
@@ -338,7 +348,7 @@ function repeteJogo() {
     mesasAMI = [];
     funcoesAMI = [];
 }
-function vaiParaOBar() {
+function vaiParaOBar(sprite, pointer, valor) {
     jaJogouAMI = 0;
     a = 0;
     mesasAMI = [];
@@ -348,7 +358,11 @@ function vaiParaOBar() {
         console.warn("Ir para bar");
     }
     else{
-        hideGame();
+        let cadeira = "AMI";
+        if(valor === 0){
+            cadeira = "";
+        }
+        hideGame(cadeira, "Queijo", valor, -25);
     }
 
 }
