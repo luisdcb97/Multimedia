@@ -3,6 +3,7 @@
 let LoadState = {
     preload: function () {
         this.load.image('tituloFisica',"../Recursos/Fisica luis.png");
+
     },
     create: function () {
         let title = gameFisica.add.sprite(50,50, "tituloFisica");

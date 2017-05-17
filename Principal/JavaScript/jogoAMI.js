@@ -31,7 +31,7 @@ let mainStateAMI = {
 
        gameAMI.load.audio('integ', '../Recursos/cabosrodam.mp3');
        gameAMI.load.audio('mesaAMI', '../Recursos/contrasecretaria.mp3');
-       gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.mp3');
+       gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.wav');
        gameAMI.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
    },
 

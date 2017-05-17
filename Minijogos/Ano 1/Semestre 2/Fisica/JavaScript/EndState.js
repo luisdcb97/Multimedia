@@ -2,14 +2,16 @@
 
 let EndState = {
     preload: function () {
-        this.load.image('popupGanhou',"../../../../../Principal/Recursos/popupVitoriaJogoTC.png");
+        this.load.image('popupGanhou',"../../../../../Principal/Recursos/popupVitoriaJogoFisica.png");
         this.load.image('popupPerdeu',"../../../../../Principal/Recursos/popupDerrota.png");
         this.load.image('moeda',"../../../../../Principal/Recursos/moeda.png");
         this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
         this.load.image('botaoBAR',"../../../../../Principal/Recursos/botaoBAR.png");
+        this.load.audio('vitoria','../../../../../Principal/Recursos/vitoriaAMI.mp3')
 
     },
     create: function () {
+        this.vit = this.add.audio('vitoria');
         if(gameFisica.victory){
             this.jogadorGanha();
         }
@@ -21,12 +23,23 @@ let EndState = {
 
     },
     jogadorGanha: function () {
+        this.vit.play();
+
         let popupG = this.add.sprite(100, 90, 'popupGanhou');
         popupG.alpha = 0;
         let valor = 0;
         gameFisica.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
-        let vicText = gameFisica.add.text(490,166, '+'+valor, {font: "40px Kristen ITC", fill: "#fbb117"});
+        if (gameFisica.score>12){
+            let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+5, {font: "40px Kristen ITC", fill: "#fbb117"});
+        }
+        else if(gameFisica.score>9){
+            let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+4, {font: "40px Kristen ITC", fill: "#fbb117"});
+        }
+        else{
+            let vicText = gameFisica.add.text(215,166, 'Pontos: '+gameFisica.score+',     +'+3, {font: "40px Kristen ITC", fill: "#fbb117"});
+        }
+
         let popupMoeda = this.add.sprite(530,178,'moeda');
         popupMoeda.alpha = 0;
         gameFisica.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
@@ -84,7 +97,7 @@ let EndState = {
 };
 
 function repeteJogo() {
-    gameFisica.state.start("LoadState");
+    gameFisica.state.start("PlayState");
 }
 function vaiParaOBar(dinheiro) {
     let obj = {

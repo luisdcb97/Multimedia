@@ -8,6 +8,10 @@ let PlayState = {
         let reactor_circle = new Phaser.Circle(0, 0, gameFisica.rnd.realInRange(50, 75));
         this.graphicTextures.reactor = this.createTextureReactor(reactor_circle, 3, 0xff0000, 1, 0x00ff00);
 
+        gameFisica.load.audio('Positivo','../../../../../Principal/Recursos/imanmais.mp3');
+        gameFisica.load.audio('MusicaFisica','../../../../../Principal/Recursos/musicadefisica.mp3');
+        gameFisica.load.audio('Negativo','../../../../../Principal/Recursos/imanmenos.mp3');
+        gameFisica.load.audio('Reator','../../../../../Principal/Recursos/somdoreator.mp3');
 
         this.graphicTextures.particulas = [];
         for (let i=0; i<10; i++){
@@ -27,12 +31,18 @@ let PlayState = {
 
         gameFisica.stage.backgroundColor = "#0072bc";
 
-        this.score = 0;
+        gameFisica.score = 0;
         this.numeroParticulas = 20;
         this.messageText = gameFisica.add.text(gameFisica.world.centerX, 2*7/8*gameFisica.world.centerY, "", {font:"24px Arial", fill:"faedb1"});
         this.messageText.anchor.setTo(0.5);
         this.messageText.alpha = 0;
 
+        this.mais = this.add.audio('Positivo');
+        this.menos  = this.add.audio('Negativo');
+        this.reator  = this.add.audio('Reator');
+        this.musicaFisica = this.add.audio('MusicaFisica');
+        this.musicaFisica.loop = true;
+        this.musicaFisica.play();
 
         this.reactor = this.placeReactor();
         gameFisica.world.add(this.reactor);
@@ -105,7 +115,7 @@ let PlayState = {
     render: function () {
         let minutos = Math.trunc(this.timer.duration/(60*1000));
         let segundos = (this.timer.duration/1000%60).toFixed(0);
-        let texto = gameFisica.debug.text("Pontos " + this.score  , 25, 25, "#ffffff", "20px Arial");
+        let texto = gameFisica.debug.text("Pontos: " + gameFisica.score  , 25, 25, "#ffffff", "20px Arial");
         let texto2 = gameFisica.debug.text("Tempo Restante: " + minutos +"m"+segundos+"s" , 25, 50, "#ffffff", "20px Arial");
         let texto3 = gameFisica.debug.text("Resets Restantes: " + this.limiteResets, 25, 75, "#ffffff", "20px Arial");
         this.particulas.forEach(function (member) {
@@ -289,11 +299,18 @@ let PlayState = {
                 }, this);
             }
 
+
             gameFisica.world.remove(sprite);
             sprite.body.immovable = true;
             this.imanes.add(sprite);
             gameFisica.add.tween(sprite).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
             sprite.iman = new Iman(sprite.x, sprite.y, sprite.width/2, sprite.polo);
+            if (sprite.polo>0){
+                this.mais.play();
+            }
+            else{
+                this.menos.play();
+            }
         }
 
 
@@ -301,7 +318,8 @@ let PlayState = {
 
     },
     increaseScore: function(obj1, obj2){
-        this.score++;
+        this.reator.play();
+        gameFisica.score++;
         this.particulas.remove(obj2);
         gameFisica.world.add(obj2);
         gameFisica.add.tween(obj2).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
@@ -310,7 +328,9 @@ let PlayState = {
         }, this);
     },
     defeat: function () {
-        if(this.particulas.length === 0){
+        this.musicaFisica.pause();
+        this.musicaFisica.currentTime = 0;
+        if(this.particulas.length < 14){
             gameFisica.victory = true;
         }
         else{
