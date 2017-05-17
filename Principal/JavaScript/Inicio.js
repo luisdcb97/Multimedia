@@ -14,8 +14,8 @@ let definicoes = {
 };
 
 let jogador = {
-    dinheiro: 5,
-    energia: 100,
+    dinheiro: 50,
+    energia: 0,
     cadeiras:{
         TC:false,
         Fisica:false,
@@ -34,7 +34,7 @@ let jogador = {
         return true;
     },
     alteraEnergia: function (valor) {
-        if (this.energia == 0 || this.energia == 100){
+        if (this.energia == 100){
             return false;
         }
 
@@ -411,6 +411,7 @@ function compraBaguete(preco, energia){
     }
     else{
         jogador.alteraEnergia(energia);
+        console.log(jogador.energia);
         alteraTexto(visor, "Compra efetuada!", 10);
         document.getElementById('somDinheiro').play();
         compra = true;
@@ -460,10 +461,10 @@ function alteraDadosJogador() {
         energia.src = "../Recursos/energiacheia.png";
     }
     else if(jogador.energia >= 75){
-
+        energia.src = "../Recursos/energiamaisdemeio.png";
     }
     else if(jogador.energia >= 50){
-
+        energia.src = "../Recursos/energiameio.png";
     }
     else if(jogador.energia >= 25){
         energia.src = "../Recursos/menosdemeio.png";
