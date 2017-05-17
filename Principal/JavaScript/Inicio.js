@@ -90,6 +90,7 @@ function main() {
     botaoVoltarOpcoes.addEventListener("click", goBackMain);
     botaoSair.addEventListener("click", function (eve) {
         window.close();
+        open(location, '_self').close();
     });
 
     addListenersOpcoes();
@@ -178,6 +179,7 @@ function addListenersBar() {
 
     botaoSair.addEventListener("click", function (event) {
         window.close();
+        open(location, '_self').close();
     });
 
     senhora.addEventListener("click", showBaguetes);
