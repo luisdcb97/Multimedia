@@ -16,7 +16,10 @@ Como este jogo é construído com base na API Phaser(2.7.7 CE) necessita de ser 
 Caso deseje saber o porque da API necessitar disso, deixamos aqui o link à sua explicação:
 http://phaser.io/tutorials/getting-started/index
 
+Como alternativa poderá utilizar o link abaixo onde utilizámos o serviço GitHub-Pages para fazer de host para
+o jogo, no entanto o jogo será umpouco mais lento pois terá de carregar os recursos do servidor:
 
+https://luisdcb97.github.io/Multimedia/index.html
 
 
 
