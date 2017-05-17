@@ -458,20 +458,20 @@ function alteraDadosJogador() {
 
     saldo.innerHTML = jogador.dinheiro;
     // TODO mudar o icone da barra de energia consoante a energia do jogador
-    if (jogador.energia === 100){
+    if (jogador.energia >= 75){
         energia.src = "../Recursos/energiacheia.png";
     }
-    else if(jogador.energia >= 75){
+    else if(jogador.energia >= 50){
         energia.src = "../Recursos/energiamaisdemeio.png";
     }
-    else if(jogador.energia >= 50){
+    else if(jogador.energia >= 25){
         energia.src = "../Recursos/energiameio.png";
     }
-    else if(jogador.energia >= 25){
+    else if(jogador.energia > 0){
         energia.src = "../Recursos/menosdemeio.png";
     }
-    else if(jogador.energia >= 0){
-        energia.src = "../Recursos/semenergia.png";
+    else if(jogador.energia<=0){
+        fimDoJogo();
     }
 }
 
@@ -564,4 +564,9 @@ function showGame(x, y, jogo) {
         gameTC.state.add("MainGameTC", gameStateTC);
         gameTC.state.start("MainGameTC");
     }
+}
+
+function fimDoJogo() {
+    let fim = document.getElementById("Fim");
+    fim.style.display = "block";
 }

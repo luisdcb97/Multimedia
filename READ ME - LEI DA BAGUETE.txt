@@ -1,0 +1,17 @@
+Jogo realizado no âmbito da cadeira de Multimédia
+Por:
+	Francisco Granja Bento, nº2015232998
+	Inês Soares Silva, nº2015251488
+	Luis David Bernarda, nº2015237627
+
+
+
+Correr o HTML "Inicio.html"
+
+
+
+
+
+
+
+Esperemos que passe um bom momento! :D
