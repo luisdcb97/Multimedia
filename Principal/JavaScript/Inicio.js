@@ -4,6 +4,7 @@ let debug = true;
 let debug_prefix = "[DEBUG]\t";
 
 var imgFolder= "../Recursos/introducao";
+let resourcePrefix = "../";
 
 let timeoutTextIds=[];
 
@@ -201,7 +202,7 @@ function addListenersBar() {
 
     let tc = document.getElementById("TC");
     tc.addEventListener("click", function (event) {
-        showGame(810, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html");
+        showGame(800, 540, "TC");
     })
 }
 
@@ -392,6 +393,16 @@ function toggleAudio() {
             curAudio.pause();
         }
     }
+
+    let sfxs = document.getElementsByTagName("sfx");
+    for (let curSfx of sfxs) {
+        if (curSfx.paused && curSfx.currentTime > 0 && !curSfx.ended){
+            curSfx.play();
+        }
+        else{
+            curSfx.pause();
+        }
+    }
 }
 
 function compraBaguete(preco, energia){
@@ -522,7 +533,8 @@ function completaCadeira(nome) {
 
 }
 
-function hideFrame() {
+function hideGame() {
+    goBackBar();
     
 }
 
@@ -532,10 +544,14 @@ function showGame(x, y, jogo) {
        sec.style.display = "none";
        if (sec.id === "Jogo"){
            sec.style.display = "block";
+           sec.style.width = x;
+           sec.style.height = y;
        }
     }
 
     if (jogo === "TC"){
+
+        gameTC.state.add("MainGameTC", gameStateTC);
         gameTC.state.start("MainGameTC");
     }
 }
