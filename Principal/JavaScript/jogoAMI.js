@@ -57,9 +57,27 @@ let mainStateAMI = {
        gameAMI.physics.enable(sprite1AMI, Phaser.Physics.ARCADE);
        sprite1AMI.body.collideWorldBounds=true; //para o boneco não sair do ecrã
 
-       timerAMI.loop(2800, gerarMesas, this);
-       timerAMI.loop(3500, gerarFuncoes, this);
+       timerAMI.loop(3000, function () {
+           gerarMesas();
+           gerarMesas();
+           let str = "Mesas: [" + mesasAMI.length +"]\n";
+           for (let mesa of mesasAMI) {
+               str+="x: "+mesa.x+"\ty: "+mesa.y+"\n"
+           }
+           console.log(str+"\n");
+       }, this);
+       timerAMI.add(0, function () {
+           timerAMI.loop(3000, function () {
+               gerarFuncoes();
 
+               let str = "Funcoes: [" + funcoesAMI.length +"]\n";
+               for (let funcao of funcoesAMI) {
+                   str+="x: "+funcao.x+"\ty: "+funcao.y+"\n"
+               }
+               console.log(str+"\n");
+           },
+           this)}
+       ,this);
 
        timerAMI.start();
        var style = { font: "20px Kristen ITC ", fill: "#ffffff" };
@@ -86,7 +104,7 @@ let mainStateAMI = {
             gameAMI.physics.arcade.collide(sprite1AMI, mesasAMI, jogadorPerde);
 
             for (let i = 0; i<funcoesAMI.length; i++){
-                if(funcoesAMI[i] !== undefined && funcoesAMI[i].x < 0 && !funcoesAMI[i].inWorld){
+                if(funcoesAMI[i] !== undefined && funcoesAMI[i].x < 0/* && !funcoesAMI[i].inWorld*/){
                     funcoesAMI[i].destroy();
                     funcoesAMI.splice(i,1);
                     i--;
@@ -96,7 +114,7 @@ let mainStateAMI = {
                 });
             }
             for (let i = 0; i<mesasAMI.length; i++){
-                if(mesasAMI[i] !== undefined && mesasAMI[i] !== null && mesasAMI[i].x < 0 && !mesasAMI[i].inWorld){
+                if(mesasAMI[i] !== undefined && mesasAMI[i] !== null && mesasAMI[i].x < 0 /*&& !mesasAMI[i].inWorld*/){
                     mesasAMI[i].destroy();
                     mesasAMI.splice(i,1);
                     i--;
@@ -181,7 +199,7 @@ function gerarMesas() {
     if (jaJogouAMI == 0){
         let pos = [];
         for (let i = 0; i < 3; i++) {
-            pos.push(185*i+10);
+            pos.push(185*i+18);
         }
         for(let mesa of mesasAMI){
             if(mesa.x > 600){
@@ -211,29 +229,25 @@ function gerarFuncoes(){
 
         let pos=[];
         for (let i = 0; i < 3; i++){
-            pos.push(185*i+10);
+            pos.push(185*i+18);
         }
 
         for(let mesa of mesasAMI){
             if(mesa.x > 600){
-                if (jaJogouAMI == 0){
-                    pos.splice(pos.indexOf(mesa.y),1);
-                }
-
+                pos.splice(pos.indexOf(mesa.y),1);
             }
         }
         for(let f of funcoesAMI){
             if(f.x > 600){
-                if(jaJogouAMI == 0) {
-                    pos.splice(pos.indexOf(f.y), 1);
-                }
+                pos.splice(pos.indexOf(f.y), 1);
+
             }
         }
         if(pos.length === 0){
             return;
         }
         let f_pos = pos[Math.floor(Math.random() *pos.length)];
-        let f_temp = gameAMI.add.sprite(900, f_pos, "integralAMI");
+        let f_temp = gameAMI.add.sprite(1000, f_pos, "integralAMI");
         gameAMI.physics.enable(f_temp, Phaser.Physics.ARCADE);
         f_temp.body.velocity.x = - 120;
         funcoesAMI.push(f_temp);
@@ -295,7 +309,8 @@ function ganhaPontos(mesa,funcao, texto) {
     vsIntegralAMI.play();
     pontuacaoAMI++;
     texto.setText("Pontos: " + pontuacaoAMI);
-    funcao.kill();
+    funcao.destroy();
+    funcoesAMI.splice(funcoesAMI.indexOf(funcao),1);
 }
 function repeteJogo() {
     gameAMI.state.restart();
