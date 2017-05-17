@@ -527,6 +527,7 @@ function completaCadeira(nome) {
 function hideGame() {
     toggleAudio();
     goBackBar();
+    window.jogo.paused = true;
     
 }
 
@@ -544,7 +545,8 @@ function showGame(x, y, jogo) {
     toggleAudio();
 
     if (jogo === "TC"){
-
+        window.jogo = gameTC;
+        window.jogo.paused = false;
         gameTC.state.add("MainGameTC", gameStateTC);
         gameTC.state.start("MainGameTC");
     }

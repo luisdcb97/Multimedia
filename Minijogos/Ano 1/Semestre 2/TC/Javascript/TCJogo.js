@@ -366,7 +366,12 @@ var gameStateTC = {
         gameTC.state.restart();
     },
     vaiParaOBar: function () {
-        console.log("bar");
+        if(typeof hideGame === 'undefined'){
+            console.warn("Ir para bar");
+        }
+        else{
+            hideGame();
+        }
     }
 
 
