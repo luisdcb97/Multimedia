@@ -1,6 +1,8 @@
 "use strict";
 
-var gameTC = new Phaser.Game(800,540,Phaser.AUTO, 'Jogo');
+if(typeof gameTC === 'undefined') {
+    var gameTC = new Phaser.Game(800, 540, Phaser.AUTO, 'Jogo');
+}
 
 let i;
 let xTC, yTC;
@@ -332,7 +334,7 @@ var gameStateTC = {
             this.botaoBAR.tint = 0xffffff;
         },this);
         this.botaoRepetir.events.onInputDown.add(this.repeteJogoTC);
-        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar, this, 0, valor);
     },
     jogadorPerde: function () {
         let popupD = this.add.sprite(100, 90, 'popupPerdeu');
@@ -365,18 +367,18 @@ var gameStateTC = {
         japassouTC = 0;
         gameTC.state.restart();
     },
-    vaiParaOBar: function () {
+    vaiParaOBar: function (sprite, pointer, valor) {
+        japassouTC = 0;
         if(typeof hideGame === 'undefined'){
             console.warn("Ir para bar");
         }
         else{
-            hideGame();
+            hideGame("TC", "Atum", valor, -25);
         }
     }
 
 
 };
 
-gameTC.state.add("MainGameTC", gameStateTC);
 
 

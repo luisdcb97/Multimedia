@@ -86,6 +86,7 @@ function main() {
     addListenersOpcoes();
     addListenersMenuAnos();
     addListenersBar();
+    hideAllGameScreens();
 
     for (let audio of document.getElementsByTagName("audio")) {
         audio.volume = definicoes.volume;
@@ -94,7 +95,7 @@ function main() {
 }
 
 function introducao(){
-    var foto = document.getElementById("foto");
+    let foto = document.getElementById("foto");
     foto.src = imgFolder + "2.png";
 
     foto.addEventListener("click", function () {
@@ -205,7 +206,12 @@ function addListenersBar() {
     let tc = document.getElementById("TC");
     tc.addEventListener("click", function (event) {
         showGame(800, 540, "TC");
-    })
+    });
+
+    let fisica = document.getElementById("FISICA");
+    fisica.addEventListener("click", function (event) {
+        showGame(800, 600, "Fisica");
+    });
 }
 
 function addListenersOpcoes(){
@@ -538,11 +544,34 @@ function completaCadeira(nome) {
     jogador.cadeiras[nome] = true;
 }
 
-function hideGame() {
+function hideAllGameScreens(){
+    let jogoSection = document.getElementById("Jogo");
+    for (let canvas of jogoSection.children) {
+        canvas.style.display = "none";
+    }
+}
+
+function hideGame(cadeira, baguete="Queijo", dinheiro=0, energia=0) {
     toggleAudio();
     goBackBar();
+    window.jogo.canvas.style.display = "none";
     window.jogo.paused = true;
+    window.jogo.destroy();
     
+    if(cadeira && jogador.cadeiras.hasOwnProperty(cadeira) && !jogador.cadeiras[cadeira]){
+        // Apenas corre na primeira vez que completa o jogo
+
+        if(jogador.baguetes.hasOwnProperty(baguete) && !jogador.baguetes[baguete]){
+            desbloqueiaBaguete(baguete);
+        }
+    }
+
+    jogador.alteraDinheiro(dinheiro);
+    jogador.alteraEnergia(energia);
+    alteraDadosJogador();
+    console.log(jogador.dinheiro);
+    console.log(jogador.energia);
+
 }
 
 function showGame(x, y, jogo) {
@@ -559,9 +588,23 @@ function showGame(x, y, jogo) {
     toggleAudio();
 
     if (jogo === "TC"){
+        gameTC = new Phaser.Game(800, 540, Phaser.AUTO, 'Jogo');
         window.jogo = gameTC;
         window.jogo.paused = false;
+        window.jogo.canvas.style.display="block";
         gameTC.state.add("MainGameTC", gameStateTC);
         gameTC.state.start("MainGameTC");
+    }
+    else if (jogo === "Fisica"){
+        gameFisica = new Phaser.Game(800, 600, Phaser.AUTO, 'Jogo');
+        window.jogo = gameFisica;
+        window.jogo.paused = false;
+        window.jogo.canvas.style.display="block";
+        gameFisica.state.add("BootState", BootState);
+        gameFisica.state.add("LoadState", LoadState);
+        gameFisica.state.add("IntroState", IntroState);
+        gameFisica.state.add("PlayState", PlayState);
+        gameFisica.state.add("EndState", EndState);
+        gameFisica.state.start("BootState");
     }
 }

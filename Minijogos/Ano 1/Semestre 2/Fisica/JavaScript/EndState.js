@@ -2,12 +2,20 @@
 
 let EndState = {
     preload: function () {
-        this.load.image('popupGanhou',"../../../../../Principal/Recursos/popupVitoriaJogoFisica.png");
-        this.load.image('popupPerdeu',"../../../../../Principal/Recursos/popupDerrota.png");
-        this.load.image('moeda',"../../../../../Principal/Recursos/moeda.png");
-        this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
-        this.load.image('botaoBAR',"../../../../../Principal/Recursos/botaoBAR.png");
-        this.load.audio('vitoria','../../../../../Principal/Recursos/vitoriaAMI.mp3')
+
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../../../../../Principal/";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+        this.load.image('popupGanhou',this.resourcePrefix + "Recursos/popupVitoriaJogoFisica.png");
+        this.load.image('popupPerdeu',this.resourcePrefix + "Recursos/popupDerrota.png");
+        this.load.image('moeda',this.resourcePrefix + "Recursos/moeda.png");
+        this.load.image('botaoRepetir',this.resourcePrefix + "Recursos/botaoREPETIR.png");
+        this.load.image('botaoBAR',this.resourcePrefix + "Recursos/botaoBAR.png");
+        this.load.audio('vitoria',this.resourcePrefix + "Recursos/vitoriaAMI.mp3");
 
     },
     create: function () {
@@ -64,8 +72,8 @@ let EndState = {
         this.botaoBAR.events.onInputOut.add(function () {
             this.botaoBAR.tint = 0xffffff;
         },this);
-        this.botaoRepetir.events.onInputDown.add(repeteJogo);
-        this.botaoBAR.events.onInputDown.add(vaiParaOBar);
+        this.botaoRepetir.events.onInputDown.add(this.repeteJogoFisica);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
     },
     jogadorPerde: function () {
         let popupD = this.add.sprite(100, 90, 'popupPerdeu');
@@ -91,23 +99,18 @@ let EndState = {
         this.botaoBAR.events.onInputOut.add(function () {
             this.botaoBAR.tint = 0xffffff;
         },this);
-        this.botaoRepetir.events.onInputDown.add(repeteJogo);
-        this.botaoBAR.events.onInputDown.add(vaiParaOBar);
+        this.botaoRepetir.events.onInputDown.add(this.repeteJogoFisica);
+        this.botaoBAR.events.onInputDown.add(this.vaiParaOBar);
     },
+    repeteJogoFisica: function () {
+        gameFisica.state.start("PlayState");
+    },
+    vaiParaOBar: function () {
+        if(typeof hideGame === 'undefined'){
+            console.warn("Ir para bar");
+        }
+        else{
+            hideGame();
+        }
+    }
 };
-
-function repeteJogo() {
-    gameFisica.state.start("PlayState");
-}
-function vaiParaOBar(dinheiro) {
-    let obj = {
-        dinheiro: dinheiro,
-        baguete: "Atum",
-        energia: 30,
-        cadeira: "TC"
-
-    };
-
-    let jan = window.open("about:blank");
-    jan.postMessage(obj,"*");
-}

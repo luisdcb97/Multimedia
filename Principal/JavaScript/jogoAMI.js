@@ -320,6 +320,17 @@ function repeteJogo() {
     funcoesAMI = [];
 }
 function vaiParaOBar() {
+    jaJogouAMI = 0;
+    a = 0;
+    mesasAMI = [];
+    funcoesAMI = [];
+
+    if(typeof hideGame === 'undefined'){
+        console.warn("Ir para bar");
+    }
+    else{
+        hideGame();
+    }
 
 }
 gameAMI.state.add('mainStateAMI',mainStateAMI);
