@@ -409,6 +409,7 @@ function compraBaguete(preco, energia){
     else{
         jogador.alteraEnergia(energia);
         alteraTexto(visor, "Compra efetuada!", 10);
+        document.getElementById('somDinheiro').play();
         compra = true;
     }
 

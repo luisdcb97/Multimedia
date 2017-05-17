@@ -30,7 +30,7 @@ let mainStateAMI = {
        gameAMI.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
        gameAMI.load.image('botaoBAR',"../Recursos/botaoBAR.png");
 
-       gameAMI.load.audio('integ', '../Recursos/cabosrodam.mp3');
+       gameAMI.load.audio('integ', '../Recursos/apanhafuncao.mp3');
        gameAMI.load.audio('mesaAMI', '../Recursos/contrasecretaria.mp3');
        gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.mp3');
        gameAMI.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
