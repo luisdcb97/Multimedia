@@ -2,6 +2,8 @@
 
 let PlayState = {
     preload: function () {
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVeritcally = true;
         this.graphicTextures = {};
         let reactor_circle = new Phaser.Circle(0, 0, game.rnd.realInRange(50, 75));
         this.graphicTextures.reactor = this.createTextureReactor(reactor_circle, 3, 0xff0000, 1, 0x00ff00);

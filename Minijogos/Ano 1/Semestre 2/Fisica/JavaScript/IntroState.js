@@ -2,6 +2,8 @@
 
 let IntroState = {
     preload: function () {
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVeritcally = true;
         this.load.image('introFisica',"../Recursos/introFisica.png");
     },
     create: function () {
