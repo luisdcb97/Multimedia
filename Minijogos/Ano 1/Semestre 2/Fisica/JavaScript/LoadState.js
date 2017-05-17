@@ -2,7 +2,14 @@
 
 let LoadState = {
     preload: function () {
-        this.load.image('tituloFisica',"../Recursos/Fisica luis.png");
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../../../../../Principal/";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+        this.load.image('tituloFisica',this.resourcePrefix + "Recursos/Fisica luis.png");
 
     },
     create: function () {

@@ -8,10 +8,18 @@ let PlayState = {
         let reactor_circle = new Phaser.Circle(0, 0, gameFisica.rnd.realInRange(50, 75));
         this.graphicTextures.reactor = this.createTextureReactor(reactor_circle, 3, 0xff0000, 1, 0x00ff00);
 
-        gameFisica.load.audio('Positivo','../../../../../Principal/Recursos/imanmais.mp3');
-        gameFisica.load.audio('MusicaFisica','../../../../../Principal/Recursos/musicadefisica.mp3');
-        gameFisica.load.audio('Negativo','../../../../../Principal/Recursos/imanmenos.mp3');
-        gameFisica.load.audio('Reator','../../../../../Principal/Recursos/somdoreator.mp3');
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../../../../../Principal/";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+
+        gameFisica.load.audio('Positivo',this.resourcePrefix + "Recursos/imanmais.mp3");
+        gameFisica.load.audio('MusicaFisica',this.resourcePrefix + "Recursos/musicadefisica.mp3");
+        gameFisica.load.audio('Negativo',this.resourcePrefix + "Recursos/imanmenos.mp3");
+        gameFisica.load.audio('Reator',this.resourcePrefix + "Recursos/somdoreator.mp3");
 
         this.graphicTextures.particulas = [];
         for (let i=0; i<10; i++){
@@ -336,6 +344,7 @@ let PlayState = {
         else{
             gameFisica.victory = false;
         }
+        gameFisica.state.clearCurrentState();
         gameFisica.state.start("EndState");
     }
 
