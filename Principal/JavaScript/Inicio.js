@@ -14,7 +14,7 @@ let definicoes = {
 };
 
 let jogador = {
-    dinheiro: 50,
+    dinheiro: 5,
     energia: 100,
     cadeiras:{
         TC:false,
@@ -99,6 +99,7 @@ function introducao(){
 
     foto.addEventListener("click", function () {
         changeSection(event, document.getElementById("MenuPrincipal"));
+        document.getElementById("music").play();
     })
 }
 
@@ -413,6 +414,7 @@ function compraBaguete(preco, energia){
         alteraTexto(visor, "Compra efetuada!", 10);
         document.getElementById('somDinheiro').play();
         compra = true;
+        document.getElementById('somComer').play();
     }
 
     let id = setTimeout(function () {
@@ -455,7 +457,7 @@ function alteraDadosJogador() {
     saldo.innerHTML = jogador.dinheiro;
     // TODO mudar o icone da barra de energia consoante a energia do jogador
     if (jogador.energia === 100){
-
+        energia.src = "../Recursos/energiacheia.png";
     }
     else if(jogador.energia >= 75){
 
@@ -464,10 +466,10 @@ function alteraDadosJogador() {
 
     }
     else if(jogador.energia >= 25){
-
+        energia.src = "../Recursos/menosdemeio.png";
     }
     else if(jogador.energia >= 0){
-
+        energia.src = "../Recursos/semenergia.png";
     }
 }
 
