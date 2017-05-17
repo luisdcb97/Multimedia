@@ -8,8 +8,9 @@
     <script type="text/javascript" src="../Javascript/Cabo.js"></script>
     <script type="text/javascript" src="../Javascript/TCJogo.js"></script>
     <script>
+        gameTC.state.add("introStateTC", introStateTC);
         gameTC.state.add("MainGameTC", gameStateTC);
-        gameTC.state.start("MainGameTC");
+        gameTC.state.start("introStateTC");
     </script>
 </head>
 <body>

@@ -15,7 +15,7 @@ let definicoes = {
 
 let jogador = {
     dinheiro: 1,
-    energia: 100,
+    energia: 50,
     cadeiras:{
         TC:false,
         Fisica:false,
@@ -40,6 +40,20 @@ let jogador = {
         }
         else if(this.energia > 100){
             this.energia = 100;
+        }
+    },
+    reset: function () {
+        this.dinheiro = 1;
+        this.energia = 100;
+        for (let cad in this.cadeiras) {
+            if(this.cadeiras.hasOwnProperty(cad)){
+                this.cadeiras[cad] = false;
+            }
+        }
+        for (let bag in this.baguetes) {
+            if(this.baguetes.hasOwnProperty(bag)){
+                this.baguetes[bag] = false;
+            }
         }
     }
 };
@@ -87,6 +101,9 @@ function main() {
         audio.volume = definicoes.volume;
         audio.muted = definicoes.muted;
     }
+
+    let fim = document.getElementById("Fim");
+    fim.addEventListener("click", resetJogo);
 }
 
 function introducao(){
@@ -539,6 +556,15 @@ function desbloqueiaBaguete(nome){
     }
 }
 
+function bloqueiaBaguete(nome){
+    jogador.baguetes[nome] = false;
+    let but = document.getElementById(nome);
+    let img = but.firstElementChild;
+    but.disabled = true;
+    img.src = "../Recursos/bagueteBloqueada.png";
+
+}
+
 function completaCadeira(nome) {
     jogador.cadeiras[nome] = true;
 }
@@ -616,6 +642,31 @@ function fimDoJogo() {
         sec.style.display = "none";
         if (sec.id === "Fim"){
             sec.style.display = "block";
+        }
+    }
+}
+
+function resetJogo() {
+    let seccoes = document.getElementsByTagName("section");
+    for(let sec of seccoes){
+        sec.style.display = "none";
+        if (sec.id === "MenuPrincipal"){
+            sec.style.display = "block";
+        }
+    }
+
+    jogador.reset();
+    alteraDadosJogador();
+    let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
+    let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
+    botaoVoltarAjuda.removeEventListener("click", goBackBar);
+    botaoVoltarOpcoes.removeEventListener("click", goBackBar);
+
+    botaoVoltarAjuda.addEventListener("click", goBackMain);
+    botaoVoltarOpcoes.addEventListener("click", goBackMain);
+    for (let bag in jogador.baguetes) {
+        if (jogador.baguetes.hasOwnProperty(bag)){
+            bloqueiaBaguete(bag);
         }
     }
 }
