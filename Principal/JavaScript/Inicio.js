@@ -56,6 +56,7 @@ function main() {
     var foto = document.getElementById("foto");
     foto.src = imgFolder + "1.png";
     foto.addEventListener("click",introducao);
+
     let botaoJogar = document.getElementById("BotaoJogar");
     let botaoAjuda = document.getElementById("BotaoAjuda");
     let botaoOpcoes = document.getElementById("BotaoOpcoes");
@@ -63,14 +64,7 @@ function main() {
     let botaoVoltarAjuda = document.getElementById("BotaoVoltarAjuda");
     let botaoVoltarOpcoes = document.getElementById("BotaoVoltarOpcoes");
 
-    window.addEventListener("message", function (event) {
-       let obj = event.data;
-       jogador.alteraDinheiro(obj.dinheiro);
-       jogador.alteraEnergia(-obj.energia);
-       completaCadeira(obj.cadeira);
-       desbloqueiaBaguete(obj.baguete);
-       hideFrame();
-    });
+
 
     botaoJogar.addEventListener("click", function (event) {
         changeSection(event, document.getElementById("MenuAnos"));
@@ -207,7 +201,7 @@ function addListenersBar() {
 
     let tc = document.getElementById("TC");
     tc.addEventListener("click", function (event) {
-        showFrame(810, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html");
+        showGame(810, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html");
     })
 }
 
@@ -531,18 +525,12 @@ function hideFrame() {
     
 }
 
-function showFrame(x, y, page) {
+function showGame(x, y, page) {
     let seccoes = document.getElementsByTagName("section");
     for(let sec of seccoes){
        sec.style.display = "none";
+       if (sec.id === "Jogo"){
+           sec.style.display = "block";
+       }
     }
-    let frame = document.getElementById("frame");
-    let gameSection = document.getElementById("Jogo");
-        frame.width  = frame.contentWindow.document.body.scrollWidth;
-        frame.height = frame.contentWindow.document.body.scrollHeight;
-    frame.style.display = "block";
-    gameSection.width = x;
-    gameSection.height = y;
-    gameSection.style.display = "block";
-    frame.src = page;
 }

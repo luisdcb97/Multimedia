@@ -7,11 +7,9 @@ let IntroState = {
         this.load.image('introFisica',"../Recursos/introFisica.png");
     },
     create: function () {
-        let title = game.add.sprite(0,0, "introFisica");
-        game.time.events.add(Phaser.Timer.SECOND * 10, function () {
-            // game.state.start("LoadState");
-            game.state.start("PlayState");
-        }, this);
+        gameFisica.add.button(0,0, "introFisica", this.comecaJogo, this);
     },
-
+    comecaJogo: function (button, pointer) {
+        gameFisica.state.start("PlayState");
+    }
 };

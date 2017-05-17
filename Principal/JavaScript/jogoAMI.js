@@ -1,155 +1,155 @@
 "use strict";
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, "Nome");
-var fundo,mesa,integral;
-var head;
-var sprite1;
-var timer, timerEvent, text, mensagem;
-var pontos,pontuacao=0;
-var mesas =[];
-var funcoes=[];
-var jaJogou = 0;
-var vsMesa,musica,vsIntegral,vit;
+var gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Nome");
+var fundoAMI,mesaAMI,integralAMI;
+var headAMI;
+var sprite1AMI;
+var timerAMI, timerEventAMI, textAMI, mensagemAMI;
+var pontosAMI,pontuacaoAMI=0;
+var mesasAMI =[];
+var funcoesAMI=[];
+var jaJogouAMI = 0;
+var vsMesaAMI,musicaAMI,vsIntegralAMI,vitAMI;
 
-let mainState = {
+let mainStateAMI = {
    preload: function () {
-       game.scale.pageAlignHorizontally = true;
-       game.scale.pageAlignVeritcally = true;
-       game.load.image('fundo','../Recursos/fundo_jogoAMI.png');
-       game.load.image('mesa','../Recursos/mesa1.png');
-       game.load.image('head','../Recursos/topviewhead1.png');
-       game.load.image('integral', '../Recursos/integral.png');
-       game.debug.text("Pontos: ",500,20,16,"#ffffff");
-       game.load.image('mensagem', '../Recursos/popupderrota.png');
-       game.load.image('funcao','../Recursos/funcao1.png');
-       game.load.image('popupGanhou',"../Recursos/popupVitoriaJogoAMI.png");
-       game.load.image('popupPerdeu',"../Recursos/popupDerrota.png");
-       game.load.image('moeda',"../Recursos/moeda.png");
+       gameAMI.scale.pageAlignHorizontally = true;
+       gameAMI.scale.pageAlignVeritcally = true;
+       gameAMI.load.image('fundoAMI','../Recursos/fundo_jogoAMI.png');
+       gameAMI.load.image('mesaAMI','../Recursos/mesa1.png');
+       gameAMI.load.image('headAMI','../Recursos/topviewhead1.png');
+       gameAMI.load.image('integralAMI', '../Recursos/integral.png');
+       gameAMI.debug.text("Pontos: ",500,20,16,"#ffffff");
+       gameAMI.load.image('mensagemAMI', '../Recursos/popupderrota.png');
+       gameAMI.load.image('funcao','../Recursos/funcao1.png');
+       gameAMI.load.image('popupGanhou',"../Recursos/popupVitoriaJogoAMI.png");
+       gameAMI.load.image('popupPerdeu',"../Recursos/popupDerrota.png");
+       gameAMI.load.image('moeda',"../Recursos/moeda.png");
 
-       game.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
-       game.load.image('botaoBAR',"../Recursos/botaoBAR.png");
+       gameAMI.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
+       gameAMI.load.image('botaoBAR',"../Recursos/botaoBAR.png");
 
-       game.load.audio('integ', '../Recursos/cabosrodam.mp3');
-       game.load.audio('mesa', '../Recursos/contrasecretaria.mp3');
-       game.load.audio('musica', '../Recursos/musicaAMI.mp3');
-       game.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
+       gameAMI.load.audio('integ', '../Recursos/cabosrodam.mp3');
+       gameAMI.load.audio('mesaAMI', '../Recursos/contrasecretaria.mp3');
+       gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.mp3');
+       gameAMI.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
    },
 
    create: function () {
-       timer = game.time.create();
-       timerEvent = timer.add(Phaser.Timer.MINUTE * 1 + Phaser.Timer.SECOND*0, this.jogadorGanha, this);
+       timerAMI = gameAMI.time.create();
+       timerEventAMI = timerAMI.add(Phaser.Timer.MINUTE * 1 + Phaser.Timer.SECOND*0, this.jogadorGanha, this);
 
-       vsIntegral = this.add.audio('integ');
-       vsMesa = this.add.audio('mesa');
-       vit = this.add.audio('vitoria');
+       vsIntegralAMI = this.add.audio('integ');
+       vsMesaAMI = this.add.audio('mesaAMI');
+       vitAMI = this.add.audio('vitoria');
 
-       musica = this.add.audio('musica');
-       musica.loop = true;
-       musica.play();
+       musicaAMI = this.add.audio('musicaAMI');
+       musicaAMI.loop = true;
+       musicaAMI.play();
 
-       game.physics.startSystem(Phaser.Physics.ARCADE);
+       gameAMI.physics.startSystem(Phaser.Physics.ARCADE);
 
-       fundo = game.add.tileSprite(0,0,800,600,'fundo');
-       sprite1 = game.add.sprite(50,200,'head');
-
-
-       game.physics.enable(sprite1, Phaser.Physics.ARCADE);
-       sprite1.body.collideWorldBounds=true; //para o boneco não sair do ecrã
-
-       timer.loop(2800, gerarMesas, this);
-       timer.loop(3500, gerarFuncoes, this);
+       fundoAMI = gameAMI.add.tileSprite(0,0,800,600,'fundoAMI');
+       sprite1AMI = gameAMI.add.sprite(50,200,'headAMI');
 
 
-       timer.start();
+       gameAMI.physics.enable(sprite1AMI, Phaser.Physics.ARCADE);
+       sprite1AMI.body.collideWorldBounds=true; //para o boneco não sair do ecrã
+
+       timerAMI.loop(2800, gerarMesas, this);
+       timerAMI.loop(3500, gerarFuncoes, this);
+
+
+       timerAMI.start();
        var style = { font: "20px Kristen ITC ", fill: "#ffffff" };
-       pontos = game.add.text(550, 5, "Pontos: " + pontuacao,style);
+       pontosAMI = gameAMI.add.text(550, 5, "Pontos: " + pontuacaoAMI,style);
 
    },
     update: function () {
-        if(jaJogou == 0){
-            fundo.tilePosition.x -= 120 * game.time.physicsElapsed;
-            if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-                sprite1.y -= 200* game.time.physicsElapsed;
+        if(jaJogouAMI == 0){
+            fundoAMI.tilePosition.x -= 120 * gameAMI.time.physicsElapsed;
+            if (gameAMI.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+                sprite1AMI.y -= 200* gameAMI.time.physicsElapsed;
             }
-            else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-                sprite1.y += 200* game.time.physicsElapsed;
+            else if (gameAMI.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+                sprite1AMI.y += 200* gameAMI.time.physicsElapsed;
             }
-            else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-                sprite1.x-= 200* game.time.physicsElapsed;
+            else if (gameAMI.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+                sprite1AMI.x-= 200* gameAMI.time.physicsElapsed;
             }
-            else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-                sprite1.x+= 200* game.time.physicsElapsed;
+            else if (gameAMI.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+                sprite1AMI.x+= 200* gameAMI.time.physicsElapsed;
             }
 
 
-            game.physics.arcade.collide(sprite1, mesas, jogadorPerde);
+            gameAMI.physics.arcade.collide(sprite1AMI, mesasAMI, jogadorPerde);
 
-            for (let i = 0;i<funcoes.length; i++){
-                if(funcoes[i] !== undefined && funcoes[i].x < 0 && !funcoes[i].inWorld){
-                    funcoes[i].destroy();
-                    funcoes.splice(i,1);
+            for (let i = 0; i<funcoesAMI.length; i++){
+                if(funcoesAMI[i] !== undefined && funcoesAMI[i].x < 0 && !funcoesAMI[i].inWorld){
+                    funcoesAMI[i].destroy();
+                    funcoesAMI.splice(i,1);
                     i--;
                 }
-                game.physics.arcade.overlap(sprite1, funcoes[i], function () {
-                    ganhaPontos(sprite1, funcoes[i], pontos);
+                gameAMI.physics.arcade.overlap(sprite1AMI, funcoesAMI[i], function () {
+                    ganhaPontos(sprite1AMI, funcoesAMI[i], pontosAMI);
                 });
             }
-            for (let i = 0;i<mesas.length; i++){
-                if(mesas[i] !== undefined && mesas[i] !== null && mesas[i].x < 0 && !mesas[i].inWorld){
-                    mesas[i].destroy();
-                    mesas.splice(i,1);
+            for (let i = 0; i<mesasAMI.length; i++){
+                if(mesasAMI[i] !== undefined && mesasAMI[i] !== null && mesasAMI[i].x < 0 && !mesasAMI[i].inWorld){
+                    mesasAMI[i].destroy();
+                    mesasAMI.splice(i,1);
                     i--;
                 }
             }
         }
     },
     render: function () {
-        if(timer.running){
-            game.debug.text(this.formatTime(Math.round((timerEvent.delay - timer.ms)/1000)),20,20,"#ffffff");
+        if(timerAMI.running){
+            gameAMI.debug.text(this.formatTime(Math.round((timerEventAMI.delay - timerAMI.ms)/1000)),20,20,"#ffffff");
         }
         else{
-            game.debug.text("Tempo terminado!",20,20,"#EF180D");
+            gameAMI.debug.text("Tempo terminado!",20,20,"#EF180D");
         }
 
 
     },
     jogadorGanha: function () {
-        vit.play();
-        jaJogou = 1;
-        musica.pause();
-        musica.currentTime = 0;
-        timer.stop();
-        for(let i = 0; i < mesas.length; i++){
-            mesas[i].destroy();
+        vitAMI.play();
+        jaJogouAMI = 1;
+        musicaAMI.pause();
+        musicaAMI.currentTime = 0;
+        timerAMI.stop();
+        for(let i = 0; i < mesasAMI.length; i++){
+            mesasAMI[i].destroy();
         }
-        for(let i = 0; i < funcoes.length; i++){
-            funcoes[i].destroy();
+        for(let i = 0; i < funcoesAMI.length; i++){
+            funcoesAMI[i].destroy();
         }
-        sprite1.destroy();
+        sprite1AMI.destroy();
         let popupG = this.add.sprite(100, 90, 'popupGanhou');
         popupG.alpha = 0;
         let valor = 0;
-        game.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
-        if (pontuacao>9){
-            let vicText = game.add.text(230,166, 'Pontos: '+pontuacao+',     +'+4, {font: "40px Kristen ITC", fill: "#fbb117"});
+        if (pontuacaoAMI>9){
+            let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+4, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
-        else if(pontuacao>5){
-            let vicText = game.add.text(230,166, 'Pontos: '+pontuacao+',     +'+3, {font: "40px Kristen ITC", fill: "#fbb117"});
+        else if(pontuacaoAMI>5){
+            let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+3, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         else{
-            let vicText = game.add.text(230,166, 'Pontos: '+pontuacao+',     +'+2, {font: "40px Kristen ITC", fill: "#fbb117"});
+            let vicText = gameAMI.add.text(230,166, 'Pontos: '+pontuacaoAMI+',     +'+2, {font: "40px Kristen ITC", fill: "#fbb117"});
         }
         let popupMoeda = this.add.sprite(550,178,'moeda');
         popupMoeda.alpha = 0;
-        game.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
         this.botaoRepetir = this.add.sprite(265,315,'botaoRepetir');
         this.botaoRepetir.alpha = 0;
-        game.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoBAR = this.add.sprite(430,315,'botaoBAR');
         this.botaoBAR.alpha = 0;
-        game.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoRepetir.inputEnabled = true;
         this.botaoBAR.inputEnabled = true;
         this.botaoRepetir.events.onInputOver.add(function () {
@@ -164,7 +164,7 @@ let mainState = {
         this.botaoBAR.events.onInputOut.add(function () {
             this.botaoBAR.tint = 0xffffff;
         },this);
-        pontuacao =  0;
+        pontuacaoAMI =  0;
         this.botaoRepetir.events.onInputDown.add(repeteJogo);
         this.botaoBAR.events.onInputDown.add(vaiParaOBar);
     },
@@ -177,17 +177,17 @@ let mainState = {
 };
 
 function gerarMesas() {
-    if (jaJogou == 0){
+    if (jaJogouAMI == 0){
         let pos = [];
         for (let i = 0; i < 3; i++) {
             pos.push(185*i+10);
         }
-        for(let mesa of mesas){
+        for(let mesa of mesasAMI){
             if(mesa.x > 600){
                 pos.splice(pos.indexOf(mesa.y),1);
             }
         }
-        for(let func of funcoes){
+        for(let func of funcoesAMI){
             if(func.x > 600){
                 pos.splice(pos.indexOf(func.y),1);
             }
@@ -197,33 +197,33 @@ function gerarMesas() {
         }
 
         let mesa_pos = pos[Math.floor(Math.random() *pos.length)];
-        let mesa_temp = game.add.sprite(1000, mesa_pos, "mesa");
-        game.physics.enable(mesa_temp, Phaser.Physics.ARCADE);
+        let mesa_temp = gameAMI.add.sprite(1000, mesa_pos, "mesaAMI");
+        gameAMI.physics.enable(mesa_temp, Phaser.Physics.ARCADE);
         mesa_temp.body.velocity.x = - 120;
-        mesas.push(mesa_temp);
+        mesasAMI.push(mesa_temp);
     }
 
 }
 
 function gerarFuncoes(){
-    if (jaJogou == 0){
+    if (jaJogouAMI == 0){
 
         let pos=[];
         for (let i = 0; i < 3; i++){
             pos.push(185*i+10);
         }
 
-        for(let mesa of mesas){
+        for(let mesa of mesasAMI){
             if(mesa.x > 600){
-                if (jaJogou == 0){
+                if (jaJogouAMI == 0){
                     pos.splice(pos.indexOf(mesa.y),1);
                 }
 
             }
         }
-        for(let f of funcoes){
+        for(let f of funcoesAMI){
             if(f.x > 600){
-                if(jaJogou == 0) {
+                if(jaJogouAMI == 0) {
                     pos.splice(pos.indexOf(f.y), 1);
                 }
             }
@@ -232,79 +232,78 @@ function gerarFuncoes(){
             return;
         }
         let f_pos = pos[Math.floor(Math.random() *pos.length)];
-        let f_temp = game.add.sprite(900, f_pos, "integral");
-        game.physics.enable(f_temp, Phaser.Physics.ARCADE);
+        let f_temp = gameAMI.add.sprite(900, f_pos, "integralAMI");
+        gameAMI.physics.enable(f_temp, Phaser.Physics.ARCADE);
         f_temp.body.velocity.x = - 120;
-        funcoes.push(f_temp);
+        funcoesAMI.push(f_temp);
     }
 
 
 }
 /*
-function jogadorPerde(mesa,aluno) {
-    mensagem = game.add.sprite(100,150,'mensagem');
-    game.gamePaused();
+function jogadorPerde(mesaAMI,aluno) {
+    mensagemAMI = gameAMI.add.sprite(100,150,'mensagemAMI');
+    gameAMI.gamePaused();
 }*/
 var a = 0;
 function jogadorPerde(){
     if (a==0){
-        for(let i = 0; i < mesas.length; i++){
-            mesas[i].destroy();
+        for(let i = 0; i < mesasAMI.length; i++){
+            mesasAMI[i].destroy();
         }
-        for(let i = 0; i < funcoes.length; i++){
-            funcoes[i].destroy();
+        for(let i = 0; i < funcoesAMI.length; i++){
+            funcoesAMI[i].destroy();
         }
 
-        musica.pause();
-        musica.currentTime = 0;
-        vsMesa.play();
-        pontuacao = 0;
-        sprite1.destroy();
-        timer.stop();
-        jaJogou = 1;
-        let popupD = game.add.sprite(100, 90, 'popupPerdeu');
+        musicaAMI.pause();
+        musicaAMI.currentTime = 0;
+        vsMesaAMI.play();
+        pontuacaoAMI = 0;
+        sprite1AMI.destroy();
+        timerAMI.stop();
+        jaJogouAMI = 1;
+        let popupD = gameAMI.add.sprite(100, 90, 'popupPerdeu');
         popupD.alpha = 0;
-        game.add.tween(popupD).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
-        game.botaoRepetir = game.add.sprite(265, 315, 'botaoRepetir');
-        game.botaoRepetir.alpha = 0;
-        game.add.tween(game.botaoRepetir).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
-        game.botaoBAR = game.add.sprite(430, 315, 'botaoBAR');
-        game.botaoBAR.alpha = 0;
-        game.add.tween(game.botaoBAR).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
-        game.botaoRepetir.inputEnabled = true;
-        game.botaoBAR.inputEnabled = true;
-        game.botaoRepetir.events.onInputOver.add(function () {
-            game.botaoRepetir.tint = 0xd17f35;
-        }, game);
-        game.botaoRepetir.events.onInputOut.add(function () {
-            game.botaoRepetir.tint = 0xffffff;
-        }, game);
-        game.botaoBAR.events.onInputOver.add(function () {
-            game.botaoBAR.tint = 0xd17f35;
-        }, game);
-        game.botaoBAR.events.onInputOut.add(function () {
-            game.botaoBAR.tint = 0xffffff;
-        }, game);
-        game.botaoRepetir.events.onInputDown.add(repeteJogo);
-        game.botaoBAR.events.onInputDown.add(vaiParaOBar);
+        gameAMI.add.tween(popupD).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.botaoRepetir = gameAMI.add.sprite(265, 315, 'botaoRepetir');
+        gameAMI.botaoRepetir.alpha = 0;
+        gameAMI.add.tween(gameAMI.botaoRepetir).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.botaoBAR = gameAMI.add.sprite(430, 315, 'botaoBAR');
+        gameAMI.botaoBAR.alpha = 0;
+        gameAMI.add.tween(gameAMI.botaoBAR).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameAMI.botaoRepetir.inputEnabled = true;
+        gameAMI.botaoBAR.inputEnabled = true;
+        gameAMI.botaoRepetir.events.onInputOver.add(function () {
+            gameAMI.botaoRepetir.tint = 0xd17f35;
+        }, gameAMI);
+        gameAMI.botaoRepetir.events.onInputOut.add(function () {
+            gameAMI.botaoRepetir.tint = 0xffffff;
+        }, gameAMI);
+        gameAMI.botaoBAR.events.onInputOver.add(function () {
+            gameAMI.botaoBAR.tint = 0xd17f35;
+        }, gameAMI);
+        gameAMI.botaoBAR.events.onInputOut.add(function () {
+            gameAMI.botaoBAR.tint = 0xffffff;
+        }, gameAMI);
+        gameAMI.botaoRepetir.events.onInputDown.add(repeteJogo);
+        gameAMI.botaoBAR.events.onInputDown.add(vaiParaOBar);
         a = 1;
     }
 }
 function ganhaPontos(mesa,funcao, texto) {
-    vsIntegral.play();
-    pontuacao++;
-    texto.setText("Pontos: " + pontuacao);
+    vsIntegralAMI.play();
+    pontuacaoAMI++;
+    texto.setText("Pontos: " + pontuacaoAMI);
     funcao.kill();
 }
 function repeteJogo() {
-    game.state.restart();
-    jaJogou = 0;
+    gameAMI.state.restart();
+    jaJogouAMI = 0;
     a = 0;
-    mesas = [];
-    funcoes = [];
+    mesasAMI = [];
+    funcoesAMI = [];
 }
 function vaiParaOBar() {
 
 }
-game.state.add('mainState',mainState);
-game.state.start('mainState');
+gameAMI.state.add('mainStateAMI',mainStateAMI);

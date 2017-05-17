@@ -26945,8 +26945,8 @@ Phaser.Camera = function (game, id, x, y, width, height) {
     this.onFadeComplete = new Phaser.Signal();
 
     /**
-    * The Graphics object used to handle camera fx such as fade and flash.
-    * @property {Phaser.Graphics} fx
+    * The Graphics object used to handle camera fxTC such as fade and flash.
+    * @property {Phaser.Graphics} fxTC
     * @protected
     */
     this.fx = null;

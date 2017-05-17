@@ -5,10 +5,10 @@ let LoadState = {
         this.load.image('tituloFisica',"../Recursos/Fisica luis.png");
     },
     create: function () {
-        let title = game.add.sprite(50,50, "tituloFisica");
+        let title = gameFisica.add.sprite(50,50, "tituloFisica");
         title.scale.setTo(0.25, 0.6);
-        game.time.events.add(Phaser.Timer.SECOND * 5, function () {
-           game.state.start("PlayState");
+        gameFisica.time.events.add(Phaser.Timer.SECOND * 5, function () {
+           gameFisica.state.start("PlayState");
         }, this);
     },
     update: function () {
@@ -39,7 +39,7 @@ class LoadingCircle{
                 arrowLineColor=0x401212, arrowFillColor=0xcc0000) {
 
         if (graphics === null) {
-            this.graphics = game.add.graphics(0, 0);
+            this.graphics = gameFisica.add.graphics(0, 0);
         }
         else {
             this.graphics = graphics;

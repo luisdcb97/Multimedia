@@ -5,7 +5,7 @@ let PlayState = {
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVeritcally = true;
         this.graphicTextures = {};
-        let reactor_circle = new Phaser.Circle(0, 0, game.rnd.realInRange(50, 75));
+        let reactor_circle = new Phaser.Circle(0, 0, gameFisica.rnd.realInRange(50, 75));
         this.graphicTextures.reactor = this.createTextureReactor(reactor_circle, 3, 0xff0000, 1, 0x00ff00);
 
 
@@ -25,25 +25,25 @@ let PlayState = {
     },
     create: function () {
 
-        game.stage.backgroundColor = "#0072bc";
+        gameFisica.stage.backgroundColor = "#0072bc";
 
         this.score = 0;
         this.numeroParticulas = 20;
-        this.messageText = game.add.text(game.world.centerX, 2*7/8*game.world.centerY, "", {font:"24px Arial", fill:"faedb1"});
+        this.messageText = gameFisica.add.text(gameFisica.world.centerX, 2*7/8*gameFisica.world.centerY, "", {font:"24px Arial", fill:"faedb1"});
         this.messageText.anchor.setTo(0.5);
         this.messageText.alpha = 0;
 
 
         this.reactor = this.placeReactor();
-        game.world.add(this.reactor);
-        game.physics.arcade.enable(this.reactor);
+        gameFisica.world.add(this.reactor);
+        gameFisica.physics.arcade.enable(this.reactor);
         this.reactor.body.setCircle(this.reactor.width/2);
         this.reactor.body.immovable = true;
 
 
-        this.particulas = game.add.group();
+        this.particulas = gameFisica.add.group();
         this.particulas.name = "Particulas";
-        game.physics.arcade.enable(this.particulas);
+        gameFisica.physics.arcade.enable(this.particulas);
 
         let particulas = this.placeParticulas(this.numeroParticulas, [this.reactor, this.particulas]);
         for(let part of particulas){
@@ -53,21 +53,21 @@ let PlayState = {
             part.body.bounce = new Phaser.Point(1,1);
         }
 
-        this.imanes = game.add.group();
+        this.imanes = gameFisica.add.group();
         this.particulas.name = "Imanes";
-        game.physics.arcade.enable(this.imanes);
+        gameFisica.physics.arcade.enable(this.imanes);
 
         this.tempIman = undefined;
         this.limiteIman = 5;
         this.limiteResets = 2;
 
-        game.input.onDown.add(this.createIman, this);
-        game.input.onUp.add(this.placeIman, this);
-        let spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        gameFisica.input.onDown.add(this.createIman, this);
+        gameFisica.input.onUp.add(this.placeIman, this);
+        let spaceBar = gameFisica.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceBar.onUp.add( function () {
             if(this.limiteResets > 0){
-                game.add.tween(this.imanes).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
-                game.time.events.add(Phaser.Timer.SECOND * 0.6,  function () {
+                gameFisica.add.tween(this.imanes).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
+                gameFisica.time.events.add(Phaser.Timer.SECOND * 0.6,  function () {
                     this.imanes.removeAll(true);
                     this.imanes.alpha = 1;
                 }, this);
@@ -75,7 +75,7 @@ let PlayState = {
             }
         }, this);
 
-        this.timer = game.time.create(false);
+        this.timer = gameFisica.time.create(false);
         this.timer.add(Phaser.Timer.MINUTE * 2, this.defeat, this);
         this.timer.start();
     },
@@ -91,13 +91,13 @@ let PlayState = {
             }, this);
         }, this);
 
-        game.physics.arcade.collide(this.particulas, this.particulas);
-        game.physics.arcade.collide(this.particulas, this.imanes);
-        game.physics.arcade.overlap(this.reactor, this.particulas, this.increaseScore, null, this);
+        gameFisica.physics.arcade.collide(this.particulas, this.particulas);
+        gameFisica.physics.arcade.collide(this.particulas, this.imanes);
+        gameFisica.physics.arcade.overlap(this.reactor, this.particulas, this.increaseScore, null, this);
 
-        if( game.input.activePointer.isDown && this.tempIman !== undefined ){
-            this.tempIman.x = game.input.activePointer.worldX;
-            this.tempIman.y = game.input.activePointer.worldY;
+        if( gameFisica.input.activePointer.isDown && this.tempIman !== undefined ){
+            this.tempIman.x = gameFisica.input.activePointer.worldX;
+            this.tempIman.y = gameFisica.input.activePointer.worldY;
         }
 
 
@@ -105,19 +105,19 @@ let PlayState = {
     render: function () {
         let minutos = Math.trunc(this.timer.duration/(60*1000));
         let segundos = (this.timer.duration/1000%60).toFixed(0);
-        let texto = game.debug.text("Pontos " + this.score  , 25, 25, "#ffffff", "20px Arial");
-        let texto2 = game.debug.text("Tempo Restante: " + minutos +"m"+segundos+"s" , 25, 50, "#ffffff", "20px Arial");
-        let texto3 = game.debug.text("Resets Restantes: " + this.limiteResets, 25, 75, "#ffffff", "20px Arial");
+        let texto = gameFisica.debug.text("Pontos " + this.score  , 25, 25, "#ffffff", "20px Arial");
+        let texto2 = gameFisica.debug.text("Tempo Restante: " + minutos +"m"+segundos+"s" , 25, 50, "#ffffff", "20px Arial");
+        let texto3 = gameFisica.debug.text("Resets Restantes: " + this.limiteResets, 25, 75, "#ffffff", "20px Arial");
         this.particulas.forEach(function (member) {
-            game.debug.body(member, "rgba(0,0,0,0.4)");
+            gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
         });
         this.imanes.forEach(function (member) {
-            game.debug.body(member, "rgba(0,0,0,0.4)");
+            gameFisica.debug.body(member, "rgba(0,0,0,0.4)");
         });
-        // game.debug.bodyInfo(this.reactor, 40, 40);
+        // gameFisica.debug.bodyInfo(this.reactor, 40, 40);
     },
     createTextureReactor: function (circle, lineWidth = 1, lineColor = 0x000000, lineAlpha = 1, fillColor = 0xffffff, fillAlpha = 1, textureResolution = 1, textureScaling = 0, texturePadding = 1) {
-        let graphics = new Phaser.Graphics(game);
+        let graphics = new Phaser.Graphics(gameFisica);
 
         graphics.lineStyle(lineWidth, lineColor, lineAlpha);
         graphics.beginFill(fillColor, fillAlpha);
@@ -134,7 +134,7 @@ let PlayState = {
     },
 
     createTextureParticula: function (particula, pieces=3, textureResolution = 1, textureScaling = 0, texturePadding = 1) {
-        let graphics = new Phaser.Graphics(game);
+        let graphics = new Phaser.Graphics(gameFisica);
 
         graphics.lineStyle(2, particula.strokeColor, 1);
 
@@ -154,7 +154,7 @@ let PlayState = {
         return texture;
     },
     createTextureIman: function (iman, textureResolution = 1, textureScaling = 0, texturePadding = 1) {
-        let graphics = new Phaser.Graphics(game);
+        let graphics = new Phaser.Graphics(gameFisica);
 
         graphics.lineStyle(2, iman.strokeColor, 1);
         graphics.beginFill(iman.fillColor, 1);
@@ -177,10 +177,10 @@ let PlayState = {
         let spriteHeight = sprite.height;
         let spriteWidth = sprite.width;
 
-        let worldWidth = game.world.width;
-        let worldHeight = game.world.height;
-        let worldX = game.world.x;
-        let worldY = game.world.y;
+        let worldWidth = gameFisica.world.width;
+        let worldHeight = gameFisica.world.height;
+        let worldX = gameFisica.world.x;
+        let worldY = gameFisica.world.y;
 
         if(spriteX < worldX || spriteY < worldY ||
             spriteX > worldX + worldWidth || spriteY > worldY + worldHeight ||
@@ -195,7 +195,7 @@ let PlayState = {
     placeReactor: function () {
         let sprite;
         do{
-            sprite = new Phaser.Sprite(game, game.world.randomX, game.world.randomY, this.graphicTextures.reactor);
+            sprite = new Phaser.Sprite(gameFisica, gameFisica.world.randomX, gameFisica.world.randomY, this.graphicTextures.reactor);
         }while(this.checkOffWorld(sprite));
         return sprite;
     },
@@ -206,13 +206,13 @@ let PlayState = {
         for (let i=0; i< amount;i++) {
             do {
                 dirty = false;
-                sprite = new Phaser.Sprite(game, game.world.randomX, game.world.randomY, this.graphicTextures.particulas[Math.floor(Math.random() * this.graphicTextures.particulas.length)]);
-                game.physics.arcade.enable(sprite);
+                sprite = new Phaser.Sprite(gameFisica, gameFisica.world.randomX, gameFisica.world.randomY, this.graphicTextures.particulas[Math.floor(Math.random() * this.graphicTextures.particulas.length)]);
+                gameFisica.physics.arcade.enable(sprite);
                 sprite.body.setCircle(sprite.width/2);
 
                 dirty = dirty || this.checkOffWorld(sprite);
-                dirty = dirty || game.physics.arcade.overlap(sprite, obstacles);
-                dirty = dirty || game.physics.arcade.overlap(sprite, sprites);
+                dirty = dirty || gameFisica.physics.arcade.overlap(sprite, obstacles);
+                dirty = dirty || gameFisica.physics.arcade.overlap(sprite, sprites);
 
             } while (dirty);
             sprites.push(sprite);
@@ -232,12 +232,12 @@ let PlayState = {
             textura = this.graphicTextures.imanNegativo;
         }
 
-        let sprite = new Phaser.Sprite(game, pointer.worldX, pointer.worldY, textura);
+        let sprite = new Phaser.Sprite(gameFisica, pointer.worldX, pointer.worldY, textura);
         sprite.polo = polo;
         sprite.alpha = 0.75;
         sprite.anchor.setTo(0.5, 0.5);
         sprite.name = "TempIman";
-        game.world.add(sprite);
+        gameFisica.world.add(sprite);
         this.tempIman = sprite;
     },
     placeIman: function(pointer){
@@ -249,21 +249,21 @@ let PlayState = {
         }
         this.tempIman = undefined;
 
-        game.physics.arcade.enable(sprite);
+        gameFisica.physics.arcade.enable(sprite);
         sprite.body.setCircle(sprite.width/2);
 
         dirty = dirty || this.checkOffWorld(sprite);
-        dirty = dirty || game.physics.arcade.overlap(sprite, this.particulas);
-        dirty = dirty || game.physics.arcade.overlap(sprite, this.reactor);
-        dirty = dirty || game.physics.arcade.overlap(sprite, this.imanes);
+        dirty = dirty || gameFisica.physics.arcade.overlap(sprite, this.particulas);
+        dirty = dirty || gameFisica.physics.arcade.overlap(sprite, this.reactor);
+        dirty = dirty || gameFisica.physics.arcade.overlap(sprite, this.imanes);
 
         if(dirty){
-            game.add.tween(sprite).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-            game.world.bringToTop(this.messageText);
+            gameFisica.add.tween(sprite).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+            gameFisica.world.bringToTop(this.messageText);
             this.messageText.setText("Não pode sobrepor os imanes a outras particulas!!!");
-            game.add.tween(this.messageText).to( { alpha: 1 }, 1500, Phaser.Easing.Linear.None, true,0,0,true);
-            game.time.events.add(Phaser.Timer.SECOND * 1.5, function () {
-                game.world.remove(sprite, true);
+            gameFisica.add.tween(this.messageText).to( { alpha: 1 }, 1500, Phaser.Easing.Linear.None, true,0,0,true);
+            gameFisica.time.events.add(Phaser.Timer.SECOND * 1.5, function () {
+                gameFisica.world.remove(sprite, true);
             }, this);
         }
         else{
@@ -283,16 +283,16 @@ let PlayState = {
                     }
                 }
 
-                game.add.tween(sacrificado).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-                game.time.events.add(Phaser.Timer.SECOND * 1.1, function () {
+                gameFisica.add.tween(sacrificado).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+                gameFisica.time.events.add(Phaser.Timer.SECOND * 1.1, function () {
                     this.imanes.remove(sacrificado, true);
                 }, this);
             }
 
-            game.world.remove(sprite);
+            gameFisica.world.remove(sprite);
             sprite.body.immovable = true;
             this.imanes.add(sprite);
-            game.add.tween(sprite).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
+            gameFisica.add.tween(sprite).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
             sprite.iman = new Iman(sprite.x, sprite.y, sprite.width/2, sprite.polo);
         }
 
@@ -303,20 +303,20 @@ let PlayState = {
     increaseScore: function(obj1, obj2){
         this.score++;
         this.particulas.remove(obj2);
-        game.world.add(obj2);
-        game.add.tween(obj2).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-        game.time.events.add(Phaser.Timer.SECOND * 1, function () {
-            game.world.remove(obj2, true);
+        gameFisica.world.add(obj2);
+        gameFisica.add.tween(obj2).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+        gameFisica.time.events.add(Phaser.Timer.SECOND * 1, function () {
+            gameFisica.world.remove(obj2, true);
         }, this);
     },
     defeat: function () {
         if(this.particulas.length === 0){
-            game.victory = true;
+            gameFisica.victory = true;
         }
         else{
-            game.victory = false;
+            gameFisica.victory = false;
         }
-        game.state.start("EndState");
+        gameFisica.state.start("EndState");
     }
 
 };

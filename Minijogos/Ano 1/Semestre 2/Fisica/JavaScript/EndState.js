@@ -10,7 +10,7 @@ let EndState = {
 
     },
     create: function () {
-        if(game.victory){
+        if(gameFisica.victory){
             this.jogadorGanha();
         }
         else{
@@ -24,19 +24,19 @@ let EndState = {
         let popupG = this.add.sprite(100, 90, 'popupGanhou');
         popupG.alpha = 0;
         let valor = 0;
-        game.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(popupG).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
-        let vicText = game.add.text(490,166, '+'+valor, {font: "40px Kristen ITC", fill: "#fbb117"});
+        let vicText = gameFisica.add.text(490,166, '+'+valor, {font: "40px Kristen ITC", fill: "#fbb117"});
         let popupMoeda = this.add.sprite(530,178,'moeda');
         popupMoeda.alpha = 0;
-        game.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(popupMoeda).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
 
         this.botaoRepetir = this.add.sprite(265,315,'botaoRepetir');
         this.botaoRepetir.alpha = 0;
-        game.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoBAR = this.add.sprite(430,315,'botaoBAR');
         this.botaoBAR.alpha = 0;
-        game.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoRepetir.inputEnabled = true;
         this.botaoBAR.inputEnabled = true;
         this.botaoRepetir.events.onInputOver.add(function () {
@@ -57,13 +57,13 @@ let EndState = {
     jogadorPerde: function () {
         let popupD = this.add.sprite(100, 90, 'popupPerdeu');
         popupD.alpha = 0;
-        game.add.tween(popupD).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(popupD).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoRepetir = this.add.sprite(265,315,'botaoRepetir');
         this.botaoRepetir.alpha = 0;
-        game.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(this.botaoRepetir).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoBAR = this.add.sprite(430,315,'botaoBAR');
         this.botaoBAR.alpha = 0;
-        game.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
+        gameFisica.add.tween(this.botaoBAR).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0);
         this.botaoRepetir.inputEnabled = true;
         this.botaoBAR.inputEnabled = true;
         this.botaoRepetir.events.onInputOver.add(function () {
@@ -84,7 +84,7 @@ let EndState = {
 };
 
 function repeteJogo() {
-    game.state.start("LoadState");
+    gameFisica.state.start("LoadState");
 }
 function vaiParaOBar(dinheiro) {
     let obj = {
