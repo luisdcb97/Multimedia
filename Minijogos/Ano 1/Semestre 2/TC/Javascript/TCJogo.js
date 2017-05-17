@@ -8,7 +8,7 @@ var timer, timerEvent;
 var popupGanhou;
 var japassou = 0;
 var estrela1aux,estrela2aux,estrela3aux;
-var fx;
+var fx,lz,musica;
 
 
 var gameState = {
@@ -34,12 +34,18 @@ var gameState = {
         this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
         this.load.image('botaoBAR',"../../../../../Principal/Recursos/botaoBAR.png");
         this.load.audio('somCabo', '../../../../../Principal/Recursos/cabosrodam.mp3');
+        this.load.audio('somLuz', '../../../../../Principal/Recursos/luzacende.mp3');
+        this.load.audio('musica', '../../../../../Principal/Recursos/musicaTC.mp3');
     },
     create: function () {
         timer = game.time.create();
         timerEvent = timer.add(Phaser.Timer.MINUTE * 2 + Phaser.Timer.SECOND*0, this.endTimerLoser, this);
 
         fx = this.add.audio('somCabo');
+        lz = this.add.audio('somLuz');
+        musica = this.add.audio('musica');
+        musica.loop = true;
+        musica.play();
 
         this.spriteCabos = [];
         this.cabos = [];
@@ -226,8 +232,10 @@ var gameState = {
             && this.cabos[13].entrada == 2 && this.cabos[14].entrada == 3 && (this.cabos[22].entrada == 2 || this.cabos[22].entrada == 3) && this.cabos[30].entrada ==2
             && (this.cabos[31].entrada == 0 || this.cabos[31].entrada == 1)){
             //this.led = this.remove.sprite(329+19,356,'ledApagado');
-
+            musica.pause();
+            musica.currentTime = 0;
             this.led = this.add.sprite(329+19,356,'ledLigado');
+            lz.play();
             this.endTimerApenas();
             timerEvent = timer.add(Phaser.Timer.SECOND*1, this.jogadorGanha, this);
 
