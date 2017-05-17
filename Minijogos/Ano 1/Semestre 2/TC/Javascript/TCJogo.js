@@ -1,6 +1,6 @@
 "use strict";
 
-var gameTC = new Phaser.Game(800,540,Phaser.AUTO, 'TC');
+var gameTC = new Phaser.Game(800,540,Phaser.AUTO, 'Jogo');
 
 let i;
 let xTC, yTC;
@@ -10,32 +10,38 @@ var japassouTC = 0;
 var estrela1auxTC,estrela2auxTC,estrela3auxTC;
 var fxTC,lzTC,musicaTC;
 
-
 var gameStateTC = {
     preload: function () {
         gameTC.scale.pageAlignHorizontally = true;
         gameTC.scale.pageAlignVeritcally = true;
 
-        this.load.image('fundo', "../../../../../Principal/Recursos/arduinoFundo.jpg");
-        this.load.image('cabo1', "../../../../../Principal/Recursos/caboArduinoAmarelo.png");
-        this.load.image('cabo2', "../../../../../Principal/Recursos/caboArduinoAzul.png");
-        this.load.image('cabo3', "../../../../../Principal/Recursos/caboArduinoVermelho.png");
-        this.load.image('cabo4', "../../../../../Principal/Recursos/caboArduinoAmarelo90Graus.png");
-        this.load.image('cabo5', "../../../../../Principal/Recursos/caboArduinoAzul90Graus.png");
-        this.load.image('cabo6', "../../../../../Principal/Recursos/caboArduinoVermelho90Graus.png");
-        this.load.image('inicial', "../../../../../Principal/Recursos/caboArduinoInicial.png");
-        this.load.image('final', "../../../../../Principal/Recursos/caboArduinoFinal.png");
-        this.load.image('ledApagado', "../../../../../Principal/Recursos/ledArduino.png");
-        this.load.image('ledLigado', "../../../../../Principal/Recursos/ledArduinoLigado.png");
-        this.load.image('popupGanhouTC',"../../../../../Principal/Recursos/popupVitoriaJogoTC.png");
-        this.load.image('popupPerdeu',"../../../../../Principal/Recursos/popupDerrota.png");
-        this.load.image('estrela',"../../../../../Principal/Recursos/estrelaPontuacao.png");
-        this.load.image('moeda',"../../../../../Principal/Recursos/moeda.png");
-        this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
-        this.load.image('botaoBAR',"../../../../../Principal/Recursos/botaoBAR.png");
-        this.load.audio('somCabo', '../../../../../Principal/Recursos/cabosrodam.mp3');
-        this.load.audio('somLuz', '../../../../../Principal/Recursos/luzacende.mp3');
-        this.load.audio('musicaTC', '../../../../../Principal/Recursos/musicaTC.mp3');
+        if(typeof resourcePrefix === 'undefined'){
+            this.resourcePrefix = "../../../../../Principal/";
+        }
+        else{
+            this.resourcePrefix = resourcePrefix;
+        }
+
+        this.load.image('fundo', this.resourcePrefix + "Recursos/arduinoFundo.jpg");
+        this.load.image('cabo1', this.resourcePrefix + "Recursos/caboArduinoAmarelo.png");
+        this.load.image('cabo2', this.resourcePrefix + "Recursos/caboArduinoAzul.png");
+        this.load.image('cabo3', this.resourcePrefix + "Recursos/caboArduinoVermelho.png");
+        this.load.image('cabo4', this.resourcePrefix + "Recursos/caboArduinoAmarelo90Graus.png");
+        this.load.image('cabo5', this.resourcePrefix + "Recursos/caboArduinoAzul90Graus.png");
+        this.load.image('cabo6', this.resourcePrefix + "Recursos/caboArduinoVermelho90Graus.png");
+        this.load.image('inicial', this.resourcePrefix + "Recursos/caboArduinoInicial.png");
+        this.load.image('final', this.resourcePrefix + "Recursos/caboArduinoFinal.png");
+        this.load.image('ledApagado', this.resourcePrefix + "Recursos/ledArduino.png");
+        this.load.image('ledLigado', this.resourcePrefix + "Recursos/ledArduinoLigado.png");
+        this.load.image('popupGanhouTC',this.resourcePrefix + "Recursos/popupVitoriaJogoTC.png");
+        this.load.image('popupPerdeu',this.resourcePrefix + "Recursos/popupDerrota.png");
+        this.load.image('estrela',this.resourcePrefix + "Recursos/estrelaPontuacao.png");
+        this.load.image('moeda',this.resourcePrefix + "Recursos/moeda.png");
+        this.load.image('botaoRepetir',this.resourcePrefix + "Recursos/botaoREPETIR.png");
+        this.load.image('botaoBAR',this.resourcePrefix + "Recursos/botaoBAR.png");
+        this.load.audio('somCabo', this.resourcePrefix + "Recursos/cabosrodam.mp3");
+        this.load.audio('somLuz', this.resourcePrefix + "Recursos/luzacende.mp3");
+        this.load.audio('musicaTC', this.resourcePrefix + "Recursos/musicaTC.mp3");
     },
     create: function () {
         timerTC = gameTC.time.create();

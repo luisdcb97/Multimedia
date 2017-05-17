@@ -1,6 +1,6 @@
 "use strict";
 
-var gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Nome");
+var gameAMI = new Phaser.Game(800, 600, Phaser.AUTO, "Jogo");
 var fundoAMI,mesaAMI,integralAMI;
 var headAMI;
 var sprite1AMI;
@@ -10,6 +10,7 @@ var mesasAMI =[];
 var funcoesAMI=[];
 var jaJogouAMI = 0;
 var vsMesaAMI,musicaAMI,vsIntegralAMI,vitAMI;
+
 
 let mainStateAMI = {
    preload: function () {
@@ -29,7 +30,7 @@ let mainStateAMI = {
        gameAMI.load.image('botaoRepetir',"../Recursos/botaoREPETIR.png");
        gameAMI.load.image('botaoBAR',"../Recursos/botaoBAR.png");
 
-       gameAMI.load.audio('integ', '../Recursos/cabosrodam.mp3');
+       gameAMI.load.audio('integ', '../Recursos/apanhafuncao.mp3');
        gameAMI.load.audio('mesaAMI', '../Recursos/contrasecretaria.mp3');
        gameAMI.load.audio('musicaAMI', '../Recursos/musicaAMI.wav');
        gameAMI.load.audio('vitoria', '../Recursos/vitoriaAMI.mp3');
