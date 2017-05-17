@@ -2,6 +2,8 @@
 
 let PlayState = {
     preload: function () {
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVeritcally = true;
         this.graphicTextures = {};
         let reactor_circle = new Phaser.Circle(0, 0, game.rnd.realInRange(50, 75));
         this.graphicTextures.reactor = this.createTextureReactor(reactor_circle, 3, 0xff0000, 1, 0x00ff00);
@@ -74,7 +76,7 @@ let PlayState = {
         }, this);
 
         this.timer = game.time.create(false);
-        this.timer.add(Phaser.Timer.MINUTE * 3, this.defeat, this);
+        this.timer.add(Phaser.Timer.MINUTE * 2, this.defeat, this);
         this.timer.start();
     },
     update: function () {
@@ -308,7 +310,13 @@ let PlayState = {
         }, this);
     },
     defeat: function () {
-
+        if(this.particulas.length === 0){
+            game.victory = true;
+        }
+        else{
+            game.victory = false;
+        }
+        game.state.start("EndState");
     }
 
 };

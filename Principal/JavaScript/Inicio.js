@@ -207,7 +207,7 @@ function addListenersBar() {
 
     let tc = document.getElementById("TC");
     tc.addEventListener("click", function (event) {
-        showFrame(800, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html")
+        showFrame(810, 540, "../../Minijogos/Ano 1/Semestre 2/TC/HTML/JogoTC.html");
     })
 }
 

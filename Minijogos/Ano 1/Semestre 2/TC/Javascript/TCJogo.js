@@ -8,7 +8,7 @@ var timer, timerEvent;
 var popupGanhou;
 var japassou = 0;
 var estrela1aux,estrela2aux,estrela3aux;
-
+var fx;
 
 
 var gameState = {
@@ -33,12 +33,13 @@ var gameState = {
         this.load.image('moeda',"../../../../../Principal/Recursos/moeda.png");
         this.load.image('botaoRepetir',"../../../../../Principal/Recursos/botaoREPETIR.png");
         this.load.image('botaoBAR',"../../../../../Principal/Recursos/botaoBAR.png");
-
+        this.load.audio('somCabo', '../../../../../Principal/Recursos/cabosrodam.mp3');
     },
     create: function () {
         timer = game.time.create();
         timerEvent = timer.add(Phaser.Timer.MINUTE * 2 + Phaser.Timer.SECOND*0, this.endTimerLoser, this);
 
+        fx = this.add.audio('somCabo');
 
         this.spriteCabos = [];
         this.cabos = [];
@@ -204,6 +205,7 @@ var gameState = {
 
     },
     rodaCabo: function () {
+        fx.play();
         this.alteraRotacao(this.entrada,this.saida);
     },
     roda: function () {
